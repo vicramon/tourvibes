@@ -1,1 +1,20 @@
-<h4><%= @tour.address_1 %></h4>	
+<%= render :partial => "edit" %>
+
+
+<%= form_tag @tour.edit_path do %>
+	<label>Address Line 1:</label><%= text_field_tag 'address_1', @tour.address_1, :class => 'login_text' %><br />
+	<label>Address Line 2:</label><%= text_field_tag 'address_2', @tour.address_2, :class => 'login_text' %><br />
+	<label>City:</label><%= text_field_tag 'city', @tour.city, :class => 'login_text' %><br />
+	<label>State:</label><%= text_field_tag 'state', @tour.state, :class => 'login_text' %><br />
+	<label>Zip:</label><%= text_field_tag 'zip', @tour.zip, :class => 'login_text' %><br />
+	<label>Title:</label><%= text_field_tag 'title', @tour.title, :class => 'login_text' %> (if different from address)<br />
+	<label style="vertical-align:top;padding-top:6px;">Description:</label><%= text_area_tag 'desc', @tour.desc, :class => 'login_text' %><br />
+	
+	
+	
+	<%= submit_tag 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;' %>
+<% end %>
+
+<script type="text/javascript">
+$('#address_1').focus();
+</script>

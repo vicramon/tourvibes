@@ -53,6 +53,8 @@ i {
 
 th {
 	text-align:left;
+	margin-bottom:0;
+	padding-bottom:7px;
 }
 
 h1, h2, h3, h4 {
@@ -135,7 +137,11 @@ a.gray_button {
 	padding:2px 40px 4px;
 	text-decoration:none;
 	text-shadow:0 1px 0 white;
-	
+}
+
+.small_button {
+	font-size:16px;
+	padding:2px 20px 3px;
 }
 
 .gray_button:hover, .gray_button a:hover {
@@ -232,11 +238,7 @@ a.gray_button {
 	background:#F3D5E0;
 }
 
-textarea {
-	height:80px;
-	margin:1px 0;
-	width:350px;
-}
+
 
 label {
 	width:160px;
@@ -296,10 +298,17 @@ input[type=submit] {
 	width:500px;margin:40px auto 0;align:center;border:2px solid #ccc;border-radius:8px;padding:25px 40px 40px;
 }
 
-input.login_text {
-	font-size:18px;
+input.login_text, textarea.login_text {
+	font-size:17px;
 	width:300px;
 	margin-bottom:4px;
+}
+
+textarea.login_text {
+	height:90px;
+	margin:1px 0;
+	width:400px;
+	font-size:15px;
 }
 
 

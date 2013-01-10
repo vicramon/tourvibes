@@ -6,6 +6,22 @@ class TourController < ApplicationController
     @tour = @house
   end
   
+  def edit
+    @tab = "info"
+  end
+  
+  def edit_music
+    @tab = "music"
+  end
+  
+  def edit_settings
+    @tab = "settings"
+  end
+  
+  def edit_photos
+    @tab = "photos"
+  end
+  
   def new
     @page = "new"
     

@@ -1,7 +1,10 @@
-<h4>My Tours</h4>
+<h4>
+	My Tours
+	<a href="/tour/new" class="gray_button small_button" style="margin-left:15px;">New Tour</a>
+</h4>
 
-<table cellspacing=0 cellpadding=12 style="width:100%;margin-top:-10px;">
-	<tr style="height:20px;font-size:17px;">
+<table cellspacing=0 cellpadding=12 style="width:100%;margin-top:-6px;margin-left:-8px;">
+	<tr style="font-size:17px;">
 		<th>Address</td>
 		<th>Status</td>
 		<th>Actions</td>
@@ -10,7 +13,6 @@
 <% i = 1 %>
 <% for @tour in @tours %>
 	
-
 	<tr style="<% if i % 2 == 0 %>background:#DCE7EE;<% end %>height:40px;">
 		<td><a href="<%= @tour.edit_path %>"><%= @tour.address_1 %></a></td>
 		<td><%= @tour.status %></td>

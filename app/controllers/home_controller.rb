@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       if u
         if u.password == Digest::SHA2.hexdigest(u.salt + params[:password].strip)
           session[:user_id] = u.id
-          redirect_to '/' and return
+          redirect_to '/tours' and return
         end
       end
       flash[:error] = "yes"

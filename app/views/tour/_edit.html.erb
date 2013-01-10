@@ -1,0 +1,48 @@
+<h4><%= @tour.address_1 %></h4>	
+
+
+<style>
+
+.tab_box {
+	border-bottom:1px solid #ccc;
+	box-shadow:0 1px white;
+}
+
+.tab_box a {
+	background:#F3F3F3;
+	color:#323232;
+	border:1px solid #ccc;
+	border-radius:6px 6px 0 0;
+	display:inline-block;
+	font-size:17px;
+	padding:3px 25px 3px;
+	text-decoration:none;
+	text-shadow:0 1px 0 white;
+	margin-right:3px;
+	border-bottom:none;
+}
+
+.tab_box a:hover {
+	background:#DCE7EE;
+}
+
+.tab_box a.selected {
+	background:url('/assets/tab_bg.png') repeat-x;
+	color:white;
+	text-shadow:0 1px 0 #333;
+	font-weight:bold;
+	border:none;
+	margin-bottom:0;
+	padding-bottom:4px;
+}
+
+</style>
+
+<div class="tab_box">
+	<a href="<%= @tour.edit_path %>" <% if @tab == "info"%>class="selected"<% end %> style="margin-left:20px;">Property Info</a>
+	<a href="<%= @tour.edit_photos_path %>" <% if @tab == "photos"%>class="selected"<% end %>>Photos &amp; Videos</a>
+	<a href="<%= @tour.edit_music_path %>" <% if @tab == "music"%>class="selected"<% end %>>Music</a>
+	<a href="<%= @tour.edit_settings_path %>" <% if @tab == "settings"%>class="selected"<% end %>>Tour Settings</a>
+</div>
+
+<div style="height:30px;">&nbsp;</div>
