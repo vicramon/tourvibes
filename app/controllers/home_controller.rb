@@ -4,7 +4,12 @@ class HomeController < ApplicationController
     @page = 'home'
   end
   
+  def contact
+    @page = "contact"
+  end
+  
   def login    
+    @page = "login"
     if request.post?     
       u = User.find(:first, :conditions => {:email => params[:email].strip})
       if u

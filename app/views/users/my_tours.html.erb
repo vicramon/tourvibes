@@ -1,0 +1,28 @@
+<h4>My Tours</h4>
+
+<table cellspacing=0 cellpadding=12 style="width:100%;margin-top:-10px;">
+	<tr style="height:20px;font-size:17px;">
+		<th>Address</td>
+		<th>Status</td>
+		<th>Actions</td>
+	</tr>
+
+<% i = 1 %>
+<% for @tour in @tours %>
+	
+
+	<tr style="<% if i % 2 == 0 %>background:#DCE7EE;<% end %>height:40px;">
+		<td><a href="<%= @tour.edit_path %>"><%= @tour.address_1 %></a></td>
+		<td><%= @tour.status %></td>
+		<td><a href="/tour/<%= @tour.id.to_s %>/publish">Publish</a> &nbsp;|&nbsp;
+			<a href="<%= @tour.edit_path %>">Edit</a> &nbsp;|&nbsp;
+			<a href="/tour/<%= @tour.id.to_s %>/preview">Preview</a>
+		</td>
+	</tr>
+	
+	<% i +=1 %>
+<% end %>
+
+
+
+</table>

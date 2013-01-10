@@ -1,4 +1,3 @@
-
 html, body {
 	margin:0;
 	padding:0;
@@ -11,6 +10,11 @@ html, body {
 
 a, a:active, a:visited {
 	text-decoration:none;
+	color:#00e;
+}
+
+a:hover {
+	text-decoration:underline;
 }
 
 i {
@@ -47,6 +51,10 @@ i {
 	width:77%;
 }
 
+th {
+	text-align:left;
+}
+
 h1, h2, h3, h4 {
 	color:white;
 	padding:0;
@@ -63,7 +71,7 @@ h2, h4 {
 
 h4 {
 	font-weight:normal;
-	margin-bottom:14px;
+	margin-bottom:10px;
 }
 
 .header {
@@ -123,6 +131,7 @@ h4 {
 	padding:2px 40px 4px;
 	text-decoration:none;
 	text-shadow:0 1px 0 white;
+	
 }
 
 .gray_button:hover, .gray_button a:hover {
@@ -279,4 +288,23 @@ input[type=submit] {
 
 .center_form_box {
 	width:500px;margin:40px auto 0;align:center;border:2px solid #ccc;border-radius:8px;padding:25px 40px 40px;
+}
+
+input.login_text {
+	font-size:18px;
+	width:300px;
+	margin-bottom:4px;
+}
+
+
+input[type=submit] {
+	width:305px;
+	padding-top:6px;
+	padding-bottom:8px;
+	margin-top:4px;
+}
+
+label {
+	padding-right:6px;
+	font-size:16px;
 }

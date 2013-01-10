@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Address 1:</b>
+  <%= @house.address_1 %>
+</p>
+
+<p>
+  <b>Address 2:</b>
+  <%= @house.address_2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @house.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @house.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @house.zip %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @house.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @house.title %>
+</p>
+
+<p>
+  <b>Heading:</b>
+  <%= @house.heading %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @house.desc %>
+</p>
+
+<p>
+  <b>Subdomain:</b>
+  <%= @house.subdomain %>
+</p>
+
+<p>
+  <b>Custom domain:</b>
+  <%= @house.custom_domain %>
+</p>
+
+<p>
+  <b>Is paid:</b>
+  <%= @house.is_paid %>
+</p>
+
+<p>
+  <b>Show map:</b>
+  <%= @house.show_map %>
+</p>
+
+<p>
+  <b>Show schools:</b>
+  <%= @house.show_schools %>
+</p>
+
+<p>
+  <b>Show flyer:</b>
+  <%= @house.show_flyer %>
+</p>
+
+<p>
+  <b>Show realtor info:</b>
+  <%= @house.show_realtor_info %>
+</p>
+
+
+<%= link_to 'Edit', edit_house_path(@house) %> |
+<%= link_to 'Back', houses_path %>

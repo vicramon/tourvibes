@@ -13,15 +13,23 @@
 			<div class="header_inner standard_width">
 				<a href="/"><%= image_tag 'logo.png', :style => 'margin-top:1px;', :border => 0 %></a>
 				<div class="top_nav">
-					<a href="/" class="selected">Home</a>
-					<a href="#">How it Works</a>
+					<a href="/" <% if @page == "home"%>class="selected"<% end %>>Home</a>
+					
+					<% if not @user %>
+					<a href="#" >How it Works</a>
 					<a href="#">Features</a>
 					<a href="#">Pricing</a>
-					<a href="/contact">Contact</a>
+					<% end %>
 					<% if @user %>
-					<a href="/logout">Logout</a>
+				
+						<a href="/tours" <% if @page == "my"%>class="selected"<% end %>>My Tours</a>
+						<a href="/tour/new" <% if @page == "new"%>class="selected"<% end %>>New Tour</a>
+						<a href="/contact" <% if @page == "contact"%>class="selected"<% end %>>Contact</a>
+						<a href="/logout">Logout</a>
+						
 					<% else %>
-					<a href="/login">Login</a>
+					<a href="/contact" <% if @page == "contact"%>class="selected"<% end %>>Contact</a>
+					<a href="/login" <% if @page == "login"%>class="selected"<% end %>>Login</a>
 					<% end %>
 				</div>
 			</div>

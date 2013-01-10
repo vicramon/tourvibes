@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address_1: MyText
+  address_2: MyText
+  city: MyText
+  state: MyText
+  zip: MyString
+  user_id: 1
+  title: MyText
+  heading: MyText
+  desc: MyText
+  subdomain: MyString
+  custom_domain: MyText
+  is_paid: false
+  show_map: false
+  show_schools: false
+  show_flyer: false
+  show_realtor_info: false
+
+two:
+  address_1: MyText
+  address_2: MyText
+  city: MyText
+  state: MyText
+  zip: MyString
+  user_id: 1
+  title: MyText
+  heading: MyText
+  desc: MyText
+  subdomain: MyString
+  custom_domain: MyText
+  is_paid: false
+  show_map: false
+  show_schools: false
+  show_flyer: false
+  show_realtor_info: false

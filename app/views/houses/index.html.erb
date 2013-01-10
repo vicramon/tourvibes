@@ -1,0 +1,53 @@
+<h1>Listing houses</h1>
+
+<table>
+  <tr>
+    <th>Address 1</th>
+    <th>Address 2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>User</th>
+    <th>Title</th>
+    <th>Heading</th>
+    <th>Desc</th>
+    <th>Subdomain</th>
+    <th>Custom domain</th>
+    <th>Is paid</th>
+    <th>Show map</th>
+    <th>Show schools</th>
+    <th>Show flyer</th>
+    <th>Show realtor info</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @houses.each do |house| %>
+  <tr>
+    <td><%= house.address_1 %></td>
+    <td><%= house.address_2 %></td>
+    <td><%= house.city %></td>
+    <td><%= house.state %></td>
+    <td><%= house.zip %></td>
+    <td><%= house.user_id %></td>
+    <td><%= house.title %></td>
+    <td><%= house.heading %></td>
+    <td><%= house.desc %></td>
+    <td><%= house.subdomain %></td>
+    <td><%= house.custom_domain %></td>
+    <td><%= house.is_paid %></td>
+    <td><%= house.show_map %></td>
+    <td><%= house.show_schools %></td>
+    <td><%= house.show_flyer %></td>
+    <td><%= house.show_realtor_info %></td>
+    <td><%= link_to 'Show', house %></td>
+    <td><%= link_to 'Edit', edit_house_path(house) %></td>
+    <td><%= link_to 'Destroy', house, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New House', new_house_path %>
