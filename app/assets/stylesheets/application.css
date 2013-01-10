@@ -1,3 +1,4 @@
+
 html, body {
 	margin:0;
 	padding:0;
@@ -5,6 +6,7 @@ html, body {
 	font-size:15px;
 	color:#444;
 	line-height:1.6;
+	height:100%;
 }
 
 a, a:active, a:visited {
@@ -18,23 +20,50 @@ i {
 
 .container {
 	width:100%;
+  	margin: 0 auto;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin-bottom:-150px;
+	background:url('page_bg.png') repeat;
+}
+
+.footer {
+	height:150px;
+}
+
+.content {
+	background:url('page_bg.png') repeat;
+	min-height:400px;
+}
+
+.inner_content {
+	margin:0 auto;
+	padding-top:15px;
+	padding-bottom:50px;
 }
 
 .standard_width {
 	width:77%;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	color:white;
 	padding:0;
 	margin:0;
 }
 
-h2 {
+h2, h4 {
 	font-family:"Myriad Pro",Arial;
 	color:#444;
 	font-size:25px;
 	font-weight:bold;
+	text-shadow:0 1px 0 white;
+}
+
+h4 {
+	font-weight:normal;
+	margin-bottom:14px;
 }
 
 .header {
@@ -82,16 +111,6 @@ h2 {
 	margin-left:auto;
 }
 
-.content {
-	background:url('page_bg.png') repeat;
-}
-
-.inner_content {
-	margin:0 auto;
-	padding-top:15px;
-	padding-bottom:50px;
-}
-
 .gray_button, .gray_button a, .button, .button a {
 	background:url('buttons/gray_bg.png') repeat-x;
 	color:#323232;
@@ -108,6 +127,7 @@ h2 {
 
 .gray_button:hover, .gray_button a:hover {
 	background:#e1e1e1;
+	
 }
 
 .blue_button a, .blue_button {
@@ -159,9 +179,9 @@ h2 {
 	padding-right:5px;
 }
 
+
 .footer {
 	background:#282A2F;
-	height:150px;
 }
 
 .footer_inner {
@@ -182,4 +202,81 @@ h2 {
 
 .footer a:hover {
 	color:#8DCCF2;
+}
+
+.update, .error {
+	background:#DAFDD3;
+	border:1px solid #eaeaea;
+	display:inline-block;
+	padding:5px 20px 6px;
+	margin:0px 0 12px;
+	border-radius:6px;
+}
+
+.error {
+	background:#F3D5E0;
+}
+
+textarea {
+	height:80px;
+	margin:1px 0;
+	width:350px;
+}
+
+label {
+	width:160px;
+	display:inline-block;
+	text-align:right;
+	margin-bottom:8px;
+}
+
+input[type=text], input[type=password] {
+	width:180px;
+}
+
+input[type=submit].move {
+	margin-left:168px;
+	margin-top:2px;
+}
+
+input[type=text].home_field, input[type=password].home_field {
+	font-size:16px;
+	width:250px;
+}
+
+input[type=text], input[type=password],select,textarea {
+	font-family:"Helvetica Neue","Helvetica","Arial";
+	font-size:13px;
+	color:#333;
+	border-radius:3px;
+	padding:3px;
+	border:1px solid #B7C6D4;
+}
+
+input[type=text],input[type=password],select,textarea {
+	-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;-moz-transition:border linear 0.2s,box-shadow linear 0.2s;transition:border linear 0.2s,box-shadow linear 0.2s;
+	-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type=text]:focus,input[type=password]:focus,textarea:focus {
+	outline:none;
+	border-color:rgba(82, 168, 236, 0.8);
+	-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);
+	-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);
+	box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+input[type=submit] {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.submit {
+	width:180px;
+}
+
+.center_form_box {
+	width:500px;margin:40px auto 0;align:center;border:2px solid #ccc;border-radius:8px;padding:25px 40px 40px;
 }

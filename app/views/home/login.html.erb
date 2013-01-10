@@ -1,0 +1,38 @@
+<style>
+input.login_text {
+	font-size:18px;
+	width:300px;
+}
+
+
+input[type=submit] {
+	width:305px;
+	padding-top:6px;
+	padding-bottom:8px;
+	margin-top:4px;
+}
+</style>
+
+
+<div class="center_form_box" >
+	<div style='margin-left:95px'>
+<h4>Login</h4>
+
+<% if flash[:error] %>
+<div class="error">
+	Sorry, but your email or password is incorrect.
+</div>
+<% end %>
+
+<%= form_tag '/login' do %>
+	<%= text_field_tag 'email', '', :class => 'login_text', :style => 'margin-bottom:4px;' %><br />
+	<%= password_field_tag 'password', '', :class => 'login_text' %><br />
+	<%= submit_tag 'Login', :class => 'gray_button submit' %>
+<% end %>
+</div>
+
+</div>
+
+<script type="text/javascript">
+$('#email').focus();
+</script>

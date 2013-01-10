@@ -18,10 +18,15 @@
 					<a href="#">Features</a>
 					<a href="#">Pricing</a>
 					<a href="/contact">Contact</a>
-					<a href="#">Login</a>
+					<% if @user %>
+					<a href="/logout">Logout</a>
+					<% else %>
+					<a href="/login">Login</a>
+					<% end %>
 				</div>
 			</div>
 		</div> <!-- ends header -->
+		<% if @page == 'home' %>
 		<div class="home_top">
 			<div class="home_top_inner standard_width">
 				<h1>Create Amazing Virtual Real Estate Tours</h1>
@@ -31,29 +36,42 @@
 				<a href="/samples" class="blue_button button" style="margin-left:15px;">View Samples</a>
 			</div>
 		</div>
-		<div class="content" style="min-height:400px;">
+		<% end %>
+		<div class="content">
 			<div class="inner_content standard_width">
 				<%= yield %>	
+				<div style="clear:both;height:0;">&nbsp;</div>
 			</div>
 		</div>
 		<div style="clear:both;height:0;">&nbsp;</div>
-		<div class="footer">
-			<div class="footer_inner standard_width">
-				<div style="float:left;margin-right:50px;">
-					<a href="/">Home</a>
-					<a href="#">How it Works</a>
-					<a href="#">Pricing</a>
-				</div>
-				<div style="float:left;">
-					<a href="/contact">Contact</a>
-					<a href="/login">Login</a>
-					<a href="/about">About</a>
-				</div>
+				
+		<div style="height:150px;">&nbsp;</div>
+		
+    	
+	
+	</div> <!-- ends container -->
+	
+	
+	
+	<div class="footer">
+		<div class="footer_inner standard_width">
+			<div style="float:left;margin-right:50px;">
+				<a href="/">Home</a>
+				<a href="#">How it Works</a>
+				<a href="#">Pricing</a>
+			</div>
+			<div style="float:left;">
+				<a href="/contact">Contact</a>
+				<a href="/login">Login</a>
+				<a href="/about">About</a>
 			</div>
 		</div>
-			
-		
-	</div> <!-- ends container -->
+	</div> <!-- ends footer -->
+	
+	
+	
+	
+
 
 
 </body>
