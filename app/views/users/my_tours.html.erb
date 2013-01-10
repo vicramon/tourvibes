@@ -12,13 +12,41 @@
 
 <% i = 1 %>
 <% for @tour in @tours %>
-	
+	<!-- lighter gray is #f9f9f9 -->
 	<tr style="<% if i % 2 == 0 %>background:#DCE7EE;<% end %>height:40px;">
 		<td><a href="<%= @tour.edit_path %>"><%= @tour.address_1 %></a></td>
-		<td><%= @tour.status %></td>
-		<td><a href="/tour/<%= @tour.id.to_s %>/publish">Publish</a> &nbsp;|&nbsp;
-			<a href="<%= @tour.edit_path %>">Edit</a> &nbsp;|&nbsp;
-			<a href="/tour/<%= @tour.id.to_s %>/preview">Preview</a>
+		<td>
+			<% if @tour.is_live %>
+				<span style="color:#009900;">
+					Live
+				</span>
+			<% else %>
+				<span style="color:#990000;">
+					Not Live
+				</span>
+			<% end %>
+		</td>
+		<td>
+			<a href="<%= @tour.edit_path %>">Edit</a> 
+			<span style="color:#999">
+		&nbsp;	&nbsp;|&nbsp;
+			</span>
+		
+			<span style="width:60px;display:inline-block;text-align:center;">
+			<% if @tour.is_live %>
+				<a href="<%= @tour.live_path %>">View</a>
+			<% else %>
+				<a href="<%= @tour.publish_path %>">Preview</a>
+			<% end %>
+			</span>			
+			<span style="color:#999">
+			&nbsp;|&nbsp;&nbsp;
+			</span>
+			<% if @tour.is_live %>
+				<a href="<%= @tour.takedown_path %>">Take down</a>
+			<% else %>
+				<a href="<%= @tour.publish_path %>">Publish</a>
+			<% end %>
 		</td>
 	</tr>
 	

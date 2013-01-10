@@ -1,14 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'pg'
+gem 'heroku'
 
-gem 'paperclip'
+group :production do
+  gem 'pg'
+end
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+
+gem "paperclip", "~> 2.7"
+gem 'aws-sdk'
+
 gem "jquery-fileupload-rails"
 
 gem 'json'

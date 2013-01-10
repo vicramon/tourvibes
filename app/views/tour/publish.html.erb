@@ -1,0 +1,53 @@
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
+<h4>Publish Tour</h4>
+
+Please pay the $10 fee to post your tour to the web by clicking the button below. 
+
+<br /><br />
+
+<%= form_tag "/payments/charge", :method => "post", :id => 'new_card' do %>
+
+	<%= hidden_field_tag 'house_id', @tour.id %>
+	
+	<script
+	  src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+	  data-key="pk_test_xtyjdXQcPArIuU9dInE8d80b"
+	  data-amount="1000"
+	  data-name="1 TourVibes Tour"
+	  data-description=""
+	  data-image="/128x128.png">
+	</script>
+	
+
+
+<% end %>
+
+<!-- for saving a user's info, may want this later -->
+
+<!--
+	<button id="customButton" class="btn btn-primary" style="font-weight:bold;">Pay with New Card</button>
+	
+	<%= submit_tag 'Purchase Tour', :class => 'btn', :style => 'width:auto;border-radius:4px;' %>
+
+	<script>
+	  $('#customButton').click(function(){
+	    var token = function(res){
+	      console.log('Got token ID:', res.id);
+	    };
+
+	    StripeCheckout.open({
+	      key:         'pk_test_xtyjdXQcPArIuU9dInE8d80b',
+	      address:     false,
+	      amount:      1000,
+	      name:        '1 TourVibes Tour',
+	      description: '',
+	      panelLabel:  'Pay',
+	      token:       token
+	    });
+	   return false;
+	   //$('#new_card').submit();
+	  });
+	</script>
+-->
+

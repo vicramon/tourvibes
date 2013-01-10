@@ -1,3 +1,19 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.fileupload-ui
+ *= require_tree .
+ */
+
+
 html, body {
 	margin:0;
 	padding:0;
@@ -8,9 +24,14 @@ html, body {
 	height:100%;
 }
 
+.link_blue {
+	color:#1C5DEB;
+}
+
 a, a:active, a:visited {
 	text-decoration:none;
-	color:#00e;
+		/*color:#00e;*/
+	color:#1C5DEB;
 }
 
 a:hover {
@@ -20,6 +41,15 @@ a:hover {
 i {
 	text-decoration:none;
 	font-style:normal;
+}
+
+.LV_validation_message {
+	margin-left:5px;
+	font-size:15px;
+}
+
+.LV_invalid {
+	color:red;
 }
 
 .container {
@@ -57,13 +87,13 @@ th {
 	padding-bottom:7px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
 	color:white;
 	padding:0;
 	margin:0;
 }
 
-h2, h4 {
+h2, h4, h5 {
 	font-family:"Myriad Pro",Arial;
 	color:#444;
 	font-size:25px;
@@ -74,6 +104,13 @@ h2, h4 {
 h4 {
 	font-weight:normal;
 	margin-bottom:10px;
+}
+
+h5 {
+	font-family:"Helvetica Neue","Helvetica",Arial;
+	margin-bottom:10px;
+	font-size:18px;
+	font-weight:bold;
 }
 
 .header {
@@ -99,6 +136,7 @@ h4 {
 	color:#DDDDDD;
 	margin-left:30px;
 	text-decoration:none;
+	text-shadow:0 1px 0 black;
 }
 
 .top_nav a.selected {
@@ -121,6 +159,8 @@ h4 {
 	margin-left:auto;
 }
 
+
+
 a.gray_button {
 	color:#323232;
 }
@@ -139,16 +179,14 @@ a.gray_button {
 	text-shadow:0 1px 0 white;
 }
 
-.small_button {
-	font-size:16px;
-	padding:2px 20px 3px;
-}
+
 
 .gray_button:hover, .gray_button a:hover {
 	background:#e1e1e1;
 	text-decoration:none;
-	
 }
+
+
 
 .blue_button a, .blue_button {
 	background:url('buttons/blue_bg.png') repeat-x;
@@ -245,6 +283,7 @@ label {
 	display:inline-block;
 	text-align:right;
 	margin-bottom:8px;
+	margin-right:4px;
 }
 
 input[type=text], input[type=password] {
@@ -322,4 +361,10 @@ input[type=submit] {
 label {
 	padding-right:6px;
 	font-size:16px;
+}
+
+.small_button {
+	font-size:16px;
+	padding:2px 20px 3px;
+	width:auto;
 }

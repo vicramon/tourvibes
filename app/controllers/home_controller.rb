@@ -2,6 +2,10 @@ class HomeController < ApplicationController
   
   def index
     @page = 'home'
+    if @user
+      redirect_to '/tours' and return
+    end
+    @page_action = params[:page_action]
   end
   
   def contact

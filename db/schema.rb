@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110204725) do
+ActiveRecord::Schema.define(:version => 20130114064227) do
 
   create_table "houses", :force => true do |t|
     t.text     "address_1"
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(:version => 20130110204725) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.boolean  "is_live",           :default => false
+    t.text     "schools_url"
+    t.boolean  "autoplay",          :default => true
+    t.string   "transition"
+    t.string   "mode"
+    t.boolean  "ken_burns",         :default => true
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "house_id"
+    t.text     "title"
+    t.text     "room_name"
   end
 
   create_table "users", :force => true do |t|

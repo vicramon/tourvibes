@@ -1,1 +1,34 @@
+<style>
+.select_tag {
+	font-size:15px;
+}
+</style>
+
 <%= render :partial => "edit" %>
+
+
+<%= form_tag @tour.edit_settings_path do %>
+	<label>Subdomain:</label><%= text_field_tag 'subdomain', @tour.subdomain, :class => 'login_text' %>
+	&nbsp; &nbsp;(e.g. 1600Penn.tourvibes.com)
+	<br />
+	<label>Custom Domain:</label><%= text_field_tag 'custom_domain', @tour.custom_domain, :class => 'login_text' %>
+	&nbsp; &nbsp;(e.g. 1600Pen.com, <a href="/custom_domains">setup info here</a>)<br />
+	<label>Schools URL:</label><%= text_field_tag 'schools_url', @tour.schools_url, :class => 'login_text' %><br />
+	<label>Photo Transitions:</label><%= text_field_tag 'transition', @tour.transition, :class => 'login_text' %><br />
+	<label>Program Mode:</label><%= text_field_tag 'mode', @tour.mode, :class => 'login_text' %><br />
+	<label>Ken Burns Effect:</label><%= select_tag 'ken_burns', options_for_select([['on',true],['off',false]],@tour.ken_burns), :class => 'login_text select_tag' %><br />
+	<label>Autoplay:</label><%= select_tag 'autoplay', options_for_select([['yes',true],['no',false]],@tour.autoplay), :class => 'login_text select_tag' %><br />
+		
+	
+	<%= submit_tag 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;' %>
+<% end %>
+
+
+<script type="text/javascript">
+
+var f2 = new LiveValidation('subdomain');
+//f2.add( Validate.Presence, { failureMessage: "required"} );
+
+f2.add( Validate.Format, { pattern: /^[a-z\d]+(-[a-z\d]+)*$/i, failureMessage: "No spaces, letters & numbers only." } );
+
+</script>

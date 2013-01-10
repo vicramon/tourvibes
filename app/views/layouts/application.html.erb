@@ -13,12 +13,19 @@
 			<div class="header_inner standard_width">
 				<a href="/"><%= image_tag 'logo.png', :style => 'margin-top:1px;', :border => 0 %></a>
 				<div class="top_nav">
-					<a href="/" <% if @page == "home"%>class="selected"<% end %>>Home</a>
 					
 					<% if not @user %>
-					<a href="#" >How it Works</a>
-					<a href="#">Features</a>
-					<a href="#">Pricing</a>
+						<a href="/" <% if @page == "home"%>class="selected"<% end %>>Home</a>
+					
+						<% if @page == "home" %>
+							<a href="#" id="how_link">How it Works</a>
+							<a href="#" id="feature_link">Features</a>
+							<a href="#" id="pricing_link">Pricing</a>
+						<% else %>
+							<a href="/home/how" id="how_link">How it Works</a>
+							<a href="/home/features" id="feature_link">Features</a>
+							<a href="/home/pricing" id="pricing_link">Pricing</a>
+						<% end %>
 					<% end %>
 					<% if @user %>
 				
@@ -65,8 +72,13 @@
 		<div class="footer_inner standard_width">
 			<div style="float:left;margin-right:50px;">
 				<a href="/">Home</a>
-				<a href="#">How it Works</a>
-				<a href="#">Pricing</a>
+				<% if @page == "home" %>
+					<a href="#" id="how_link">How it Works</a>
+					<a href="#" id="feature_link">Features</a>
+				<% else %>
+					<a href="/home/how" id="how_link">How it Works</a>
+					<a href="/home/features" id="feature_link">Features</a>
+				<% end %>
 			</div>
 			<div style="float:left;">
 				<a href="/contact">Contact</a>

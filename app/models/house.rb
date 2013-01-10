@@ -1,5 +1,27 @@
 class House < ActiveRecord::Base
   belongs_to :user
+  has_many :uploads
+  
+  def name
+    if self.title.present?
+      self.title
+    else
+      self.address_1
+    end
+  end
+  
+  def now_live_path
+    return "/tour/#{self.id}/now_live"
+  end
+  
+  #fix this later
+  def live_path
+    return self.preview_path
+  end
+  
+  def takedown_path
+    return "/tour/#{self.id}/takedown"
+  end
   
   def edit_path
     return "/tour/#{self.id}/edit"

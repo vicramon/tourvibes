@@ -1,4 +1,4 @@
-<h2>How it Works</h2>
+<h2 id="how">How it Works</h2>
 <div style="height:15px;">&nbsp;</div>
 
 
@@ -38,7 +38,7 @@
 <div style="clear:both;">&nbsp;</div>
 <div class="line">&nbsp;</div>
 
-<h2>Pricing</h2>
+<h2 id="pricing">Pricing</h2>
 <div style="height:15px;">&nbsp;</div>
 
 <%= image_tag 'icons/pricing.png' %>
@@ -49,7 +49,7 @@ No gimmicks, no hidden fees, and no bulk purchase requirements. We like to keep 
 <div style="clear:both;">&nbsp;</div>
 <div class="line">&nbsp;</div>
 
-<h2>Features</h2>
+<h2 id="features">Features</h2>
 <div style="height:15px;">&nbsp;</div>
 
 <style>
@@ -80,4 +80,47 @@ No gimmicks, no hidden fees, and no bulk purchase requirements. We like to keep 
 </div>
 
 <div style="clear:both;">&nbsp;</div>
+
+<script type="text/javascript">
+
+$('#feature_link').click(function() {
+	$('html, body').animate({
+		scrollTop: $("#features").offset().top
+	}, 600);
+});
+
+$('#pricing_link').click(function() {
+	$('html, body').animate({
+		scrollTop: $("#pricing").offset().top
+	}, 600);
+	
+});
+
+$('#how_link').click(function() {
+	$('html, body').animate({
+		scrollTop: $("#how").offset().top
+	}, 600);
+	
+});
+
+<% if @page_action == "features" %>
+	$('html, body').animate({
+		scrollTop: $("#features").offset().top
+	}, 600);
+<% end %>
+
+<% if @page_action == "pricing" %>
+	$('html, body').animate({
+		scrollTop: $("#pricing").offset().top
+	}, 600);
+<% end %>
+
+<% if @page_action == "how" %>
+	$('html, body').animate({
+		scrollTop: $("#how").offset().top
+	}, 600);
+<% end %>
+
+
+</script>
 

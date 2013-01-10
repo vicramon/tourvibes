@@ -1,0 +1,22 @@
+<style>
+	body, html {
+		padding:0;
+		margin:0;
+		background:black;
+		color:#ccc;
+	}	
+</style>
+
+<div align="center" style="margin-top:20px;">
+<h2><%= @tour.name %></h2>
+
+Virtual Tour Coming Soon
+
+<% for @pic in @tour.uploads %>
+	<% begin %>
+	<%= image_tag @pic.upload.url(:thumb) %>
+	<p>
+	<% rescue %>
+	<% end %>
+<% end %>
+</div>

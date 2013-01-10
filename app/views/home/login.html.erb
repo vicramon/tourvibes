@@ -25,8 +25,8 @@ input[type=submit] {
 <% end %>
 
 <%= form_tag '/login' do %>
-	<%= text_field_tag 'email', '', :class => 'login_text', :style => 'margin-bottom:4px;' %><br />
-	<%= password_field_tag 'password', '', :class => 'login_text' %><br />
+	<%= text_field_tag 'email', '', :class => 'login_text', :style => 'margin-bottom:4px;', :placeholder => 'email' %><br />
+	<%= password_field_tag 'password', '', :class => 'login_text', :placeholder => 'password' %><br />
 	<%= submit_tag 'Login', :class => 'gray_button submit' %>
 <% end %>
 </div>

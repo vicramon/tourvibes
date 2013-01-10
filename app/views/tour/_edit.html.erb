@@ -1,3 +1,18 @@
+<% if @tour.is_live %>
+<div style="float:right;padding-top:3px;padding-bottom:3px;margin-top:35px;" class="update">
+	<span style="color:#666;font-size:17px;font-size:15px;">Live</span>
+</div>
+<% else %>
+<div style="float:right;padding-top:3px;padding-bottom:3px;margin-top:35px;" class="error">
+	<span style="color:#666;font-size:17px;font-size:15px;">Not Live</span>
+</div>
+<% end %>
+
+<div style="font-size:14px;margin-bottom:8px;">
+<a href="/tours">&laquo; Back to My Tours</a>
+</div>
+	
+
 <h4><%= @tour.address_1 %></h4>	
 
 
@@ -6,6 +21,7 @@
 .tab_box {
 	border-bottom:1px solid #ccc;
 	box-shadow:0 1px white;
+	margin-top:8px;
 }
 
 .tab_box a {
@@ -30,19 +46,52 @@
 	background:url('/assets/tab_bg.png') repeat-x;
 	color:white;
 	text-shadow:0 1px 0 #333;
-	font-weight:bold;
+	font-weight:normal;
 	border:none;
 	margin-bottom:0;
 	padding-bottom:4px;
 }
 
+.right_link a:hover {
+	text-decoration:underline;
+}
+
 </style>
 
 <div class="tab_box">
+	
+	<div style="float:right;margin-top:3px;color:#ccc;" class="right_link">
+		
+		<% if @tour.is_live %>
+			<a href="<%= @tour.takedown_path %>" style="border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;">Take Down</a> |
+			<span style="margin-right:15px;">&nbsp;</span>
+		<% else %>
+			<a href="<%= @tour.publish_path %>" style="border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;">Publish</a> |
+			<span style="margin-right:15px;">&nbsp;</span>
+		<% end %>
+		
+	<a href="<%= @tour.preview_path %>" style="border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;">Preview</a>
+	
+	
+	</div>
+	
 	<a href="<%= @tour.edit_path %>" <% if @tab == "info"%>class="selected"<% end %> style="margin-left:20px;">Property Info</a>
 	<a href="<%= @tour.edit_photos_path %>" <% if @tab == "photos"%>class="selected"<% end %>>Photos &amp; Videos</a>
 	<a href="<%= @tour.edit_music_path %>" <% if @tab == "music"%>class="selected"<% end %>>Music</a>
 	<a href="<%= @tour.edit_settings_path %>" <% if @tab == "settings"%>class="selected"<% end %>>Tour Settings</a>
 </div>
 
-<div style="height:30px;">&nbsp;</div>
+
+<% if flash[:update] == 'yes' %>
+	<div style="height:20px;">&nbsp;</div>
+	<div class="update">
+		Your changes have been saved.
+	</div>
+<% else %>
+	<div style="height:30px;">&nbsp;</div>
+<% end %>
+
+
+
+
+
