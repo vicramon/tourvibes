@@ -119,6 +119,10 @@ h4 {
 	margin-left:auto;
 }
 
+a.gray_button {
+	color:#323232;
+}
+
 .gray_button, .gray_button a, .button, .button a {
 	background:url('buttons/gray_bg.png') repeat-x;
 	color:#323232;
@@ -136,6 +140,7 @@ h4 {
 
 .gray_button:hover, .gray_button a:hover {
 	background:#e1e1e1;
+	text-decoration:none;
 	
 }
 
@@ -148,6 +153,7 @@ h4 {
 
 .blue_button a:hover, .blue_button:hover {
 	background:#0076CB;
+	text-decoration:none;
 }
 
 .how_box {
