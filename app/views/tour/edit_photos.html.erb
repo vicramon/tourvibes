@@ -181,6 +181,8 @@ input[type=submit] {
 
 
 <% if @pics.size > 0 %>
+
+<%= form_tag @tour.edit_photos_path do %>
 <br /><br />
 
 <div class="line">&nbsp;</div>
@@ -188,10 +190,9 @@ input[type=submit] {
 <table cellpadding=5 style="width:100%">
 	<tr>
 		<th style="text-align:center;width:150px;">Photo</th>
-		<th style="width:350px;">Description</th>
+		<th style="width:350px;">Description &nbsp; <%= submit_tag 'Save All', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:normal;'%></th>
 		<th> <th>
 	</tr>
-
 
 	<% for @pic in @pics %>
 	<tr>
@@ -199,18 +200,24 @@ input[type=submit] {
 			<%= image_tag @pic.upload.url(:thumb) %>
 		</td>
 		<td>
-			<%= text_field_tag "name_#{@pic.id}", @pic.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;' %>
+			<%= text_field_tag "title[]", @pic.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;' %>
 		</td>
 		<td>
-			<%= submit_tag 'Save', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:normal;'%>
 			 &nbsp; &nbsp; &nbsp; <%= link_to 'Delete', @pic, :confirm => 'Are you sure?', :method => :delete %>
 		</td>
 	</tr>
 	<% end %>
+	
+	<tr>
+		<td> </td>
+		<td> <%= submit_tag 'Save Descriptions', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:normal;'%> </td>
+		<td> </td>
+	</tr>
 
 
 </table>
 
+<% end %>
 <% end %>
 
 <!-- Non JS form, could use this later -->

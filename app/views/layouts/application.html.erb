@@ -28,9 +28,12 @@
 						<% end %>
 					<% end %>
 					<% if @user %>
-				
+						<% if @user.is_super_admin %>
+							<a <% if @page == "admin"%>class="selected"<% end %> href="/admin">Admin</a>
+						<% end %>
 						<a href="/tours" <% if @page == "my"%>class="selected"<% end %>>My Tours</a>
 						<a href="/tour/new" <% if @page == "new"%>class="selected"<% end %>>New Tour</a>
+						<a href="/account" <% if @page == "new"%>class="selected"<% end %>>Account</a>
 						<a href="/contact" <% if @page == "contact"%>class="selected"<% end %>>Contact</a>
 						<a href="/logout">Logout</a>
 						

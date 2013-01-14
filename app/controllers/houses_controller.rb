@@ -1,4 +1,14 @@
 class HousesController < ApplicationController
+  before_filter :require_super_admin
+  
+  def require_super_admin
+    if not @user.is_super_admin
+      redirect_to '/login' and return
+    end
+  end
+  
+  
+  
   # GET /houses
   # GET /houses.json
   def index

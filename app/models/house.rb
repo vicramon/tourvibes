@@ -19,6 +19,18 @@ class House < ActiveRecord::Base
     return self.preview_path
   end
   
+  def about_path
+    "/tour/#{self.id}/about"
+  end
+  
+  def map_path
+    "/tour/#{self.id}/map"
+  end
+  
+  def schools_path
+    "/tour/#{self.id}/schools"
+  end
+  
   def takedown_path
     return "/tour/#{self.id}/takedown"
   end

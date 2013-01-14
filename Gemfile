@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 gem 'heroku'
+gem 'heroku-api'
 
 group :production do
   gem 'pg'

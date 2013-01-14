@@ -1,1 +1,22 @@
-<h4>My Account</h4>
+<div class="center_form_box">
+	
+<h4 style="margin-left:0px;">Account Info</h4>
+
+<div style="height:10px;">&nbsp;</div>
+
+<% if flash[:update] == 'yes' %>
+	<div class="update">
+		Your changes have been saved
+	</div>
+<% end %>
+
+
+<%= form_tag '/account' do %>
+	<label>Name:</label><%= text_field_tag 'name', @user.name, :class => 'login_text' %><br />
+	<label>Email:</label><%= text_field_tag 'email', @user.email, :class => 'login_text' %><br />
+	<label>Phone:</label><%= text_field_tag 'cell', @user.cell, :class => 'login_text' %><br />
+	<label>Firm Name:</label><%= text_field_tag 'firm_name', @user.firm_name, :class => 'login_text' %><br />	
+	
+	<%= submit_tag 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;' %>
+<% end %>
+</div>

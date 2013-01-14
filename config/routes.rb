@@ -13,9 +13,11 @@ Tour::Application.routes.draw do
     match '/' => 'tour#preview'
   end
   
-  # Custom Domains
-  constraints(Customdomain) do  
-    match '/' => 'tour#preview'
+  if Rails.env.production?
+    # Custom Domains
+    constraints(Customdomain) do  
+      match '/' => 'tour#preview'
+    end
   end
 
   match '/start' => 'home#start'
@@ -29,6 +31,10 @@ Tour::Application.routes.draw do
   match '/tours/' => 'users#my_tours'
   match '/contact' => 'home#contact'
   
+  #Admin Routes
+  match '/admin' => 'admin#index'
+  match '/admin/make_admin/:id' => 'admin#make_admin'
+  
   #Home Page Routes
   match '/' => 'home#index'
   match '/home' => 'home#index'
@@ -40,12 +46,19 @@ Tour::Application.routes.draw do
   match '/payments/charge/new' => 'payments#charge_new'
   match '/payments/charge/existing' => 'payments#charge_existing'
   
+  #View Tour Routes
+  match '/tour/:id/preview' => 'tour#preview'
+  match '/tour/:id/about' => 'tour#about'
+  match '/tour/:id/map' => 'tour#map'
+  match '/tour/:id/schools' => 'tour#schools'
+  
+  match '/tour/:id/test' => 'tour#test'
+  
   #Tour Routes
   match '/tour/:id/edit' => 'tour#edit'
   match '/tour/:id/edit/photos' => 'tour#edit_photos'
   match '/tour/:id/edit/music' => 'tour#edit_music'
   match '/tour/:id/edit/settings' => 'tour#edit_settings'
-  match '/tour/:id/preview' => 'tour#preview'
   match '/tour/:id/fileupload' => 'tour#fileupload'
   match '/tour/:id/now_live' => 'tour#now_live'
   match '/tour/:id/takedown' => 'tour#takedown'

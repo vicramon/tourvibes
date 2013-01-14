@@ -152,6 +152,7 @@ DEPENDENCIES
   aws-sdk
   coffee-rails (~> 3.2.1)
   heroku
+  heroku-api
   jquery-fileupload-rails
   jquery-rails
   json

@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
      :s3_credentials => "#{Rails.root}/config/s3.yml",
      :path => ':attachment/:id/:style.:extension',
      :bucket => 'tour_files'
+     
+     
+     def tours_path
+       return '/tours'
+     end
 
 end
 

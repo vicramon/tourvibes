@@ -3,12 +3,14 @@
 	<a href="/tour/new" class="gray_button small_button" style="margin-left:15px;">New Tour</a>
 </h4>
 
+<% if @tours.size > 0 %>
 <table cellspacing=0 cellpadding=12 style="width:100%;margin-top:-6px;margin-left:-8px;">
 	<tr style="font-size:17px;">
 		<th>Address</td>
 		<th>Status</td>
 		<th>Actions</td>
 	</tr>
+
 
 <% i = 1 %>
 <% for @tour in @tours %>
@@ -56,3 +58,5 @@
 
 
 </table>
+
+<% end %>

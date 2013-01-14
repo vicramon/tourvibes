@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114064227) do
+ActiveRecord::Schema.define(:version => 20130114214216) do
 
   create_table "houses", :force => true do |t|
     t.text     "address_1"
@@ -59,8 +59,9 @@ ActiveRecord::Schema.define(:version => 20130114064227) do
     t.string   "stripe_id"
     t.string   "cell"
     t.text     "firm_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "is_super_admin", :default => false
   end
 
 end

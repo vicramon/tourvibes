@@ -1,6 +1,35 @@
 class UsersController < ApplicationController
+    
+  def require_super_admin
+    if not @user.is_super_admin
+      redirect_to '/login' and return
+    end
+  end
+  
+  def require_login
+    if not @user
+      redirect_to '/login' and return
+    end
+  end
+  
+  def account
+    if not @user
+      redirect_to '/login' and return
+    end
+    if request.post?
+      @user.name = params[:name]
+      @user.email = params[:email]
+      @user.cell = params[:cell]
+      @user.firm_name = params[:firm_name]
+      @user.save
+      flash.now[:update] = 'yes'
+    end
+  end
   
   def my_tours
+    if not @user
+      redirect_to '/login' and return
+    end
     @page = "my"
     @tours = House.find(:all, :conditions => {:user_id => @user.id}, :order => "created_at desc")
   end
@@ -8,6 +37,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    require_super_admin()
     @users = User.all
 
     respond_to do |format|
@@ -19,6 +49,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    require_super_admin()
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -30,6 +61,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    require_super_admin()
     @user = User.new
 
     respond_to do |format|
@@ -40,12 +72,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    require_super_admin()
     @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.json
   def create
+    require_super_admin()
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -62,6 +96,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    require_super_admin()
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -78,6 +113,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    require_super_admin()
     @user = User.find(params[:id])
     @user.destroy
 

@@ -1,22 +1,230 @@
-<style>
-	body, html {
-		padding:0;
-		margin:0;
-		background:black;
-		color:#ccc;
-	}	
-</style>
 
-<div align="center" style="margin-top:20px;">
-<h2><%= @tour.name %></h2>
+	
 
-Virtual Tour Coming Soon
+		<div class="main_image_wrapper">
+			
+			<%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;width:100%;position:relative;' %>
+		
+			<div id="about" style="display:none;margin-left:20px;margin-top:10px;">
+				<div class="page_title">
+					About
+				</div>
+				
+				<div style="float:right;">
+					<%# image_tag @tour.uploads[0].upload.url(:middle) %>
+				</div>
+				<div style="width:600px;color:#ccc;">
+				<%= simple_format @tour.desc %>
+				</div>
+			</div>
+			
+			<div id="contact" style="display:none;margin-left:20px;margin-top:10px;">
+				<div class="page_title">
+					Realtor Info
+				</div>
+				<br />
+				<div style="width:600px;color:#ccc;">
+					<% if @realtor.name.present? %>
+						<%= @realtor.name %><p>
+					<% end %>
+					<% if @realtor.cell.present? %>
+						<%= @realtor.cell %><p>
+					<% end %>
+				<%= @realtor.email %><p>
+				
+				<% if @realtor.firm_name.present? %>
+					<%= @realtor.firm_name %><p>
+				<% end %>
+				
+				</div>
+			</div>
+			
+			<div id="map" align="center" style="display:none;">
+				<div id="map_canvas" style="width: 100%; height:700px;"></div>
+			</div>
+		
+		</div>
+		
+		<div class="room_title tour_items">
+			<span class="room_title_bg">
+			<%= @pics[0].room_name %>
+			</span>
+		</div>
+		
+		
+		<div style="height:15px;">&nbsp;</div>
+		
+		
+		<div class="controls tour_items">
+			<div class="controls_inner">
+			<%= image_tag 'icons/volume.png', :id => 'volume' %>
+			<%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
+			<%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px' %>
+			<%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
+			<%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
+			<%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
+			</div>
+		</div>
+		
+		<div style="height:20px;">&nbsp;</div>
+		
+		
+		<% for @pic in @pics %>
+			<div style="display:inline-block;margin-right:4px;" class="tour_items">
+			<%= image_tag @pic.upload.url(:middle), :style => 'border-radius:5px;' %>
+			</div>
+		<% end %>
 
-<% for @pic in @tour.uploads %>
-	<% begin %>
-	<%= image_tag @pic.upload.url(:thumb) %>
-	<p>
-	<% rescue %>
-	<% end %>
-<% end %>
-</div>
+<script type="text/javascript">
+		var n = 0;
+		
+		var status = "play";
+		var delay = 6000;
+		
+		$("#pause").click(function() {
+			status = "pause";
+			$(this).hide();
+			$('#play').show();
+		});
+		
+		$("#play").click(function() {
+			status = "play";
+			$(this).hide();
+			$('#pause').show();
+		});
+		
+		function resume() {
+			status = "play";
+		}
+		
+		$("#forward").click(function() {
+			switchImage();
+			if (status == "play") {
+				status = "wait"
+			}
+		});
+		
+		$("#back").click(function() {
+			switchImage("back");
+			if (status == "play") {
+				do_resume = true;
+			}
+			status = "pause";
+			if (do_resume == true) {
+				window.setTimeout(resume(),delay+6000);
+			}
+			return false;
+		});
+		
+		var pics = new Array();
+		var room_names = new Array();
+		
+		<% i = 0 %>
+		<% for @pic in @pics %>
+			pics[<%= i %>] = "<%= @pic.upload.url(:large) %>";
+			room_names[<%= i %>] = "<%= @pic.room_name %>";
+			<% i += 1 %>
+		<% end %>
+		
+		function switchImage(direction) {
+			if (direction == "back") {
+				n = n-1;
+			} else {
+				n = n+1;
+			}
+			if (n > pics.length-1) { n = 0; } 
+			if (n < 0) { n = pics.length-1;  }
+			
+			
+			$(".room_title_bg").fadeOut('slow',function() { 
+				$(".room_title_bg").html(room_names[n]);
+				$(this).fadeIn('slow');
+				return false;
+			});
+			
+			$("#main_image").fadeOut('slow',function() { 
+				$(this).load(function() { $(this).fadeIn('slow'); return false; }); 
+				$(this).attr("src", pics[n]); 
+				//$('.room_title_bg').html(room_names[n]);
+				return false;
+			});
+			console.log(n);
+			return false;
+		}
+
+	
+		setInterval(function() {
+			if (status == "wait") {
+				status = "play";
+				return false;
+			}
+			if (status == "pause") { return; }
+			switchImage();
+			return false;
+		},delay);
+		
+		
+		function preload(arrayOfImages) {
+		    $(arrayOfImages).each(function(){
+		        $('<img/>')[0].src = this;
+		        // Alternatively you could use:
+		        // (new Image()).src = this;
+		    });
+		}
+
+		preload(pics);
+		
+		$("#about_link").click(function() {
+			status = "pause";
+			$('#contact').fadeOut('slow',function() {
+				$('#map').fadeOut('slow',function() {
+					$(".tour_items").fadeOut('slow',function() { 
+						$('#about').fadeIn('slow'); 
+						return false; 
+					});
+				});
+				});
+		});
+		
+		$("#contact_link").click(function() {
+			status = "pause";
+			$('#map').fadeOut('slow',function() {
+					$(".tour_items").fadeOut('slow',function() { 
+						$("#about").fadeOut('slow',function() {
+							$('#contact').fadeIn('slow'); 
+							return false; 
+					});
+				});
+			});
+		});
+		
+		$("#map_link").click(function() {
+			status = "pause";
+			$('#contact').fadeOut('slow',function() {
+				$('#about').fadeOut('slow', function() {
+				$(".tour_items").fadeOut('slow',function() { 
+					$('#map').fadeIn('slow'); 
+					initialize();					
+					return false; 
+				});
+			});
+			});
+		});
+		
+		$("#tour_link").click(function() {
+			status = "play";
+			$('#contact').fadeOut('slow',function() {
+			$('#map').fadeOut('slow', function() {
+			
+			$("#about").fadeOut('slow',function() { 
+				$('.tour_items').fadeIn('slow'); 
+				return false; 
+			});
+			});
+			});
+		});
+	
+
+
+</script>
+

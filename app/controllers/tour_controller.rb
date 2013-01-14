@@ -4,7 +4,7 @@ class TourController < ApplicationController
   def get_tour
     if params[:id]
       @house = House.find_by_id(params[:id])
-    elsif request.subdomain && request.subdomain != 'www'
+    elsif request.subdomain.present? && request.subdomain != 'www'
       @house = House.find_by_subdomain!(request.subdomain)
     else
       @house = House.find_by_custom_domain(request.domain)
@@ -22,7 +22,29 @@ class TourController < ApplicationController
   end
   
   def preview
+    @pics = @tour.uploads
+    @realtor = @tour.user
+    
+    render :layout => 'view_tour'
+  end
+  
+  def test
     render :layout => nil
+  end
+  
+  def about
+    
+    render :layout => 'view_tour'
+  end
+  
+  def map
+    
+    render :layout => 'view_tour'
+  end
+  
+  def schools
+    
+    render :layout => 'view_tour'
   end
   
   def edit
@@ -50,19 +72,21 @@ class TourController < ApplicationController
       
       # if domain entry is different than current
       if params[:custom_domain].strip != @tour.custom_domain
-        require 'heroku'
-        heroku = Heroku::Client.new('vicramon3@gmail.com','den267goer005')
+        #require 'heroku'
+        #heroku = Heroku::Client.new('vicramon3@gmail.com','den267goer005')
+        require 'heroku-api'
+        heroku = Heroku::API.new(:username => 'vicramon3@gmail.com', :password => 'den267goer005')
         
         # need to add new domain
         if params[:custom_domain].present?  
-          heroku.add_domain('realtour', params[:custom_domain].strip)
-          heroku.add_domain('realtour', 'www.' + params[:custom_domain].strip)
+          heroku.post_domain('realtour', params[:custom_domain].strip)
+          heroku.post_domain('realtour', 'www.' + params[:custom_domain].strip)
         end
         
         # remove old domain if there was one
         if @tour.custom_domain.present?
-          heroku.remove_domain('realtour',@tour.custom_domain)
-          heroku.remove_domain('realtour','www.' + @tour.custom_domain)
+          heroku.delete_domain('realtour',@tour.custom_domain)
+          heroku.delete_domain('realtour','www.' + @tour.custom_domain)
         end
         
       end
@@ -82,6 +106,15 @@ class TourController < ApplicationController
   def edit_photos
     @tab = "photos"
     @pics = Upload.find(:all, :conditions => {:house_id => @house.id}, :order => "created_at desc")
+    if request.post?
+      i = 0
+      for title in params[:title]
+        @pics[i].room_name = title
+        @pics[i].save
+        i += 1
+      end
+      flash.now[:update] = 'yes'
+    end
   end
   
   def takedown

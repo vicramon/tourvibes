@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+	<head>
+		<title><%= @tour.name %></title>
+		<%= javascript_include_tag "application" %>
+		
+		<script type="text/javascript"
+	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyfQ4EDN0ufXbAQnfjvw5gK-BP_-FzclM&sensor=false">
+	    </script>
+
+
+	    <script type="text/javascript">
+
+	  	var geocoder;
+		  var map;
+
+		  function initialize() {
+		    geocoder = new google.maps.Geocoder();
+		    var latlng = new google.maps.LatLng(0, 0);
+		    var mapOptions = {
+		      zoom: 14,
+		      center: latlng,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    }
+		    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+			codeAddress("<%= @tour.address_1 + ', ' + @tour.address_2 + ', ' + @tour.city + ', ' + @tour.state + ' ' + @tour.zip %>");
+		  }
+
+		  function codeAddress(address) {
+		    var address = address
+		//document.getElementById("address").value;
+		    geocoder.geocode( { 'address': address}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        map.setCenter(results[0].geometry.location);
+		        var marker = new google.maps.Marker({
+		            map: map,
+		            position: results[0].geometry.location
+		        });
+				var infowindow = new google.maps.InfoWindow({
+				    content: "<div class='map_text' style='text-align:left;color#333333;line-height:1.7;'>"
+							+	"<%= @tour.address_1%><br />"
+							+	"<% if @tour.address_2.present? %>"
+							+	"<%= @tour.address_2 %><br />"
+							+	"<% end %>" 
+							+	"<%= @tour.city %>, <%= @tour.state %> <%= @tour.zip %></div>"
+				});
+				infowindow.open(map,marker);
+		      } else {
+		        alert("Geocode was not successful for the following reason: " + status);
+		      }
+		    });
+		  }
+		</script>
+	</head>
+	<body>
+
+
+<style>
+	body, html {
+		padding:0;
+		margin:0;
+		background:black;
+		color:#333;
+		font-family:"Avenir";
+		font-size:15px;
+	}
+	
+	map_text {
+		color:#333;
+	}
+	
+	a, a:visited, a:active, a:hover {
+		color:#e8e8e8;
+		text-decoration:none;
+	}	
+	
+	a:hover {
+		color:white;
+	}
+	
+	.property_title {
+		font-family:"Avenir",Helvetica,Arial;
+		font-size:28px;
+		color:#E8E8E8;
+		text-transform:uppercase;
+		margin-left:8px;
+	}
+	
+	.container {
+		width:1000px;
+		margin:0 auto;
+		margin-top:14px;
+		margin-bottom:40px;
+	}
+	
+	.wrapper {
+		margin-top:12px;
+		background:#242424;
+		border-radius:10px;
+		padding:16px 20px 15px;
+		min-height:500px;
+	}
+	
+	.page_title {
+		font-size:22px;
+		color:#E8E8E8;
+	}
+	
+	.room_title {
+		font-size:22px;
+		/*color:#E8E8E8;*/
+		color:white;
+		position:absolute;
+		width:100%;
+		text-align:center;
+		left:0px;
+		top:87px;
+	}
+	
+	.room_title_bg {
+		background:black;
+		opacity:.5;
+		padding:5px 40px;
+		border-radius:10px;
+	}
+	
+	.nav_right {
+		float:right;
+		padding:8px 25px;
+		background:#242424;
+		border-radius:5px;
+	}
+	
+	.nav_right a {
+		margin-left:20px;
+	}
+	
+	.controls {
+		background:url('/assets/player_bg.png') repeat-x;
+		border-radius:10px;
+		border:1px solid #292929;
+		height:49px;
+		box-shadow:0 3px 3px #191919;
+	}
+	
+	.controls_inner {
+		margin-top:10px;
+		text-align:center;
+	}
+	
+	.controls img {
+		margin:0 60px;
+		cursor:pointer;
+	}
+	
+	.main_image_wrapper {
+		height:710px;
+	}
+	
+	
+</style>
+
+<div class="container">
+	<div class="nav_right">
+		<a href="#" id="tour_link" style="margin-left:0;">Tour</a>
+		<a href="#" id="contact_link">Realtor Info</a>
+		<a href="#" id="about_link">About</a>
+		<a href="#" id="map_link">Map</a>
+		<a href="<%= @tour.schools_url %>" target="_blank">Schools</a>
+	</div>
+
+	<div class="property_title"><%= @tour.name %></div>
+
+	<div class="wrapper">
+	
+	<%= yield %>
+	</div>
+	
+</div>	
+		</body>
+	</html>
+
+
