@@ -22,7 +22,7 @@ class TourController < ApplicationController
   end
   
   def preview
-    @pics = @tour.uploads
+    @pics = @tour.photos
     @realtor = @tour.user
     
     render :layout => 'view_tour'
@@ -64,6 +64,25 @@ class TourController < ApplicationController
   
   def edit_music
     @tab = "music"
+    if request.post?
+      @tour.music_file = params[:music_file]
+      @tour.autoplay_music = params[:autoplay_music]
+      @tour.save
+      if params[:music].present? 
+        @tour.music_file = nil
+        @tour.save
+        if @tour.music
+          @music = @tour.music
+          @music.music = params[:music]
+        else
+          @music = Upload.new(:music => params[:music])
+          @music.brand = "music"
+          @music.house_id = @tour.id
+        end
+        @music.save
+        flash[:update] = 'yes'
+      end
+    end
   end
   
   def edit_settings
@@ -105,7 +124,7 @@ class TourController < ApplicationController
   
   def edit_photos
     @tab = "photos"
-    @pics = Upload.find(:all, :conditions => {:house_id => @house.id}, :order => "created_at desc")
+    @pics = @tour.photos
     if request.post?
       i = 0
       for title in params[:title]

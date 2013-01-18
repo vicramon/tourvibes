@@ -11,12 +11,22 @@
 <% end %>
 
 
-<%= form_tag '/account' do %>
+<%= form_tag '/account', :multipart => true do %>
 	<label>Name:</label><%= text_field_tag 'name', @user.name, :class => 'login_text' %><br />
 	<label>Email:</label><%= text_field_tag 'email', @user.email, :class => 'login_text' %><br />
 	<label>Phone:</label><%= text_field_tag 'cell', @user.cell, :class => 'login_text' %><br />
 	<label>Firm Name:</label><%= text_field_tag 'firm_name', @user.firm_name, :class => 'login_text' %><br />	
+	<label>Photo of You:</label> <%= file_field_tag 'photo', :class => 'login_text' %><br />
+	<% if @user.headshot %>
+		<label>&nbsp;</label><%= image_tag @user.headshot.upload.url(:thumb), :style => 'border-radius:5px;margin-top:5px;' %><br />
+	<% end %>
+	<label>Firm's Logo:</label> <%= file_field_tag 'logo', :class => 'login_text'  %><br />
+	<% if @user.logo %>
+		<label>&nbsp;</label><%= image_tag @user.logo.upload.url(:thumb), :style => 'border-radius:5px;margin-top:5px;' %><br />
+	<% end %>
+	
+	
 	
 	<%= submit_tag 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;' %>
 <% end %>
-</div>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114214216) do
+ActiveRecord::Schema.define(:version => 20130118204837) do
 
   create_table "houses", :force => true do |t|
     t.text     "address_1"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(:version => 20130114214216) do
     t.string   "transition"
     t.string   "mode"
     t.boolean  "ken_burns",         :default => true
+    t.boolean  "autoplay_music",    :default => false
+    t.string   "bg_color"
+    t.string   "wrapper_color"
+    t.string   "link_color"
+    t.string   "text_color"
+    t.integer  "music_file"
   end
 
   create_table "uploads", :force => true do |t|
@@ -49,6 +55,12 @@ ActiveRecord::Schema.define(:version => 20130114214216) do
     t.integer  "house_id"
     t.text     "title"
     t.text     "room_name"
+    t.string   "brand"
+    t.integer  "user_id"
+    t.string   "music_file_name"
+    t.string   "music_content_type"
+    t.integer  "music_file_size"
+    t.datetime "music_updated_at"
   end
 
   create_table "users", :force => true do |t|

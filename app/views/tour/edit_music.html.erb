@@ -1,1 +1,16 @@
 <%= render :partial => "edit" %>
+
+<h5>Upload a custom music file or select one of our pre-loaded tracks</h5> <p>
+<%= form_tag @tour.edit_music_path, :multipart => true do %>
+<label>Track:</label><%= select_tag 'music_file', options_for_select(House::SONGS,@tour.music_file), :class => 'login_text select_tag' %><br />
+	<label>Custom Music File:</label> <%= file_field_tag 'music', :class => 'login_text' %><br />
+	<label>Autoplay:</label><%= select_tag 'autoplay_music', options_for_select([['yes',true],['no',false]],@tour.autoplay_music), :class => 'login_text select_tag' %><br />
+
+	<label> </label><%= submit_tag 'Save Changes', :class => 'gray_button small_button', :style => 'width:auto;'%>
+<% end %>
+
+
+<% if @tour.music %>
+<br /><br />
+	<label><strong>Current Track:</strong></label><%= @tour.music_name %><br />
+<% end %>

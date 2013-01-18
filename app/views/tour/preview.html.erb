@@ -1,9 +1,11 @@
 
-	
+
 
 		<div class="main_image_wrapper">
 			
-			<%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;width:100%;position:relative;' %>
+			<div align="center">
+		<%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;height:600px;position:relative;' %>
+			</div>
 		
 			<div id="about" style="display:none;margin-left:20px;margin-top:10px;">
 				<div class="page_title">
@@ -23,8 +25,18 @@
 					Realtor Info
 				</div>
 				<br />
-				<div style="width:600px;color:#ccc;">
-					<% if @realtor.name.present? %>
+				
+				<%if @realtor.headshot %>
+				<div style="margin-bottom:15px;float:left;margin-right:15px;">
+						<%= image_tag @realtor.headshot.upload.url(:large), :style => 'height:140px;border-radius:4px;' %>
+					<br /><br /><br />
+				</div>
+				<% end %>
+				
+				
+				<div style="width:600px;color:#ccc;float:left;margin-top:8px;">
+					
+						<% if @realtor.name.present? %>
 						<%= @realtor.name %><p>
 					<% end %>
 					<% if @realtor.cell.present? %>
@@ -37,10 +49,17 @@
 				<% end %>
 				
 				</div>
+				
+				<div style="clear:left;">
+					<%if @realtor.logo %>
+						<br />
+						<%= image_tag @realtor.logo.upload.url(:large), :style => 'height:70px;' %>
+					<% end %>
+				</div>
 			</div>
 			
 			<div id="map" align="center" style="display:none;">
-				<div id="map_canvas" style="width: 100%; height:700px;"></div>
+				<div id="map_canvas" style="width: 90%; height:600px;"></div>
 			</div>
 		
 		</div>
@@ -57,7 +76,14 @@
 		
 		<div class="controls tour_items">
 			<div class="controls_inner">
-			<%= image_tag 'icons/volume.png', :id => 'volume' %>
+				
+			<% if @tour.autoplay_music %>
+				<%= image_tag 'icons/volume.png', :id => 'volume'  %>
+				<%= image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;' %>
+			<% else %>
+				<%= image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'  %>
+				<%= image_tag 'icons/muted.png', :id => 'muted' %>
+			<% end %>
 			<%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
 			<%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px' %>
 			<%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
@@ -74,8 +100,41 @@
 			<%= image_tag @pic.upload.url(:middle), :style => 'border-radius:5px;' %>
 			</div>
 		<% end %>
+		
+		<audio id="music" <% if @tour.autoplay_music %>autoplay<% end %> loop>
+		  <source src="<%= @tour.music_src %>" type="audio/mpeg">
+		  <embed height="50" width="100" src="<%= @tour.music.music.url %>">
+		</audio>
 
 <script type="text/javascript">
+
+
+
+		
+
+		 var song = $('#music').get(0);
+		
+
+		   $(function() {
+		     $("#volume").click(function(e) {
+		       e.preventDefault();
+			   $(this).hide();
+			   $('#muted').show();
+		       song.pause();
+		     });
+		   });
+		
+		$(function() {
+		     $("#muted").click(function(e) {
+		       e.preventDefault();
+			   $(this).hide();
+			   $('#volume').show();
+		       song.play();
+		     });
+		   });
+		
+
+
 		var n = 0;
 		
 		var status = "play";
@@ -224,7 +283,7 @@
 			});
 		});
 	
-
+		
 
 </script>
 

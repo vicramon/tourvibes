@@ -2,6 +2,9 @@ class Upload < ActiveRecord::Base
   belongs_to :house
   attr_accessible :upload
   attr_accessible :house_id
+  attr_accessible :music
+  attr_accessible :brand
+  
   #has_attached_file :upload
   
   has_attached_file :upload, 
@@ -10,6 +13,12 @@ class Upload < ActiveRecord::Base
      :s3_credentials => "#{Rails.root}/config/s3.yml",
      :path => ':attachment/:id/:style.:extension',
      :bucket => 'tour_files'
+     
+  has_attached_file :music, 
+      :storage => :s3, :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :path => ':attachment/:id/:style.:extension',
+      :bucket => 'tour_files'
 
   include Rails.application.routes.url_helpers
 

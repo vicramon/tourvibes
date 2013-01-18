@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
      def tours_path
        return '/tours'
      end
+     
+     def headshot
+       Upload.find(:first, :conditions => {:user_id => self.id, :brand => 'headshot'})
+     end
+     
+     def logo
+        Upload.find(:first, :conditions => {:user_id => self.id, :brand => 'logo'})
+      end
 
 end
 

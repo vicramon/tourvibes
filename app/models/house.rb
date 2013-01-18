@@ -2,6 +2,19 @@ class House < ActiveRecord::Base
   belongs_to :user
   has_many :uploads
   
+  SONGS = [
+    ["",nil],
+    ["Bon Sonata in G Minor",1], 
+    ["Claire De Lune",2],
+    ["Fur Elise",3],
+    ["Gymnopedie No 1",4],
+    ["Gymnopedie No 3",5],
+    ["Il. Intermezzo",6],
+    ["Prelude in C Minor",7],
+    ["Romance De Juegos Prohobidos",8],
+    ["Suite Espanola",9]
+    ]
+  
   def name
     if self.title.present?
       self.title
@@ -9,6 +22,36 @@ class House < ActiveRecord::Base
       self.address_1
     end
   end
+  
+  def photos
+    Upload.find(:all, :conditions => {:house_id => self.id, :brand => 'photo'}, :order => "created_at desc")
+  end
+  
+  def music
+     Upload.find(:first, :conditions => {:house_id => self.id, :brand => 'music'})
+   end
+   
+   def music_name
+     if self.music_file
+        SONGS[self.music_file.to_i][0]
+     elsif self.music
+        self.music.music_file_name
+     else
+       "No music file"
+     end
+   end
+   
+   def music_file_number
+     SONGS[self.music_file][1]
+   end
+   
+   def music_src
+     if self.music_file
+       "https://s3.amazonaws.com/tour_files/tracks/#{self.music_file_number}.mp3"
+     elsif self.music
+       self.music.music.url
+     end
+   end
   
   def now_live_path
     return "/tour/#{self.id}/now_live"

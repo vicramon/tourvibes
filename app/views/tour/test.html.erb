@@ -1,63 +1,46 @@
 
-
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
-    </style>
-
-
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyfQ4EDN0ufXbAQnfjvw5gK-BP_-FzclM&sensor=false">
-    </script>
-
-
-    <script type="text/javascript">
-
-  	var geocoder;
-	  var map;
-
-	  function initialize() {
-	    geocoder = new google.maps.Geocoder();
-	    var latlng = new google.maps.LatLng(-34.397, 150.644);
-	    var mapOptions = {
-	      zoom: 14,
-	      center: latlng,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    }
-	    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-		codeAddress("4024 Bryn Mawr, Dallas, TX");
-	  }
-
-	  function codeAddress(address) {
-	    var address = address
-	//document.getElementById("address").value;
-	    geocoder.geocode( { 'address': address}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	        map.setCenter(results[0].geometry.location);
-	        var marker = new google.maps.Marker({
-	            map: map,
-	            position: results[0].geometry.location
-	        });
-			var infowindow = new google.maps.InfoWindow({
-			    content: "4024 Bryn Mawr Drive<br />Dallas, TX 75225"
-			});
-			infowindow.open(map,marker);
-	      } else {
-	        alert("Geocode was not successful for the following reason: " + status);
-	      }
-	    });
-	  }
-	</script>
+<head>
+<style type="text/css">
+    .kenburns {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+    .kenburns img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      -o-transition-duration: 3s;
+      -ms-transition-duration: 3s;
+      -moz-transition-duration: 3s;
+      -webkit-transition-duration: 3s;
+      -o-transform: scale(1.0);
+      -ms-transform: scale(1.0);
+      -moz-transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+      -o-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+      -moz-transform-origin: 50% 50%;
+      -webkit-transform-origin: 50% 50%;
+    }
+    .kenburns img:hover {
+      -o-transform: scale(1.5);
+      -ms-transform: scale(1.5);
+      -moz-transform: scale(1.5);
+      -webkit-transform: scale(1.5);
+      -o-transform-origin: 0% 25%;
+      -ms-transform-origin: 0% 25%;
+      -moz-transform-origin: 0% 25%;
+      -webkit-transform-origin: 0% 25%;
+    }
+  </style>
 </head>
-<body onload="initialize()">
- <div id="map_canvas" style="width: 600px; height: 500px;"></div>
+
+<body>
+  <div class="kenburns" style="width: 480px; height: 320px;">
+    <img src="http://s3.amazonaws.com/tour_files/uploads/90/large.jpg?1358326086" width="480" height="320">
+  </div>
+  <p>Hover over me!</p>
 </body>
 </html>
-
-
