@@ -8,6 +8,9 @@
 
 
 <%= form_tag @tour.edit_settings_path do %>
+
+<h6>Basic Settings</h6>
+
 	<label>Subdomain:</label><%= text_field_tag 'subdomain', @tour.subdomain, :class => 'login_text' %>
 	&nbsp; &nbsp;(e.g. 1600Penn.tourvibes.com)
 	<br />
@@ -18,7 +21,12 @@
 	<label>Program Mode:</label><%= text_field_tag 'mode', @tour.mode, :class => 'login_text' %><br />
 	<label>Ken Burns Effect:</label><%= select_tag 'ken_burns', options_for_select([['on',true],['off',false]],@tour.ken_burns), :class => 'login_text select_tag' %><br />
 	<label>Autoplay:</label><%= select_tag 'autoplay', options_for_select([['yes',true],['no',false]],@tour.autoplay), :class => 'login_text select_tag' %><br />
-		
+		<br />
+	<h6>Color Settings</h6>
+	<label>Background:</label>	<br />
+	<label>Center:</label>	<br />
+	<label>Text:</label>	<br />
+	<label>Links:</label>	<br />
 	
 	<%= submit_tag 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;' %>
 <% end %>

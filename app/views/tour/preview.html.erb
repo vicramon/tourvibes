@@ -103,7 +103,7 @@
 		
 		<audio id="music" <% if @tour.autoplay_music %>autoplay<% end %> loop>
 		  <source src="<%= @tour.music_src %>" type="audio/mpeg">
-		  <embed height="50" width="100" src="<%= @tour.music.music.url %>">
+		  <embed height="50" width="100" src="<%= @tour.music_src %>">
 		</audio>
 
 <script type="text/javascript">

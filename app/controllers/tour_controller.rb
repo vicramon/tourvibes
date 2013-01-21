@@ -68,6 +68,7 @@ class TourController < ApplicationController
       @tour.music_file = params[:music_file]
       @tour.autoplay_music = params[:autoplay_music]
       @tour.save
+      
       if params[:music].present? 
         @tour.music_file = nil
         @tour.save
@@ -82,6 +83,13 @@ class TourController < ApplicationController
         @music.save
         flash[:update] = 'yes'
       end
+      
+      # delete music file if not being used.
+      if not params[:music].present? and params[:music_file].present? and @tour.music
+        @tour.music.destroy
+      end
+        
+      
     end
   end
   

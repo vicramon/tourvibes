@@ -31,6 +31,14 @@ class House < ActiveRecord::Base
      Upload.find(:first, :conditions => {:house_id => self.id, :brand => 'music'})
    end
    
+   def has_music
+     if self.music_file or self.music
+       true
+     else
+       false
+     end
+   end
+   
    def music_name
      if self.music_file
         SONGS[self.music_file.to_i][0]
