@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118204837) do
+ActiveRecord::Schema.define(:version => 20130122225048) do
 
   create_table "houses", :force => true do |t|
     t.text     "address_1"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130118204837) do
     t.string   "link_color"
     t.string   "text_color"
     t.integer  "music_file"
+    t.string   "title_color"
   end
 
   create_table "uploads", :force => true do |t|

@@ -1,114 +1,11 @@
 
-<style type="text/css">
-    .kenburns {
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-	  border-radius:5px;
-	  border:2px solid #666;
-    }
-    .kenburns img {
-      position: absolute;
-	  border-radius:5px;
-      left: 0px;
-      top: 0px;
-      
-/*
-	  -o-transition-duration: 20s;
-      -ms-transition-duration: 20s;
-      -moz-transition-duration: 20s;
-      -webkit-transition-duration: 20s;
-*/
-
-	  -o-transition: -o-transform 5s ease-in-out;
-      -ms-transition: -ms-transform 5s ease-in-out;
-      -moz-transition: -moz-transform 5s ease-in-out;
-      -webkit-transition: -webkit-transform 5s ease-in-out, -webkit-transform-origin 5s ease-in-out;
-
-      -o-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      -moz-transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-
-      -o-transform-origin: 50% 50%;
-      -ms-transform-origin: 50% 50%;
-      -moz-transform-origin: 50% 50%;
-      -webkit-transform-origin: 50% 50%;
-
-    }
-
-</style>
-
-<script type="text/javascript">
-
-$(document).ready(function () {
-	<% if @tour.ken_burns %>
-		randomizePan();
-	<% end %>
-});
-
-function randomizePan() {
-	//center();
-	
-	if (Math.random() > .5) {
-		zoomIn();
-	} else {
-		zoomOut();
-	}
-	
-	var rand = Math.random();
-	
-	if (rand < .25) {
-		topLeft();
-	} else if (rand < .5) {
-		bottomLeft();
-	} else if (rand < .75) {
-		topRight();
-	} else {
-		bottomRight();
-	}
-	
-}
-
-function center() {
-	$('#main_image').css('-webkit-transform-origin','50% 50%');
-}
-
-function topLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 25%');
-}
-
-function bottomLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 75%');
-}
-
-function topRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 25%');
-}
-
-function bottomRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 75%');
-}
-
-function zoomIn() {
-	$('#main_image').css('-webkit-transform','scale(1.13)');
-}
-
-function zoomOut() {
-	$('#main_image').css('-webkit-transform','scale(1.0)');
-}
-
-
-</script>
 
 
 		<div class="main_image_wrapper">
 			
 			<div align="center">
 				
-				<div class="kenburns tour_items" style="width: 800px; height:600px;">				
-				    <%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;width:800px;height:600px;position:relative;' %>
-				</div>
+				    <%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;height:600px;position:relative;' %>
 		
 			</div>
 		
@@ -120,7 +17,7 @@ function zoomOut() {
 				<div style="float:right;">
 					<%# image_tag @tour.uploads[0].upload.url(:middle) %>
 				</div>
-				<div style="width:600px;">
+				<div style="width:600px;color:#ccc;">
 				<%= simple_format @tour.desc %>
 				</div>
 			</div>
@@ -139,7 +36,7 @@ function zoomOut() {
 				<% end %>
 				
 				
-				<div style="width:600px;float:left;margin-top:8px;">
+				<div style="width:600px;color:#ccc;float:left;margin-top:8px;">
 					
 						<% if @realtor.name.present? %>
 						<%= @realtor.name %><p>
@@ -190,17 +87,9 @@ function zoomOut() {
 				<%= image_tag 'icons/muted.png', :id => 'muted' %>
 			<% end %>
 			<%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
-			
-			<% if @tour.autoplay %>
-			<%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;' %>
+			<%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px' %>
 			<%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
-			<% else %>
-			<%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;display:none;' %>
-			<%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;' %>
-			<% end %>
-			
 			<%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
-			
 			<%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
 			</div>
 		</div>
@@ -243,13 +132,11 @@ function zoomOut() {
 		     });
 		   });
 		
+
+
 		var n = 0;
 		
-		<% if @tour.autoplay %>
-			var status = "play";
-		<% else %>
-			var status = "pause";
-		<% end %>
+		var status = "play";
 		var delay = 6000;
 		
 		$("#pause").click(function() {
@@ -303,8 +190,6 @@ function zoomOut() {
 			} else {
 				n = n+1;
 			}
-			
-			
 			if (n > pics.length-1) { n = 0; } 
 			if (n < 0) { n = pics.length-1;  }
 			
@@ -315,36 +200,12 @@ function zoomOut() {
 				return false;
 			});
 			
-			
 			$("#main_image").fadeOut('slow',function() { 
-				
-				$(this).load(function() { 
-					
-					$(this).fadeIn('slow', function() {
-						/*
-						if ((n%2)==0) {
-							zoomIn();
-						} else {
-							zoomOut();
-						}*/
-						<% if @tour.ken_burns %>
-							randomizePan();
-						<% end %>
-						
-					}); 
-					
-					return false; 
-				}); 
+				$(this).load(function() { $(this).fadeIn('slow'); return false; }); 
 				$(this).attr("src", pics[n]); 
-				
-								
 				//$('.room_title_bg').html(room_names[n]);
 				return false;
 			});
-			
-			
-			
-			
 			console.log(n);
 			return false;
 		}

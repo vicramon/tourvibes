@@ -53,6 +53,8 @@ Tour::Application.routes.draw do
   match '/tour/:id/schools' => 'tour#schools'
   
   match '/tour/:id/test' => 'tour#test'
+  match '/tour/:id/test_preview' => 'tour#test_preview'
+  
   
   #Tour Routes
   match '/tour/:id/edit' => 'tour#edit'

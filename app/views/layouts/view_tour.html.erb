@@ -59,8 +59,8 @@
 	body, html {
 		padding:0;
 		margin:0;
-		background:black;
-		color:#333;
+		background:<%= @tour.bg_color %>;
+		color:<%= @tour.text_color %>;
 		font-family:"Avenir";
 		font-size:15px;
 	}
@@ -76,7 +76,7 @@
 	}
 	
 	a, a:visited, a:active, a:hover {
-		color:#e8e8e8;
+		color:<%= @tour.link_color %>;
 		text-decoration:none;
 	}	
 	
@@ -101,7 +101,7 @@
 	
 	.wrapper {
 		margin-top:12px;
-		background:#242424;
+		background:<%= @tour.wrapper_color %>;
 		border-radius:10px;
 		padding:16px 20px 15px;
 		min-height:500px;
@@ -109,7 +109,7 @@
 	
 	.page_title {
 		font-size:22px;
-		color:#E8E8E8;
+		color:<%= @tour.title_color %>;
 	}
 	
 	.room_title {
@@ -133,7 +133,7 @@
 	.nav_right {
 		float:right;
 		padding:8px 25px;
-		background:#242424;
+		background:<%= @tour.wrapper_color %>;
 		border-radius:5px;
 	}
 	

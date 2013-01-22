@@ -1,7 +1,9 @@
 class TourController < ApplicationController
   before_filter :get_tour, :except => :new
+  before_filter :require_user, :except => [:live, :new]
   
   def get_tour
+        
     if params[:id]
       @house = House.find_by_id(params[:id])
     elsif request.subdomain.present? && request.subdomain != 'www'
@@ -11,6 +13,16 @@ class TourController < ApplicationController
     end
     
     @tour = @house
+    
+  end
+  
+  def require_user
+    if not @user
+      redirect_to '/login' and return
+    end
+    if @tour.user != @user and not @user.is_super_admin
+      redirect_to '/login' and return
+    end
   end
   
   def publish
@@ -24,29 +36,30 @@ class TourController < ApplicationController
   def preview
     @pics = @tour.photos
     @realtor = @tour.user
+    if @pics.size == 0 
+      flash[:message] = "You must upload photos before you can preview your tour."
+      redirect_to @tour.edit_photos_path and return
+    end
+    
+    render :layout => 'view_tour'
+  end
+  
+  def live
+    
+  end
+  
+  def test_preview
+    @pics = @tour.photos
+    @realtor = @tour.user
     
     render :layout => 'view_tour'
   end
   
   def test
-    render :layout => nil
-  end
-  
-  def about
-    
     render :layout => 'view_tour'
-  end
+  end  
   
-  def map
-    
-    render :layout => 'view_tour'
-  end
-  
-  def schools
-    
-    render :layout => 'view_tour'
-  end
-  
+ 
   def edit
     @tab = "info"
     if request.post?
@@ -125,6 +138,13 @@ class TourController < ApplicationController
       @tour.transition = params[:transition]
       @tour.mode = params[:mode]
       @tour.ken_burns = params[:ken_burns]
+      
+      @tour.bg_color = params[:bg_color]
+      @tour.link_color = params[:link_color]
+      @tour.wrapper_color = params[:wrapper_color]
+      @tour.text_color = params[:text_color]
+      @tour.title_color = params[:title_color]
+      
       @tour.save
       flash[:update] = 'yes'
     end
@@ -162,6 +182,12 @@ class TourController < ApplicationController
       @house.state = params[:state]
       @house.zip = params[:zip]
       @house.user_id = @user.id
+      @house.bg_color = "#000000"
+      @house.link_color = "#e8e8e8"
+      @house.wrapper_color = "#242424"
+      @house.text_color = "#cccccc"
+      @house.title_color = "#e8e8e8"
+      
       @house.save
       
       redirect_to "/tour/#{@house.id}/edit"

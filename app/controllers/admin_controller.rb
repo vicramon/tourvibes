@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  #before_filter :require_super_admin
+  before_filter :require_super_admin
   
   def require_super_admin
     if not @user.is_super_admin

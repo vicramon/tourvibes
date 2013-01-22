@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
   
   def account
+    @page = 'account'
     if not @user
       redirect_to '/login' and return
     end

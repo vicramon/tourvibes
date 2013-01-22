@@ -7,6 +7,12 @@ input[type=submit] {
 }
 </style>
 
+<% if flash[:message] %>
+<div class="update">
+	<%= flash[:message] %>
+</div>
+<% end %>
+
 
 <!-- Bootstrap CSS fixes for IE6 -->
 <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->

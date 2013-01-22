@@ -67,7 +67,15 @@ class House < ActiveRecord::Base
   
   #fix this later
   def live_path
-    return self.preview_path
+    if self.is_live && self.is_paid
+      return self.preview_path
+    else
+      return not_live_path
+    end
+  end
+  
+  def not_live_path
+    "/tour/#{self.id}/not_live"
   end
   
   def about_path
