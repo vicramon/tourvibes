@@ -1,15 +1,15 @@
 class TourController < ApplicationController
   before_filter :get_tour, :except => :new
-  before_filter :require_user, :except => [:live, :new]
+  before_filter :require_user, :except => [:live, :new, :not_live, :preview]
   
   def get_tour
         
     if params[:id]
       @house = House.find_by_id(params[:id])
     elsif request.subdomain.present? && request.subdomain != 'www'
-      @house = House.find_by_subdomain!(request.subdomain)
+      @house = House.find_by_subdomain!(request.subdomain.downcase)
     else
-      @house = House.find_by_custom_domain(request.domain)
+      @house = House.find_by_custom_domain(request.domain.downcase)
     end
     
     @tour = @house
@@ -131,8 +131,8 @@ class TourController < ApplicationController
         
       end
       
-      @tour.subdomain = params[:subdomain].strip
-      @tour.custom_domain = params[:custom_domain].strip
+      @tour.subdomain = params[:subdomain].strip.downcase
+      @tour.custom_domain = params[:custom_domain].strip.downcase
       @tour.schools_url = params[:schools_url]
       @tour.autoplay = params[:autoplay]
       @tour.transition = params[:transition]

@@ -54,6 +54,7 @@ Tour::Application.routes.draw do
   
   match '/tour/:id/test' => 'tour#test'
   match '/tour/:id/test_preview' => 'tour#test_preview'
+  match '/tour/:id/not_live' => 'tour#not_live'
   
   
   #Tour Routes
