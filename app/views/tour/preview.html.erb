@@ -1,5 +1,52 @@
 
 <style type="text/css">
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track:horizontal {
+	/*
+    -webkit-box-shadow: inset 0 0 6px #000; 
+*/
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+	background:#000;
+}
+
+::-webkit-scrollbar-track:vertical {
+	background:none;
+	display:none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:vertical {
+    background:none; 
+	display:none;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb:horizontal {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png'); 
+/*
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+*/
+}
+
+::-webkit-scrollbar-thumb:horizontal:window-inactive {
+	background: #ccc; 
+}
+
+::-webkit-scrollbar-thumb:vertical:window-inactive {
+	background:none;
+	display:none; 
+}
+
+
     .kenburns {
       position: relative;
       overflow: hidden;
@@ -38,68 +85,6 @@
     }
 
 </style>
-
-<script type="text/javascript">
-
-$(document).ready(function () {
-	<% if @tour.ken_burns %>
-		randomizePan();
-	<% end %>
-});
-
-function randomizePan() {
-	//center();
-	
-	if (Math.random() > .5) {
-		zoomIn();
-	} else {
-		zoomOut();
-	}
-	
-	var rand = Math.random();
-	
-	if (rand < .25) {
-		topLeft();
-	} else if (rand < .5) {
-		bottomLeft();
-	} else if (rand < .75) {
-		topRight();
-	} else {
-		bottomRight();
-	}
-	
-}
-
-function center() {
-	$('#main_image').css('-webkit-transform-origin','50% 50%');
-}
-
-function topLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 25%');
-}
-
-function bottomLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 75%');
-}
-
-function topRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 25%');
-}
-
-function bottomRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 75%');
-}
-
-function zoomIn() {
-	$('#main_image').css('-webkit-transform','scale(1.13)');
-}
-
-function zoomOut() {
-	$('#main_image').css('-webkit-transform','scale(1.0)');
-}
-
-
-</script>
 
 
 		<div class="main_image_wrapper">
@@ -207,12 +192,31 @@ function zoomOut() {
 		
 		<div style="height:20px;">&nbsp;</div>
 		
+		<style>
 		
+		.thumb {
+			border:2px solid #242424;
+			cursor:pointer;
+		}
+		
+		.thumb_selected {
+			border:2px solid #ccc;
+		}
+		
+		</style>
+		
+		
+		<div style="height:115px;width:<%= (@pics.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;">
+			
+			<% x = 0 %>
 		<% for @pic in @pics %>
+		
 			<div style="display:inline-block;margin-right:4px;" class="tour_items">
-			<%= image_tag @pic.upload.url(:middle), :style => 'border-radius:5px;' %>
+			<%= image_tag @pic.upload.url(:middle), :style => 'border-radius:4px;', :id => "thumb_#{x}", :class => 'thumb', :thumb_num => x.to_i %>
 			</div>
+			<% x +=1 %>
 		<% end %>
+		</div>
 		
 		<audio id="music" <% if @tour.autoplay_music %>autoplay<% end %> loop>
 		  <source src="<%= @tour.music_src %>" type="audio/mpeg">
@@ -221,8 +225,95 @@ function zoomOut() {
 
 <script type="text/javascript">
 
+$(document).ready(function () {
+	
+	preload(pics);
+	
+	<% if @tour.ken_burns %>
+		randomizePan();
+	<% end %>
+	
+	var delay = 6000;
+	
+	$('#thumb_0').attr('class','thumb thumb_selected');
+	
+	
+	setInterval(function() {
+		if (status == "wait") {
+			status = "play";
+			return false;
+		}
+		if (status == "pause") { return; }
+		switchImage();
+		return false;
+	},delay);
+	
+});
+
+function randomizePan() {
+	//center();
+	
+	if (Math.random() > .5) {
+		zoomIn();
+	} else {
+		zoomOut();
+	}
+	
+	var rand = Math.random();
+	
+	if (rand < .25) {
+		topLeft();
+	} else if (rand < .5) {
+		bottomLeft();
+	} else if (rand < .75) {
+		topRight();
+	} else {
+		bottomRight();
+	}
+	
+}
+
+function center() {
+	$('#main_image').css('-webkit-transform-origin','50% 50%');
+}
+
+function topLeft() {
+	$('#main_image').css('-webkit-transform-origin','25% 25%');
+}
+
+function bottomLeft() {
+	$('#main_image').css('-webkit-transform-origin','25% 75%');
+}
+
+function topRight() {
+	$('#main_image').css('-webkit-transform-origin','75% 25%');
+}
+
+function bottomRight() {
+	$('#main_image').css('-webkit-transform-origin','75% 75%');
+}
+
+function zoomIn() {
+	$('#main_image').css('-webkit-transform','scale(1.13)');
+}
+
+function zoomOut() {
+	$('#main_image').css('-webkit-transform','scale(1.0)');
+}
+
+
+
 
 		 var song = $('#music').get(0);
+		
+		$(function() {
+		     $(".thumb").click(function(e) {
+		       e.preventDefault();
+			   $('.thumb_selected').attr('class','thumb');
+			   $(this).attr('class','thumb thumb_selected');
+			   switchImage($(this).attr('thumb_num'),true)
+		     });
+		   });
 		
 
 		   $(function() {
@@ -250,7 +341,6 @@ function zoomOut() {
 		<% else %>
 			var status = "pause";
 		<% end %>
-		var delay = 6000;
 		
 		$("#pause").click(function() {
 			status = "pause";
@@ -297,17 +387,23 @@ function zoomOut() {
 			<% i += 1 %>
 		<% end %>
 		
-		function switchImage(direction) {
+		function switchImage(direction,thumb_click) {
 			if (direction == "back") {
 				n = n-1;
 			} else {
 				n = n+1;
 			}
 			
-			
-			if (n > pics.length-1) { n = 0; } 
+			if (n > pics.length-1) { n = 0;
+				console.log('reset n');
+				 } 
 			if (n < 0) { n = pics.length-1;  }
 			
+			if (thumb_click) {
+				n = Number(direction);
+				console.log('thumb clicked');
+				$("#pause").click();
+			}
 			
 			$(".room_title_bg").fadeOut('slow',function() { 
 				$(".room_title_bg").html(room_names[n]);
@@ -317,6 +413,10 @@ function zoomOut() {
 			
 			
 			$("#main_image").fadeOut('slow',function() { 
+				
+				var thumb_id = "#thumb_" + n
+				$('.thumb').attr("class","thumb");
+				$(thumb_id).attr("class","thumb thumb_selected");
 				
 				$(this).load(function() { 
 					
@@ -330,6 +430,8 @@ function zoomOut() {
 						<% if @tour.ken_burns %>
 							randomizePan();
 						<% end %>
+						
+						
 						
 					}); 
 					
@@ -350,15 +452,7 @@ function zoomOut() {
 		}
 
 	
-		setInterval(function() {
-			if (status == "wait") {
-				status = "play";
-				return false;
-			}
-			if (status == "pause") { return; }
-			switchImage();
-			return false;
-		},delay);
+		
 		
 		
 		function preload(arrayOfImages) {
@@ -368,8 +462,6 @@ function zoomOut() {
 		        // (new Image()).src = this;
 		    });
 		}
-
-		preload(pics);
 		
 		$("#about_link").click(function() {
 			status = "pause";

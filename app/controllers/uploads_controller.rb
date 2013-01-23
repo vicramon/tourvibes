@@ -94,7 +94,6 @@ class UploadsController < ApplicationController
   # DELETE /uploads/1.json
   def destroy
     
-    
     @upload = Upload.find(params[:id])
     
     @house = House.find_by_id(@upload.house_id)

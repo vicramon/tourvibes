@@ -23,28 +23,46 @@ input[type=submit] {
 		<%= f.hidden_field :brand, :value => "photo" %>
 		
 
-          <div class="row fileupload-buttonbar">
-            <div class="span7">
+          <div class="row fileupload-buttonbar" style ="margin-left:10px;">
                 <!-- The fileinput-button span is used to style the file input field as button -->
+				<span class="gray_button small_button fileinput-button">
+					<i class="icon-plus"></i>
+					<span>Add Photos</span>
+					<%= f.file_field :upload, :multiple => true, :name => "upload[upload]", :tabindex => 1 %>
+				</span>
+
+				<!--
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
                     <span>Add Photos &amp; Videos</span>
-			
 					<%= f.file_field :upload, :multiple => true, :name => "upload[upload]" %>
                 </span>
+				-->
+				
+				
+				
+				<span class="gray_button small_button start" style="cursor:pointer;">
+					<i class="icon-upload"></i>
+					<span tabindex="2">Start Upload</span>
+				</span>
+				&nbsp; &nbsp; 
+				After uploading, <a href="<%= @tour.edit_photos_path %>">refresh this page</a> to add picture titles. 
+
+
+				<!--
                 <button type="submit" class="btn btn-primary start" style="margin-top:0px;">
                     <i class="icon-upload icon-white"></i>
                     <span style="font-family:Helvetica;font-size:14px;">Start upload</span>
                 </button>
-            </div>
+				-->
+
 		</div>
 
-		<div style="height:10px;">&nbsp;</div>
+		<div style="height:15px;">&nbsp;</div>
 
         <!-- The table listing files for upload/download -->
-        <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+        <table style="width:80%;margin-left:15px;" role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
     <% end %>
-   
 
 
 <!-- The template to display files available for upload -->
@@ -61,19 +79,23 @@ input[type=submit] {
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
             </td>
             <td class="start">{% if (!o.options.autoUpload) { %}
-                <button class="btn btn-primary">
+				
+                <button class="btn btn-primary" style="display:none;">
                     <i class="icon-upload icon-white"></i>
                     <span>Start</span>
                 </button>
+				
             {% } %}</td>
         {% } else { %}
             <td colspan="2"></td>
         {% } %}
         <td class="cancel">{% if (!i) { %}
+			<!--
             <button class="btn btn-warning">
                 <i class="icon-ban-circle icon-white"></i>
                 <span>Cancel</span>
             </button>
+			-->
         {% } %}</td>
     </tr>
 {% } %}
@@ -99,7 +121,7 @@ input[type=submit] {
             <td colspan="2"></td>
         {% } %}
         <td class="delete">
-            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+            <button class="btn btn-danger" style="display:none;" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
                 <span>Delete</span>
             </button>
@@ -191,34 +213,44 @@ input[type=submit] {
 <% if @pics.size > 0 %>
 
 <%= form_tag @tour.edit_photos_path do %>
-<br /><br />
+<br />
 
 <div class="line">&nbsp;</div>
 
 <table cellpadding=5 style="width:100%">
 	<tr>
 		<th style="text-align:center;width:150px;">Photo</th>
-		<th style="width:350px;">Description &nbsp; <%= submit_tag 'Save All', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:normal;'%></th>
+		<th style="width:350px;">Description &nbsp; <%= submit_tag 'Save All', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:bold;', :tabindex => 3%></th>
 		<th> <th>
 	</tr>
+	
+	<% tab_now = 3%>
 
 	<% for @pic in @pics %>
+	<% tab_now +=1 %>
 	<tr>
 		<td style="text-align:center;">
 			<%= image_tag @pic.upload.url(:thumb) %>
 		</td>
 		<td>
-			<%= text_field_tag "title[]", @pic.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;' %>
+			<%= text_field_tag "title[]", @pic.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;', :tabindex => tab_now %>
 		</td>
 		<td>
-			 &nbsp; &nbsp; &nbsp; <%= link_to 'Delete', @pic, :confirm => 'Are you sure?', :method => :delete %>
+			 &nbsp; &nbsp; &nbsp; <%= link_to 'Remove', @pic, :confirm => 'Are you sure?', :method => :delete %>
+		
+		<!-- 
+		ajax delete url
+		 data-url="/uploads/<%= @pic.id %>
+		-->
+		
+			
 		</td>
 	</tr>
 	<% end %>
 	
 	<tr>
 		<td> </td>
-		<td> <%= submit_tag 'Save Descriptions', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:normal;'%> </td>
+		<td> <%= submit_tag 'Save Descriptions', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:bold;', :tabindex => (tab_now+=1)%> </td>
 		<td> </td>
 	</tr>
 

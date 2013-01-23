@@ -10,13 +10,13 @@ Tour::Application.routes.draw do
   
   # Subdomains
   constraints(Subdomain) do  
-    match '/' => 'tour#preview'
+    match '/' => 'tour#live'
   end
   
   if Rails.env.production?
     # Custom Domains
     constraints(Customdomain) do  
-      match '/' => 'tour#preview'
+      match '/' => 'tour#live'
     end
   end
 
@@ -55,6 +55,8 @@ Tour::Application.routes.draw do
   match '/tour/:id/test' => 'tour#test'
   match '/tour/:id/test_preview' => 'tour#test_preview'
   match '/tour/:id/not_live' => 'tour#not_live'
+  
+  match '/tour/:id/live' => 'tour#live'
   
   
   #Tour Routes

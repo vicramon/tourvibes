@@ -33,9 +33,15 @@ class TourController < ApplicationController
     end
   end
   
-  def preview
+  #gets info necessary for slidwhow
+  def get_slideshow
     @pics = @tour.photos
     @realtor = @tour.user
+  end
+  
+  def preview
+    get_slideshow
+    
     if @pics.size == 0 
       flash[:message] = "You must upload photos before you can preview your tour."
       redirect_to @tour.edit_photos_path and return
@@ -45,6 +51,13 @@ class TourController < ApplicationController
   end
   
   def live
+    get_slideshow
+    
+    if not @tour.is_paid or not @tour.is_live
+      redirect_to @tour.not_live_path and return
+    end
+    
+    render :template => '/tour/preview', :layout => 'view_tour'
     
   end
   
