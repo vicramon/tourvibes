@@ -70,7 +70,7 @@ class House < ActiveRecord::Base
     if self.is_live && self.is_paid
       return self.preview_path
     else
-      return not_live_path
+      return self.not_live_path
     end
   end
   
