@@ -11,6 +11,9 @@
 	<label style="vertical-align:top;padding-top:6px;">Description:</label><%= text_area_tag 'desc', @tour.desc, :class => 'login_text', :style => 'width:500px;height:110px;' %><br />
 	
 	
-	
 	<%= submit_tag 'Save Changes', :class => 'gray_button small_button submit', :style => 'margin-left:167px;width:auto;' %>
+	
+	<%= submit_tag 'Save & Go to Next Step »', :class => 'gray_button blue_button small_button', :style => 'width:auto;'%>
+	
+	
 <% end %>

@@ -60,6 +60,7 @@ Tour::Application.routes.draw do
   
   
   #Tour Routes
+  match '/tour/first' => 'users#first_tour'
   match '/tour/:id/edit' => 'tour#edit'
   match '/tour/:id/edit/photos' => 'tour#edit_photos'
   match '/tour/:id/edit/music' => 'tour#edit_music'

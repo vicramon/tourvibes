@@ -3,7 +3,7 @@
 
 <style>
 input[type=submit] {
-	font-family:Helvetica;
+	font-family:"Corbel",Arial;
 }
 </style>
 
@@ -38,15 +38,13 @@ input[type=submit] {
 					<%= f.file_field :upload, :multiple => true, :name => "upload[upload]" %>
                 </span>
 				-->
-				
-				
-				
+								
 				<span class="gray_button small_button start" style="cursor:pointer;">
 					<i class="icon-upload"></i>
 					<span tabindex="2">Start Upload</span>
 				</span>
 				&nbsp; &nbsp; 
-				After uploading, <a href="<%= @tour.edit_photos_path %>">refresh this page</a> to add picture titles. 
+				You can also drag and drop files onto this page. 
 
 
 				<!--
@@ -60,9 +58,11 @@ input[type=submit] {
 
 		<div style="height:15px;">&nbsp;</div>
 
-        <!-- The table listing files for upload/download -->
-        <table style="width:80%;margin-left:15px;" role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
-    <% end %>
+<!-- The table listing files for upload/download -->
+<table style="width:80%;margin-left:15px;" role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+
+<!-- ends the form -->
+<% end %>
 
 
 <!-- The template to display files available for upload -->
@@ -76,8 +76,13 @@ input[type=submit] {
             <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
         {% } else if (o.files.valid && !i) { %}
             <td>
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-bottom:-5px;"><div class="bar" style="width:0%;"></div></div>
+
+
             </td>
+<td>			<span style="font-style:italic;display:none;" class="upload_status">
+			Uploading, please wait...
+			</span></td>
             <td class="start">{% if (!o.options.autoUpload) { %}
 				
                 <button class="btn btn-primary" style="display:none;">
@@ -118,7 +123,7 @@ input[type=submit] {
                 <a href="{%=file.url%}" title="{%=file.name%}" data-gallery="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
             </td>
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td colspan="2"></td>
+            <td colspan="2"><div class="update">Done</div></td>
         {% } %}
         <td class="delete">
             <button class="btn btn-danger" style="display:none;" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
@@ -130,11 +135,12 @@ input[type=submit] {
 {% } %}
 </script>
 
-<!-- The main application script -->
 <script type="text/javascript">
 
-	/*jslint nomen: true, unparam: true, regexp: true */
-	/*global $, window, document */
+	$('.start').click( function() {	
+		$('.upload_status').show();
+		$('.refresh_button').show();
+	});
 
 	$(function () {
 	    'use strict';
@@ -157,7 +163,6 @@ input[type=submit] {
 	    );
 
 	    if (true) {
-	        // Demo settings:
 	        $('#fileupload').fileupload('option', {
 	            url: '/uploads',
 	            maxFileSize: 5000000,
@@ -178,36 +183,12 @@ input[type=submit] {
 	                }
 	            ]
 	        });
-	
-	        // Upload server status check for browsers with CORS support:
-	        /*
-			if ($.support.cors) {
-	            $.ajax({
-	                url: '/uploads',
-	                type: 'HEAD'
-	            }).fail(function () {
-	                $('<span class="alert alert-error"/>')
-	                    .text('Upload server currently unavailable - ' +
-	                            new Date())
-	                    .appendTo('#fileupload');
-	            });
-	        }
-	    } else {
-	        // Load existing files:
-	        $.ajax({
-	            // Uncomment the following to send cross-domain cookies:
-	            //xhrFields: {withCredentials: true},
-	            url: $('#fileupload').fileupload('option', 'url'),
-	            dataType: 'json',
-	            context: $('#fileupload')[0]
-	        }).done(function (result) {
-	            $(this).fileupload('option', 'done')
-	                .call(this, null, {result: result});
-	        });*/
 	    }
 
 	});
 </script>
+
+<%= submit_tag 'Save & Add Titles', :class => 'gray_button blue_button small_button refresh_button', :style => 'width:auto;display:none;', :onclick => 'document.location.reload(true);'%>
 
 
 <% if @pics.size > 0 %>
@@ -220,7 +201,7 @@ input[type=submit] {
 <table cellpadding=5 style="width:100%">
 	<tr>
 		<th style="text-align:center;width:150px;">Photo</th>
-		<th style="width:350px;">Description &nbsp; <%= submit_tag 'Save All', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:bold;', :tabindex => 3%></th>
+		<th style="width:350px;">Description &nbsp; <%# submit_tag 'Save All', :class => 'gray_button small_button', :style => 'width:auto;font-size:16px;font-weight:bold;', :tabindex => 3%></th>
 		<th> <th>
 	</tr>
 	
@@ -237,21 +218,19 @@ input[type=submit] {
 		</td>
 		<td>
 			 &nbsp; &nbsp; &nbsp; <%= link_to 'Remove', @pic, :confirm => 'Are you sure?', :method => :delete %>
-		
 		<!-- 
 		ajax delete url
 		 data-url="/uploads/<%= @pic.id %>
 		-->
-		
-			
 		</td>
 	</tr>
 	<% end %>
 	
 	<tr>
 		<td> </td>
-		<td> <%= submit_tag 'Save Descriptions', :class => 'gray_button small_button', :style => 'width:auto;font-size:14px;font-weight:bold;', :tabindex => (tab_now+=1)%> </td>
-		<td> </td>
+		<td colspan=2> <%= submit_tag 'Save Descriptions', :class => 'gray_button small_button submit', :style => 'width:auto;', :tabindex => (tab_now+=1)%>
+				<%= submit_tag 'Save & Go to Next Step »', :class => 'gray_button blue_button small_button', :style => 'width:auto;'%>
+		</td>
 	</tr>
 
 

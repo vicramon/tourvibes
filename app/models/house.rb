@@ -18,8 +18,10 @@ class House < ActiveRecord::Base
   def name
     if self.title.present?
       self.title
-    else
+    elsif self.address_1.present?
       self.address_1
+    else
+      "New Tour"
     end
   end
   
@@ -37,6 +39,15 @@ class House < ActiveRecord::Base
      else
        false
      end
+   end
+   
+   def set_default_colors
+    self.bg_color = "#000000"
+    self.link_color = "#e8e8e8"
+    self.wrapper_color = "#242424"
+    self.text_color = "#cccccc"
+    self.title_color = "#e8e8e8"
+    self.save
    end
    
    def music_name

@@ -2,10 +2,18 @@ class HomeController < ApplicationController
   
   def index
     @page = 'home'
-    if @user
-      redirect_to '/tours' and return
-    end
+    
+    #if @user
+    #  redirect_to '/tours' and return
+    #end
+    
     @page_action = params[:page_action]
+  end
+  
+  def start
+    if @user
+      redirect_to '/tour/new' and return
+    end
   end
   
   def contact
@@ -38,7 +46,7 @@ class HomeController < ApplicationController
     @user.password = Digest::SHA2.hexdigest(@user.salt + params[:password].strip)
     @user.save
     session[:user_id] = @user.id
-    redirect_to '/tour/new' and return
+    redirect_to '/tour/first' and return
   end
   
 end

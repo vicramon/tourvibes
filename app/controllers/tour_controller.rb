@@ -84,7 +84,14 @@ class TourController < ApplicationController
       @tour.title = params[:title]
       @tour.desc = params[:desc]
       @tour.save
-      flash.now[:update] = 'yes'
+      
+      if params[:commit] == "Save Changes"
+        flash.now[:update] = 'yes'
+      else
+        flash[:update] = 'yes'
+        redirect_to @tour.edit_photos_path and return
+      end
+      
     end
   end
   
@@ -107,7 +114,13 @@ class TourController < ApplicationController
           @music.house_id = @tour.id
         end
         @music.save
+      end
+      
+      if params[:commit] == "Save Changes"
+        flash.now[:update] = 'yes'
+      else
         flash[:update] = 'yes'
+        redirect_to @tour.edit_settings_path and return
       end
       
       # delete music file if not being used.
@@ -159,7 +172,13 @@ class TourController < ApplicationController
       @tour.title_color = params[:title_color]
       
       @tour.save
-      flash[:update] = 'yes'
+      
+      if params[:commit] == "Save Changes"
+        flash.now[:update] = 'yes'
+      else
+        redirect_to @tour.publish_path and return
+      end
+      
     end
   end
   
@@ -183,6 +202,7 @@ class TourController < ApplicationController
     flash[:update] = 'yes'
     redirect_to @tour.edit_path and return
   end
+  
   
   def new
     @page = "new"

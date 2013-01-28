@@ -3,7 +3,8 @@
 
 /* Let's get this party started */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 0px;
+	height:10px;
 }
  
 /* Track */
@@ -86,13 +87,75 @@
 
 </style>
 
+<script type="text/javascript">
+/*
+$("#explosion-image").css({
+    height: '100%',
+    width: '100%',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    display: 'none'
+}).show()
+
+
+
+$('.container').css({
+	height:'100%',
+	width:'100%',
+	margin:'0',
+	padding:'0'
+})
+
+$('.wrapper').css({
+	height:'100%',
+	width:'100%',
+	margin:'0',
+	padding:'0',
+	background:'black'
+})
+
+$('.main_image_wrapper').css({
+	height:'100%',
+	width:'100%'
+})
+
+$('.kenburns').css({
+	'border':'2px solid black',
+})
+
+$('#main_image').css({
+	'border-radius':'0px'
+})
+
+$('.nav_right').hide();
+
+$('.property_title').hide();
+*/
+
+/*
+$('body').css({
+	'background':'url(<%=  @pics[0].upload.url(:large) %>) no-repeat center center fixed;' 
+	'-webkit-background-size': 'cover;'
+	'-moz-background-size': 'cover;'
+	'-o-background-size': 'cover;'
+	'background-size': 'cover;'
+})
+*/
+
+
+</script>
 
 		<div class="main_image_wrapper">
-			
 			<div align="center">
 				
-				<div class="kenburns tour_items" style="width: 800px; height:600px;">				
-				    <%= image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;width:800px;height:600px;position:relative;' %>
+				<!--
+				width:800px;height:600px;
+				width:auto;height:600px;
+				-->
+				
+				<div class="kenburns tour_items" style="width:950px;height:600px;">				
+				    <%= image_tag @pics[0].upload.url(:large), :class => 'tour_items main_image', :style => 'border-radius:5px;width:auto;height:720px;position:relative;' %>
 				</div>
 		
 			</div>
@@ -164,7 +227,7 @@
 		<div style="height:15px;">&nbsp;</div>
 		
 		
-		<div class="controls tour_items">
+		<div class="controls tour_items" style="z-index:1000;">
 			<div class="controls_inner">
 				
 			<% if @tour.autoplay_music %>
@@ -206,12 +269,12 @@
 		</style>
 		
 		
-		<div style="height:115px;width:<%= (@pics.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;">
+		<div style="height:115px;width:<%= (@pics.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" class="gallery tour_items">
 			
 			<% x = 0 %>
 		<% for @pic in @pics %>
 		
-			<div style="display:inline-block;margin-right:4px;" class="tour_items">
+			<div style="display:inline-block;margin-right:4px;" class="tour_items gallery">
 			<%= image_tag @pic.upload.url(:middle), :style => 'border-radius:4px;', :id => "thumb_#{x}", :class => 'thumb', :thumb_num => x.to_i %>
 			</div>
 			<% x +=1 %>
@@ -234,9 +297,9 @@ $(document).ready(function () {
 	<% end %>
 	
 	var delay = 6000;
+	var fullscreen = false;
 	
 	$('#thumb_0').attr('class','thumb thumb_selected');
-	
 	
 	setInterval(function() {
 		if (status == "wait") {
@@ -274,35 +337,38 @@ function randomizePan() {
 }
 
 function center() {
-	$('#main_image').css('-webkit-transform-origin','50% 50%');
+	$('.main_image').css('-webkit-transform-origin','50% 50%');
 }
 
 function topLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 25%');
+	$('.main_image').css('-webkit-transform-origin','25% 25%');
 }
 
 function bottomLeft() {
-	$('#main_image').css('-webkit-transform-origin','25% 75%');
+	$('.main_image').css('-webkit-transform-origin','25% 75%');
 }
 
 function topRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 25%');
+	$('.main_image').css('-webkit-transform-origin','75% 25%');
 }
 
 function bottomRight() {
-	$('#main_image').css('-webkit-transform-origin','75% 75%');
+	$('.main_image').css('-webkit-transform-origin','75% 75%');
 }
 
 function zoomIn() {
-	$('#main_image').css('-webkit-transform','scale(1.13)');
+	$('.main_image').css('-webkit-transform','scale(1.13)');
 }
 
 function zoomOut() {
-	$('#main_image').css('-webkit-transform','scale(1.0)');
+	$('.main_image').css('-webkit-transform','scale(1.0)');
 }
 
-
-
+function exitFullscreen () {
+	$('.container').show();
+	$('#fullscreen').hide();
+	fullscreen = false;
+}
 
 		 var song = $('#music').get(0);
 		
@@ -314,6 +380,19 @@ function zoomOut() {
 			   switchImage($(this).attr('thumb_num'),true)
 		     });
 		   });
+		
+		   $(function() {
+		     $("#expand").click(function(e) {
+		       e.preventDefault();
+			   fullscreen = true;
+			   $('.container').hide();
+			   $('#fullscreen').show();
+		     });
+		   });
+		
+		    $(document).keyup(function(e) {
+			  if (e.keyCode == 27 && fullscreen) { exitFullscreen(); }
+			});
 		
 
 		   $(function() {
@@ -407,19 +486,20 @@ function zoomOut() {
 			
 			$(".room_title_bg").fadeOut('slow',function() { 
 				$(".room_title_bg").html(room_names[n]);
-				$(this).fadeIn('slow');
+				
+				if (room_names[n] != "") {
+					$(this).fadeIn('slow');
+				}
+				
 				return false;
 			});
 			
 			
-			$("#main_image").fadeOut('slow',function() { 
-				
+			$(".main_image").fadeOut('slow',function() { 
 				var thumb_id = "#thumb_" + n
 				$('.thumb').attr("class","thumb");
 				$(thumb_id).attr("class","thumb thumb_selected");
-				
 				$(this).load(function() { 
-					
 					$(this).fadeIn('slow', function() {
 						/*
 						if ((n%2)==0) {
@@ -428,25 +508,17 @@ function zoomOut() {
 							zoomOut();
 						}*/
 						<% if @tour.ken_burns %>
-							randomizePan();
+							if (fullscreen != true) {
+								randomizePan();
+							}
 						<% end %>
-						
-						
-						
 					}); 
-					
 					return false; 
 				}); 
 				$(this).attr("src", pics[n]); 
-				
-								
 				//$('.room_title_bg').html(room_names[n]);
 				return false;
 			});
-			
-			
-			
-			
 			console.log(n);
 			return false;
 		}
@@ -512,8 +584,9 @@ function zoomOut() {
 			});
 			});
 		});
+
 	
-		
+			
 
 </script>
 
