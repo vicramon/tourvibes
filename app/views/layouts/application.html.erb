@@ -20,11 +20,15 @@
 						<% if @page == "home" %>
 							<a href="#" id="how_link">How it Works</a>
 							<a href="#" id="feature_link">Features</a>
+							<!--
 							<a href="#" id="pricing_link">Pricing</a>
+							-->
 						<% else %>
 							<a href="/home/how" id="how_link">How it Works</a>
 							<a href="/home/features" id="feature_link">Features</a>
+							<!--
 							<a href="/home/pricing" id="pricing_link">Pricing</a>
+							-->
 						<% end %>
 					<% end %>
 					<% if @user %>
@@ -54,15 +58,43 @@
 					</div>
 				
 				
-					<h1>Create Amazing Virtual Real Estate Tours</h1>
-					<h3>Simple, easy to use virtual tour creator for realtors</h3>
+					<h1>Create a virtual tour for just $10.</h1>
+					<h3>Your first 5 tours are <span style="text-decoration:underline;">FREE</span>. No card required.</h3>
 					<div style="height:20px;">&nbsp;</div>
 					<a href="/start" class="gray_button">Get Started &nbsp;<%= image_tag 'buttons/gray_arrow.png' %></a>
-					<a href="http://www.universityofcode.com" class="blue_button button" style="margin-left:15px;color:white;">View Samples</a>
+					<a href="http://2100Windsor.tourvibes.com/" class="blue_button button" style="margin-left:15px;color:white;">View Example</a>
 				
 					
 			</div>
+			<div style="clear:both;height:0">&nbsp;</div>
+			
 		</div>
+
+<style>
+.client_list img {
+	margin-left:4.5%;
+	float:left;
+	margin-top:20px;
+}
+</style>
+
+
+<div style="background:#d8d8d8" align="center">
+	<div class="client_list standard_width" style="text-align:left;min-height:84px;height:auto;">
+		
+		<h2 style="font-weight:normal;display:inline;margin-top:25px;float:left;">Our Clients</h2>
+		
+		<%= image_tag 'clients/1.png' %>
+		<%= image_tag 'clients/2.png' %>
+		<%= image_tag 'clients/3.png' %>
+		<%= image_tag 'clients/4.png', :style => 'margin-top:8px;' %>
+		<%= image_tag 'clients/5.png', :style => 'margin-top:8px;margin-left:5.5%' %>
+		
+	</div>
+	
+	<div style="clear:both;height:0">&nbsp;</div>
+</div>
+		
 		<% end %>
 		<div class="content">
 			<div class="inner_content standard_width">

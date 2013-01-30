@@ -48,14 +48,15 @@ Tour::Application.routes.draw do
   
   #View Tour Routes
   match '/tour/:id/preview' => 'tour#preview'
+ # match '/tour/:id/preview2' => 'tour#preview_2'
+  
+  
   match '/tour/:id/about' => 'tour#about'
   match '/tour/:id/map' => 'tour#map'
   match '/tour/:id/schools' => 'tour#schools'
-  
   match '/tour/:id/test' => 'tour#test'
   match '/tour/:id/test_preview' => 'tour#test_preview'
   match '/tour/:id/not_live' => 'tour#not_live'
-  
   match '/tour/:id/live' => 'tour#live'
   
   

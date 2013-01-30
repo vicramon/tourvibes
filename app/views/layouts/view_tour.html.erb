@@ -10,20 +10,58 @@
 
 	    <script type="text/javascript">
 
-	  	var geocoder;
+	  	  var geocoder;
 		  var map;
 
-		  function initialize() {
+		  function initialize(address) {
+			
+	
+			var address = address
+			var location;
+			var lat;
+			var lng;
 		    geocoder = new google.maps.Geocoder();
-		    var latlng = new google.maps.LatLng(0, 0);
+		
+			geocoder.geocode( { 'address': address}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        location = results[0].geometry.location;
+		
+				console.log('location: ' + location);
+				lat = results[0].geometry.location.lat();
+				lng = results[0].geometry.location.lng();
+				console.log('lat: ' + lat);
+				console.log('lng: ' + lng);
+	        
+		    var latlng = new google.maps.LatLng(lat, lng);
+			//latlng = new google.maps.LatLng(32.8430731, -96.79948760000002);
+		
 		    var mapOptions = {
 		      zoom: 14,
 		      center: latlng,
 		      mapTypeId: google.maps.MapTypeId.ROADMAP
 		    }
+		
 		    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+		
+			var marker = new google.maps.Marker({
+	            map: map,
+	            position: latlng
+	        });
+	
+			var infowindow = new google.maps.InfoWindow({
+			    content: "<div class='map_text' style='text-align:left;color#333333;line-height:1.7;'>"
+						+	"<%= @tour.address_1%><br />"
+						+	"<% if @tour.address_2.present? %>"
+						+	"<%= @tour.address_2 %><br />"
+						+	"<% end %>" 
+						+	"<%= @tour.city %>, <%= @tour.state %> <%= @tour.zip %></div>"
+			});
+			infowindow.open(map,marker);
 
-			codeAddress("<%= @tour.address_1 + ', ' + @tour.address_2 + ', ' + @tour.city + ', ' + @tour.state + ' ' + @tour.zip %>");
+
+				}
+			});
+			//codeAddress("<%= @tour.address_1 + ', ' + @tour.address_2 + ', ' + @tour.city + ', ' + @tour.state + ' ' + @tour.zip %>");
 		  }
 
 		  function codeAddress(address) {
@@ -45,6 +83,8 @@
 							+	"<%= @tour.city %>, <%= @tour.state %> <%= @tour.zip %></div>"
 				});
 				infowindow.open(map,marker);
+				//$('.map_text').css('color',"#333");
+				
 		      } else {
 		        //alert("Geocode was not successful for the following reason: " + status);
 		      }
@@ -71,7 +111,7 @@
 	src: url('http://s3.amazonaws.com/tour_files/site_files/Avenir-Book.otf');
 	}
 	
-	map_text {
+	.map_text {
 		color:#333;
 	}
 	
@@ -95,7 +135,7 @@
 	.container {
 		width:1000px;
 		margin:0 auto;
-		margin-top:14px;
+		margin-top:10px;
 		margin-bottom:40px;
 	}
 	
@@ -159,11 +199,6 @@
 		cursor:pointer;
 	}
 	
-	.main_image_wrapper {
-		height:600px;
-	}
-	
-	
 </style>
 
 
@@ -198,7 +233,7 @@
 
 	<div class="property_title"><%= @tour.name %></div>
 
-	<div class="wrapper">
+	<div class="wrapper" id="wrapper">
 	
 	<%= yield %>
 	</div>

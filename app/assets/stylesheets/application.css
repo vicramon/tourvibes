@@ -93,6 +93,16 @@ h1, h2, h3, h4, h5, h6 {
 	margin:0;
 }
 
+h1 {
+	font-size:33px;
+	font-weight:bold;
+}
+
+h3 {
+	font-size:25px;
+	font-weight:normal;
+}
+
 h2, h4, h5, h6 {
 	font-family:"Myriad Pro",Arial;
 	color:#444;
@@ -153,8 +163,9 @@ h6 {
 
 .home_top {
 	background:url('home_top_bg.png') repeat-x;
-	height:298px;
+	min-height:298px;
 	border-bottom:3px solid #16466E;
+	height:auto;
 }
 
 .home_top_inner {
@@ -206,8 +217,8 @@ a.gray_button {
 
 .how_box {
 	float:left;
-	width:25%;
-	margin-right:10%;
+	width:30%;
+	margin-right:4%;
 	text-align:center;
 	min-width:200px;
 }

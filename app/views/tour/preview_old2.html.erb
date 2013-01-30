@@ -1,240 +1,161 @@
 
 <style type="text/css">
 
+/* Let's get this party started */
 ::-webkit-scrollbar {
     width: 0px;
 	height:10px;
 }
+ 
+/* Track */
 ::-webkit-scrollbar-track:horizontal {
+	/*
+    -webkit-box-shadow: inset 0 0 6px #000; 
+*/
     -webkit-border-radius: 5px;
     border-radius: 5px;
 	background:#000;
 }
+
 ::-webkit-scrollbar-track:vertical {
 	background:none;
 	display:none;
 }
+
+/* Handle */
 ::-webkit-scrollbar-thumb:vertical {
     background:none; 
 	display:none;
 }
+ 
+/* Handle */
 ::-webkit-scrollbar-thumb:horizontal {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     background:url('/assets/scrollbar_bg.png'); 
+/*
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+*/
 }
+
 ::-webkit-scrollbar-thumb:horizontal:window-inactive {
 	background: #ccc; 
 }
+
 ::-webkit-scrollbar-thumb:vertical:window-inactive {
 	background:none;
 	display:none; 
 }
 
-::-o-scrollbar {
-    width: 0px;
-	height:10px;
-}
-::-o-scrollbar-track:horizontal {
-    -o-border-radius: 5px;
-    border-radius: 5px;
-	background:#000;
-}
-::-o-scrollbar-track:vertical {
-	background:none;
-	display:none;
-}
-::-o-scrollbar-thumb:vertical {
-    background:none; 
-	display:none;
-}
-::-o-scrollbar-thumb:horizontal {
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    background:url('/assets/scrollbar_bg.png'); 
-}
-::-o-scrollbar-thumb:horizontal:window-inactive {
-	background: #ccc; 
-}
-::-o-scrollbar-thumb:vertical:window-inactive {
-	background:none;
-	display:none; 
-}
 
-::-ms-scrollbar {
-    width: 0px;
-	height:10px;
-}
-::-ms-scrollbar-track:horizontal {
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-	background:#000;
-}
-::-ms-scrollbar-track:vertical {
-	background:none;
-	display:none;
-}
-::-ms-scrollbar-thumb:vertical {
-    background:none; 
-	display:none;
-}
-::-ms-scrollbar-thumb:horizontal {
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    background:url('/assets/scrollbar_bg.png'); 
-}
-::-ms-scrollbar-thumb:horizontal:window-inactive {
-	background: #ccc; 
-}
-::-ms-scrollbar-thumb:vertical:window-inactive {
-	background:none;
-	display:none; 
-}
+    .kenburns {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+	  border-radius:5px;
+	  border:2px solid #666;
+    }
+    .kenburns img {
+      position: absolute;
+	  border-radius:5px;
+      left: 0px;
+      top: 0px;
+      
+/*
+	  -o-transition-duration: 20s;
+      -ms-transition-duration: 20s;
+      -moz-transition-duration: 20s;
+      -webkit-transition-duration: 20s;
+*/
 
-::-moz-scrollbar {
-    width: 0px;
-	height:10px;
-}
-::-moz-scrollbar-track:horizontal {
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-	background:#000;
-}
-::-moz-scrollbar-track:vertical {
-	background:none;
-	display:none;
-}
-::-moz-scrollbar-thumb:vertical {
-    background:none; 
-	display:none;
-}
-::-moz-scrollbar-thumb:horizontal {
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    background:url('/assets/scrollbar_bg.png'); 
-}
-::-moz-scrollbar-thumb:horizontal:window-inactive {
-	background: #ccc; 
-}
-::-moz-scrollbar-thumb:vertical:window-inactive {
-	background:none;
-	display:none; 
-}
+	  -o-transition: -o-transform 5s ease-in-out;
+      -ms-transition: -ms-transform 5s ease-in-out;
+      -moz-transition: -moz-transform 5s ease-in-out;
+      -webkit-transition: -webkit-transform 5s ease-in-out, -webkit-transform-origin 5s ease-in-out;
 
+      -o-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -webkit-transform: scale(1.1);
 
-.kenburns {
-	position: relative;
-	overflow: hidden;
-	display: inline-block;
-	border-radius:5px;
-	border:2px solid #666;
+      -o-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+      -moz-transform-origin: 50% 50%;
+      -webkit-transform-origin: 50% 50%;
 
-	width:950px;
-	height:600px;
-}
-.kenburns img {
-	position: absolute;
-	border-radius:5px;
-	left: 0px;
-	top: 0px;
-
-	-o-transition: -o-transform 5s ease-in-out;
-	-ms-transition: -ms-transform 5s ease-in-out;
-	-moz-transition: -moz-transform 5s ease-in-out;
-	-webkit-transition: -webkit-transform 5s ease-in-out, -webkit-transform-origin 5s ease-in-out;
-
-	-o-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	-moz-transform: scale(1.1);
-	-webkit-transform: scale(1.1);
-
-	-o-transform-origin: 50% 50%;
-	-ms-transform-origin: 50% 50%;
-	-moz-transform-origin: 50% 50%;
-	-webkit-transform-origin: 50% 50%;
-
-}
+    }
 
 </style>
 
-
-<style>
-
-.main_image {
-	border-radius:5px;
-	width:auto;
-	height:720px;
-	position:relative;
-}
-
-#main_image_wrapper {
-/*	height:600px;*/
-}
-
-/* fullscreen styles */
-
-
-#wrapper:-webkit-full-screen
-{
-	float: none;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0 none;
-}
-
-#wrapper:-moz-full-screen
-{
-	float: none;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0 none;
-}
-
-#wrapper:-ms-full-screen
-{
-	float: none;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0 none;
-}
-
-#wrapper:-o-full-screen
-{
-	float: none;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0 none;
-}
-
-#wrapper:full-screen
-{
-	float: none;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	border: 0 none;
-}
+<script type="text/javascript">
+/*
+$("#explosion-image").css({
+    height: '100%',
+    width: '100%',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    display: 'none'
+}).show()
 
 
 
-</style>
+$('.container').css({
+	height:'100%',
+	width:'100%',
+	margin:'0',
+	padding:'0'
+})
+
+$('.wrapper').css({
+	height:'100%',
+	width:'100%',
+	margin:'0',
+	padding:'0',
+	background:'black'
+})
+
+$('.main_image_wrapper').css({
+	height:'100%',
+	width:'100%'
+})
+
+$('.kenburns').css({
+	'border':'2px solid black',
+})
+
+$('#main_image').css({
+	'border-radius':'0px'
+})
+
+$('.nav_right').hide();
+
+$('.property_title').hide();
+*/
+
+/*
+$('body').css({
+	'background':'url(<%=  @pics[0].upload.url(:large) %>) no-repeat center center fixed;' 
+	'-webkit-background-size': 'cover;'
+	'-moz-background-size': 'cover;'
+	'-o-background-size': 'cover;'
+	'background-size': 'cover;'
+})
+*/
 
 
+</script>
 
-
-		<div id="main_image_wrapper">
+		<div class="main_image_wrapper">
 			<div align="center">
-				<div id="kenburns" class="kenburns tour_items">				
-				    <%= image_tag @pics[0].upload.url(:large), :class => 'tour_items main_image' %>
+				
+				<!--
+				width:800px;height:600px;
+				width:auto;height:600px;
+				-->
+				
+				<div class="kenburns tour_items" style="width:950px;height:600px;">				
+				    <%= image_tag @pics[0].upload.url(:large), :class => 'tour_items main_image', :style => 'border-radius:5px;width:auto;height:720px;position:relative;' %>
 				</div>
 		
 			</div>
@@ -305,6 +226,7 @@
 		
 		<div style="height:15px;">&nbsp;</div>
 		
+		
 		<div class="controls tour_items" style="z-index:1000;">
 			<div class="controls_inner">
 				
@@ -328,11 +250,9 @@
 			<%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
 			
 			<%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
-			<%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
-			
 			</div>
 		</div>
- 		
+		
 		<div style="height:20px;">&nbsp;</div>
 		
 		<style>
@@ -349,7 +269,7 @@
 		</style>
 		
 		
-		<div style="height:115px;width:<%= (@pics.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" id="gallery" class="gallery tour_items">
+		<div style="height:115px;width:<%= (@pics.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" class="gallery tour_items">
 			
 			<% x = 0 %>
 		<% for @pic in @pics %>
@@ -368,10 +288,9 @@
 
 <script type="text/javascript">
 
-preload(pics);
-
 $(document).ready(function () {
 	
+	preload(pics);
 	
 	<% if @tour.ken_burns %>
 		randomizePan();
@@ -417,119 +336,39 @@ function randomizePan() {
 	
 }
 
-
 function center() {
 	$('.main_image').css('-webkit-transform-origin','50% 50%');
-	$('.main_image').css('-moz-transform-origin','50% 50%');
-	$('.main_image').css('-ms-transform-origin','50% 50%');
-	$('.main_image').css('-o-origin','50% 50%');
-	
-	
 }
 
 function topLeft() {
 	$('.main_image').css('-webkit-transform-origin','25% 25%');
-	$('.main_image').css('-o-transform-origin','25% 25%');
-	$('.main_image').css('-ms-transform-origin','25% 25%');
-	$('.main_image').css('-moz-transform-origin','25% 25%');
-	
 }
 
 function bottomLeft() {
 	$('.main_image').css('-webkit-transform-origin','25% 75%');
-	$('.main_image').css('-o-transform-origin','25% 75%');
-	$('.main_image').css('-ms-transform-origin','25% 75%');
-	$('.main_image').css('-moz-transform-origin','25% 75%');
-	
 }
 
 function topRight() {
 	$('.main_image').css('-webkit-transform-origin','75% 25%');
-	$('.main_image').css('-o-transform-origin','75% 25%');
-	$('.main_image').css('-ms-transform-origin','75% 25%');
-	$('.main_image').css('-moz-transform-origin','75% 25%');
-	
 }
 
 function bottomRight() {
 	$('.main_image').css('-webkit-transform-origin','75% 75%');
-	$('.main_image').css('-o-transform-origin','75% 75%');
-	$('.main_image').css('-ms-transform-origin','75% 75%');
-	$('.main_image').css('-moz-transform-origin','75% 75%');
-	
-	
 }
 
 function zoomIn() {
 	$('.main_image').css('-webkit-transform','scale(1.13)');
-	$('.main_image').css('-o-transform','scale(1.13)');
-	$('.main_image').css('-ms-transform','scale(1.13)');
-	$('.main_image').css('-moz-transform','scale(1.13)');
-	
-	
 }
 
 function zoomOut() {
 	$('.main_image').css('-webkit-transform','scale(1.0)');
-	$('.main_image').css('-o-transform','scale(1.0)');
-	$('.main_image').css('-ms-transform','scale(1.0)');
-	$('.main_image').css('-moz-transform','scale(1.0)');
-	
 }
 
-function exitFullScreen () {
-	RunPrefixMethod(document, "CancelFullScreen");
+function exitFullscreen () {
+	$('.container').show();
+	$('#fullscreen').hide();
 	fullscreen = false;
-	$('#expand').show();
-	$('#escape').hide();
-	$('#gallery').show();
-	$('#kenburns').removeAttr("style");
-	$('#kenburns img').removeAttr("style");
-	$('.main_image').removeAttr("style");
-	$('#main_image_wrapper').removeAttr("style");
-	$('.controls').removeAttr("style");
 }
-
-$(function() { $("#escape").click(function(e) {
-       e.preventDefault();
-	   exitFullScreen();
-	});
-});
-
-document.addEventListener("webkitfullscreenchange", function (e) { 
-	if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
-		exitFullScreen();
-		//alert('closing');
-	}
-});
-
-document.addEventListener("mozfullscreenchange", function (e) { 
-	if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
-		exitFullScreen();
-		//alert('closing');
-	}
-});
-
-document.addEventListener("msfullscreenchange", function (e) { 
-	if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
-		exitFullScreen();
-		//alert('closing');
-	}
-});
-
-document.addEventListener("ofullscreenchange", function (e) { 
-	if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
-		exitFullScreen();
-		//alert('closing');
-	}
-});
-
-document.addEventListener("fullscreenchange", function (e) { 
-	if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
-		exitFullScreen();
-		//alert('closing');
-	}
-});
 
 		 var song = $('#music').get(0);
 		
@@ -542,44 +381,19 @@ document.addEventListener("fullscreenchange", function (e) {
 		     });
 		   });
 		
-		   $(function() { $("#expand").click(function(e) {
+		   $(function() {
+		     $("#expand").click(function(e) {
 		       e.preventDefault();
 			   fullscreen = true;
-			   //$('.container').hide();
-			   //$('#fullscreen').show();
-			
-				$('#expand').hide();
-				$('#escape').show();
-			
-				$('#gallery').hide();
-				$('#kenburns').css({
-					width:'100%',
-					height:'100%',
-					border:'none',
-					position:'static'
-				});
-				$('#kenburns img').css({
-					position:'static'
-				});
-				$('.main_image').css({
-					height:'100%',
-					
-				});
-				$('#main_image_wrapper').css({
-					width:'100%',
-					height:'100%'
-				});
-				$('.controls').css({
-					position:'absolute',
-					bottom: '50px',
-					left: '25%',
-					width: '50%'
-				});
+			   $('.container').hide();
+			   $('#fullscreen').show();
 						   
-			   var f = document.getElementById("wrapper");
+			   var f = document.getElementById("fullscreen");
 			
 				if (RunPrefixMethod(document, "FullScreen") || RunPrefixMethod(document, "IsFullScreen")) {
 					RunPrefixMethod(document, "CancelFullScreen");
+					$('.container').show();
+					$('#fullscreen').hide();
 				}
 				else {
 					RunPrefixMethod(f, "RequestFullScreen");
@@ -592,6 +406,7 @@ document.addEventListener("fullscreenchange", function (e) {
 
 	var pfx = ["webkit", "moz", "ms", "o", ""];
 	function RunPrefixMethod(obj, method) {
+
 		var p = 0, m, t;
 		while (p < pfx.length && !obj[m]) {
 			m = method;
@@ -615,8 +430,7 @@ document.addEventListener("fullscreenchange", function (e) {
 				
 		    $(document).keyup(function(e) {
 			  if (e.keyCode == 27 && (fullscreen || RunPrefixMethod(document, "IsFullScreen"))) { 
-				//exitFullscreen(); 
-				alert('hi');
+				exitFullscreen(); 
 				}
 			});
 		
@@ -790,9 +604,8 @@ document.addEventListener("fullscreenchange", function (e) {
 			$('#contact').fadeOut('slow',function() {
 				$('#about').fadeOut('slow', function() {
 				$(".tour_items").fadeOut('slow',function() { 
-					//$('body').css('color','#333');
 					$('#map').fadeIn('slow'); 
-					initialize("<%= @tour.address_1 + ', ' + @tour.address_2 + ', ' + @tour.city + ', ' + @tour.state + ' ' + @tour.zip %>");					
+					initialize();					
 					return false; 
 				});
 			});
