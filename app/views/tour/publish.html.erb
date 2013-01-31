@@ -1,29 +1,78 @@
 <script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
+<style>
+/*
+button:hover {
+	cursor:pointer;
+}
+
+button {
+	height:37px;
+	width:230px;
+}
+*/
+</style>
+
 <h4>Publish Tour</h4>
 
 Please pay the $10 fee to post your tour to the web by clicking the button below. 
+<p>
+<span style="font-weight:bold;font-size:18px;">1 TourVibes Tour ($10)</span>
+<p>
+<strong>Satisfaction Guaranteed: 30-day Full Refund Policy</strong>
+	
+<p>
+* Add unlimited photos<br />
+* Tour never expires<br />
+* Custom subdomain<br />
+* Customized design<br />
 
-<br /><br />
+<br />
 
 <%= form_tag "/payments/charge", :method => "post", :id => 'new_card' do %>
 
 	<%= hidden_field_tag 'house_id', @tour.id %>
 	
-	<script
+	<!--
+  	<button id="customButton" class="gray_button">Enter Card Info</button>
+	<br /><br />
+	<button id="submit" class="gray_button blue_button">Purchase Tour</button>
+	-->
+
+  	<script
 	  src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+	  data-label="Enter Card Info"
 	  data-key="pk_test_xtyjdXQcPArIuU9dInE8d80b"
-	  data-amount="1000"
+	  data-panel-label="Purchase Tour"
 	  data-name="1 TourVibes Tour"
-	  data-description=""
-	  data-image="/128x128.png">
+	>
 	</script>
 	
 
 
 <% end %>
-<br /><br /><br />
-<%= image_tag 'seal.gif' %>
+<br /><br />
+
+<style>
+#secure_images img {
+	float:left;
+	margin-right:25px;
+	vertical-align:middle;
+	
+}
+
+#secure_image {
+	height:150px;
+	vertical-align:middle;
+}
+</style>
+<br />
+<div id="secure_images">
+<%= image_tag 'secure/seal.gif', :style => 'margin-top:-20px;' %>
+<%= image_tag 'secure/ssl_secure.png', :style => 'margin-top:7px;' %>
+<%= image_tag 'secure/comodo.png' %>
+<%# image_tag 'secure/heroku.png' %>
+</div>
 
 <!-- for saving a user's info, may want this later -->
 
@@ -53,3 +102,17 @@ Please pay the $10 fee to post your tour to the web by clicking the button below
 	</script>
 -->
 
+
+<!-- older button
+
+<script
+  src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+  label="Pay through Secure Sever"
+  data-key="pk_test_xtyjdXQcPArIuU9dInE8d80b"
+  data-amount="1000"
+  data-name="1 TourVibes Tour"
+  data-description=""
+  data-image="/128x128.png">
+</script>
+
+-->
