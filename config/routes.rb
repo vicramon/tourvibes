@@ -49,7 +49,8 @@ Tour::Application.routes.draw do
   #View Tour Routes
   match '/tour/:id/preview' => 'tour#preview'
  # match '/tour/:id/preview2' => 'tour#preview_2'
-  
+ 
+ match '/secure_login/:id' => 'home#secure_login'
   
   match '/tour/:id/about' => 'tour#about'
   match '/tour/:id/map' => 'tour#map'

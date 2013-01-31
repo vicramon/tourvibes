@@ -31,6 +31,11 @@ class TourController < ApplicationController
       @tour.save
       redirect_to @tour.now_live_path and return
     end
+    
+    if Rails.env.production? and not request.ssl?
+      redirect_to "https://tourvibes.com/secure_login/#{@tour.id}"
+    end
+    
   end
   
   #gets info necessary for slidwhow

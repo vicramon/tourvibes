@@ -234,7 +234,10 @@ a.gray_button {
 
 .how_header {
 	font-size:22px;
+	/*
 	color:#478BB1;
+	*/
+	color:#1C4DA3;
 	text-shadow:0 1px 0 white;
 	font-weight:bold;
 	text-align:center;
