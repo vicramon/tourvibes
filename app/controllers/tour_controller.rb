@@ -27,7 +27,7 @@ class TourController < ApplicationController
   
   def publish
     
-    if @user.free_tours > 0
+    if not @tour.is_paid && @user.free_tours > 0
       @tour.is_paid = true
       @user.free_tours -= 1
       @user.save

@@ -1,12 +1,9 @@
-<h1>Listing users</h1>
+<h4><%= User.all.count %> Users</h4>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Password</th>
-    <th>Salt</th>
-    <th>Stripe</th>
     <th>Cell</th>
     <th>Firm name</th>
     <th></th>
@@ -18,9 +15,6 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <td><%= user.password %></td>
-    <td><%= user.salt %></td>
-    <td><%= user.stripe_id %></td>
     <td><%= user.cell %></td>
     <td><%= user.firm_name %></td>
     <td><%= link_to 'Show', user %></td>
