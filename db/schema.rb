@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122225048) do
+ActiveRecord::Schema.define(:version => 20130206024448) do
 
   create_table "houses", :force => true do |t|
     t.text     "address_1"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130122225048) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.boolean  "is_super_admin", :default => false
+    t.integer  "free_tours"
   end
 
 end

@@ -61,6 +61,7 @@ class HomeController < ApplicationController
     @user.email = params[:email].strip
     @user.salt = Digest::SHA2.hexdigest(params[:email] + rand(100).to_s)
     @user.password = Digest::SHA2.hexdigest(@user.salt + params[:password].strip)
+    @user.free_tours = 5
     @user.save
     session[:user_id] = @user.id
     redirect_to '/tour/first' and return

@@ -26,6 +26,13 @@ class TourController < ApplicationController
   end
   
   def publish
+    
+    if @user.free_tours > 0
+      @tour.is_paid = true
+      @user.free_tours -= 1
+      @user.save
+    end
+    
     if @tour.is_paid
       @tour.is_live = true
       @tour.save

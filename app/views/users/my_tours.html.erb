@@ -1,6 +1,12 @@
 <h4>
 	My Tours
 	<a href="/tour/new" class="gray_button small_button" style="margin-left:15px;">New Tour</a>
+	<% if @user.free_tours > 0 %>
+		<div class="update" style="font-size:16px;margin-left:15px;padding:4px 15px;font-family:Helvetica;">
+	 		<%= pluralize(@user.free_tours,"Free Tour") %> Remaining
+		</div>
+	<% end %>
+	
 </h4>
 
 <% if @tours.size > 0 %>
