@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
      def logo
         Upload.find(:first, :conditions => {:user_id => self.id, :brand => 'logo'})
       end
+      
+      def has_free_tours
+        if self.free_tours != nil and self.free_tours > 0
+          true
+        else
+          false
+        end
+      end
 
 end
 
