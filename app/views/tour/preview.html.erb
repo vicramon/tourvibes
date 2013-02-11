@@ -361,27 +361,45 @@
 		<% end %>
 		</div>
 		
-		<audio id="music" <% if @tour.autoplay_music %>autoplay<% end %> loop>
-		  <source src="<%= @tour.music_src %>" type="audio/mpeg">
-		  <embed height="50" width="100" src="<%= @tour.music_src %>">
-		</audio>
+		
+		<% if browser.firefox? %>
+		
+				<object id="music2" type="audio/mp3" data="<%= @tour.music_src %>" width="0" height="0">
+					<param name="loop" value="0" />
+					<param name="autoplay" value="<%= @tour.autoplay_music %>">
+					<param name="showcontrols" value="false" />
+					<param name="showdisplay" value="false" />
+				</object>
+			
+		<% else %>
+		
+			<audio id="music" <% if @tour.autoplay_music %>autoplay<% end %> loop>
+			  <source src="<%= @tour.music_src %>" type="audio/mpeg">
+			  <embed height="0" width="0" src="<%= @tour.music_src %>">
+			</audio>
+			
+		<% end %>
+	
 
 <script type="text/javascript">
 
 preload(pics);
+var fullscreen = false;
+var song = $('#music').get(0);
+var delay_time = 8000;
+
 
 $(document).ready(function () {
-	
-	
+		
 	<% if @tour.ken_burns %>
 		randomizePan();
 	<% end %>
 	
-	var delay = 6000;
-	var fullscreen = false;
 	
 	$('#thumb_0').attr('class','thumb thumb_selected');
 	
+	
+
 	setInterval(function() {
 		if (status == "wait") {
 			status = "play";
@@ -390,7 +408,8 @@ $(document).ready(function () {
 		if (status == "pause") { return; }
 		switchImage();
 		return false;
-	},delay);
+	},delay_time);
+	
 	
 });
 
@@ -530,8 +549,6 @@ document.addEventListener("fullscreenchange", function (e) {
 		//alert('closing');
 	}
 });
-
-		 var song = $('#music').get(0);
 		
 		$(function() {
 		     $(".thumb").click(function(e) {
@@ -677,7 +694,7 @@ document.addEventListener("fullscreenchange", function (e) {
 			}
 			status = "pause";
 			if (do_resume == true) {
-				window.setTimeout(resume(),delay+6000);
+				window.setTimeout(resume(),delay_time+6000);
 			}
 			return false;
 		});
@@ -693,6 +710,16 @@ document.addEventListener("fullscreenchange", function (e) {
 		<% end %>
 		
 		function switchImage(direction,thumb_click) {
+			
+			/*
+			if (status == "wait") {
+				status = "play";
+				setTimeout(switchImage(),delay_time) 				
+				return false;
+			}
+			if (status == "pause") { return false; }
+			*/
+			
 			if (direction == "back") {
 				n = n-1;
 			} else {
@@ -738,11 +765,13 @@ document.addEventListener("fullscreenchange", function (e) {
 								randomizePan();
 							}
 						<% end %>
+						
+				//		setTimeout(switchImage(),delay_time) 				
+						
 					}); 
 					return false; 
 				}); 
 				$(this).attr("src", pics[n]); 
-				//$('.room_title_bg').html(room_names[n]);
 				return false;
 			});
 			console.log(n);
