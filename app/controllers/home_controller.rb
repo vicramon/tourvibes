@@ -1,4 +1,11 @@
 class HomeController < ApplicationController
+  before_filter :setup
+  
+  def setup
+    if Rails.env.production? and not request.ssl?
+      redirect_to 'https://tourvibes.com' and return
+    end
+  end
   
   def index
     @page = 'home'
