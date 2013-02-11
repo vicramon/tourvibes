@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.post_install_message = " !    The `heroku` gem has been deprecated and replaced with the Heroku Toolbelt.\n !    Download and install from: https://toolbelt.heroku.com\n !    For API access, see: https://github.com/heroku/heroku.rb\n"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "1.8.25"
   s.summary = "Client library and CLI to deploy apps on Heroku."
 
   if s.respond_to? :specification_version then

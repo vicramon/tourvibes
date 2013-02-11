@@ -1,4 +1,6 @@
 # pack-refs with: peeled 
+e105f42e650c93e89dddeb2da1b5bd40cce7e646 refs/tags/v1.7.9
+^fb29711a4f0101001f63e4fde9803d57b07adedd
 0a80e955f0cc08e5dcdad1ae199f319a4b594e2a refs/tags/v1.7.8
 ^cf3c4a11b63abf958adc7549d5af8a91c9c30bb4
 a1f07955bd33b38165bae2322802078d1b125a59 refs/tags/v1.7.7
@@ -11,6 +13,8 @@ bdd1c2a6ef3ee44c47e772fb10fbb7970694c173 refs/tags/v1.7.3
 ^f625968bfd60a25d0c3e53403f510cf827d68a9c
 8311add20cdee7c30e6fa932acd6374d2d21c924 refs/tags/v1.7.2
 ^cdde220990ded7a09f5ec0f426952286ee67af16
+238777a23e12c4b426902625d05a6f717e24ff03 refs/tags/v1.7.10
+^1b9f776f654fbc560b15ed8b123e6477f38014cc
 17e5284d0f18f990ad191907b06c54d3a212160d refs/tags/v1.7.1
 ^29cd90b644a4d249b1bfa10cfb973706300d4a3e
 b01948c4b47429197165dafd0b614b5ebfedc147 refs/tags/v1.7.0
@@ -53,7 +57,8 @@ fd42cec19d239eee6fdee7f9378b6c900bb01d28 refs/heads/sp-invoice-create
 9e807e957b197597a0447daee7a9f778516784cd refs/heads/sp-disputes
 da996f99c3f318f5bafa9da89f140fe5c05bfdb2 refs/heads/new-formatting
 f8073e132ac511c8b95bf2dfa34f35515ffd1e71 refs/heads/multi_json
-0c281891948a793e79cc997d31918ba7f987f7ae refs/heads/master
+1b9f776f654fbc560b15ed8b123e6477f38014cc refs/heads/master
 fa2cc1063226b8f886f826ffa5c84c427c5c5b0e refs/heads/invoice-methods
+06c67e404e992b6747269598be0fdf81d46bb609 refs/heads/expand
 f27e72cba609b347c7d681a5002802fd3dcf6d6a refs/heads/alex-whitespace-key
 478ff80ac401d03077b1758fa8c1fbc0eb070bdc refs/heads/account-resource

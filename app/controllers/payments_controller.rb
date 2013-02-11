@@ -1,10 +1,13 @@
 class PaymentsController < ApplicationController
+
   
   # simple charge, doesn't save card or customer
   def charge
     
     # set your secret key: remember to change this to your live secret key in production
-    Stripe.api_key = "sk_test_SI4WmEWCA7fnUtnmsH0qAZ0m"
+    Stripe.api_key = "sk_live_Ak1UC3CZ3hciZuFVYQVO1seS"
+
+    #sk_test_SI4WmEWCA7fnUtnmsH0qAZ0m
 
     @tour = House.find_by_id(params[:house_id])
     token = params[:stripeToken]
@@ -55,7 +58,7 @@ class PaymentsController < ApplicationController
     redirect_to "/tour/#{@tour.id}/now_live" and return
     
   end
-  
+
   def charge_existing
     
     # set your secret key: remember to change this to your live secret key in production
@@ -77,6 +80,7 @@ class PaymentsController < ApplicationController
     @tour.is_paid = true
     @tour.is_live = true
     @tour.save
+
     
     redirect_to "/tour/#{@tour.id}/now_live" and return    
     

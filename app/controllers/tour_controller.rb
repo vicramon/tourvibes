@@ -27,13 +27,15 @@ class TourController < ApplicationController
   
   def publish
     
-    if not @tour.is_paid && @user.free_tours > 0
+    # if it's a new tour and there's free tours left	  
+    if not @tour.is_paid and @user.free_tours > 0
       @tour.is_paid = true
       @user.free_tours -= 1
       @user.save
     end
-    
-    if @tour.is_paid
+   
+   # if it's already been paid for, but just taken town 
+    if @tour.is_paid == true
       @tour.is_live = true
       @tour.save
       redirect_to @tour.now_live_path and return
