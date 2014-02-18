@@ -7,6 +7,7 @@ gem "paperclip", "~> 2.7"
 gem 'aws-sdk'
 gem 'browser'
 gem 'coffee-rails'
+gem 'fabrication'
 gem 'heroku'
 gem 'heroku-api'
 gem 'jquery-rails'
