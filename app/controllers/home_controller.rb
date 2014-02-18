@@ -1,32 +1,19 @@
 class HomeController < ApplicationController
-  before_filter :setup
-
-  def setup
-    if Rails.env.production? and not request.ssl?
-      redirect_to 'https://tourvibes.com' and return
-    end
-  end
+  before_filter :require_ssl_on_production
 
   def index
     @page = 'home'
-
-    #if @user
-    #  redirect_to '/tours' and return
-    #end
-
+    redirect_to '/tours' and return if @user
     @page_action = params[:page_action]
   end
 
   def start
-    if @user
-      redirect_to '/tour/new' and return
-    end
+    redirect_to '/tour/new' if @user
   end
 
   def contact
     @page = "contact"
   end
-
 
   def secure_login
     @page = "login"
@@ -74,5 +61,10 @@ class HomeController < ApplicationController
     redirect_to '/tour/first' and return
   end
 
-end
+  private
 
+  def require_ssl_on_production
+    redirect_to 'https://tourvibes.com' if Rails.env.production? and not request.ssl?
+  end
+
+end
