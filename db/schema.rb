@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -8,11 +9,14 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206024448) do
+ActiveRecord::Schema.define(version: 20130206024448) do
 
-  create_table "houses", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "houses", force: true do |t|
     t.text     "address_1"
     t.text     "address_2"
     t.text     "city"
@@ -24,20 +28,20 @@ ActiveRecord::Schema.define(:version => 20130206024448) do
     t.text     "desc"
     t.string   "subdomain"
     t.text     "custom_domain"
-    t.boolean  "is_paid",           :default => false
-    t.boolean  "show_map",          :default => false
-    t.boolean  "show_schools",      :default => false
-    t.boolean  "show_flyer",        :default => false
-    t.boolean  "show_realtor_info", :default => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.boolean  "is_live",           :default => false
+    t.boolean  "is_paid",           default: false
+    t.boolean  "show_map",          default: false
+    t.boolean  "show_schools",      default: false
+    t.boolean  "show_flyer",        default: false
+    t.boolean  "show_realtor_info", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_live",           default: false
     t.text     "schools_url"
-    t.boolean  "autoplay",          :default => true
+    t.boolean  "autoplay",          default: true
     t.string   "transition"
     t.string   "mode"
-    t.boolean  "ken_burns",         :default => true
-    t.boolean  "autoplay_music",    :default => false
+    t.boolean  "ken_burns",         default: true
+    t.boolean  "autoplay_music",    default: false
     t.string   "bg_color"
     t.string   "wrapper_color"
     t.string   "link_color"
@@ -46,13 +50,13 @@ ActiveRecord::Schema.define(:version => 20130206024448) do
     t.string   "title_color"
   end
 
-  create_table "uploads", :force => true do |t|
+  create_table "uploads", force: true do |t|
     t.string   "upload_file_name"
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "house_id"
     t.text     "title"
     t.text     "room_name"
@@ -64,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130206024448) do
     t.datetime "music_updated_at"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.text     "name"
     t.text     "email"
     t.text     "password"
@@ -72,9 +76,9 @@ ActiveRecord::Schema.define(:version => 20130206024448) do
     t.string   "stripe_id"
     t.string   "cell"
     t.text     "firm_name"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "is_super_admin", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_super_admin", default: false
     t.integer  "free_tours"
   end
 
