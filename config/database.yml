@@ -5,7 +5,7 @@ development:
   pool: 5
   host: localhost
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: tour_test
@@ -16,3 +16,6 @@ production:
   encoding: unicode
   database: tour_production
   host: localhost
+
+cucumber:
+  <<: *test

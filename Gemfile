@@ -15,3 +15,14 @@ gem 'pg'
 gem 'sass-rails'
 gem 'stripe'
 gem 'uglifier'
+
+group :test, :development do
+  gem 'launchy'
+end
+
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'poltergeist', require: 'capybara/poltergeist'
+  gem 'selenium-webdriver'
+end
