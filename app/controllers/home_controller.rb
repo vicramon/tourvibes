@@ -1,38 +1,38 @@
 class HomeController < ApplicationController
   before_filter :setup
-  
+
   def setup
     if Rails.env.production? and not request.ssl?
       redirect_to 'https://tourvibes.com' and return
     end
   end
-  
+
   def index
     @page = 'home'
-    
+
     #if @user
     #  redirect_to '/tours' and return
     #end
-    
+
     @page_action = params[:page_action]
   end
-  
+
   def start
     if @user
       redirect_to '/tour/new' and return
     end
   end
-  
+
   def contact
     @page = "contact"
   end
-  
-  
-  def secure_login    
+
+
+  def secure_login
     @page = "login"
     @tour = House.find_by_id(params[:id])
-    
-    if request.post?     
+
+    if request.post?
       u = User.find(:first, :conditions => {:email => params[:email].strip})
       if u
         if u.password == Digest::SHA2.hexdigest(u.salt + params[:password].strip)
@@ -43,10 +43,10 @@ class HomeController < ApplicationController
       flash[:error] = "yes"
     end
   end
-  
-  def login    
+
+  def login
     @page = "login"
-    if request.post?     
+    if request.post?
       u = User.find(:first, :conditions => {:email => params[:email].strip})
       if u
         if u.password == Digest::SHA2.hexdigest(u.salt + params[:password].strip)
@@ -57,12 +57,12 @@ class HomeController < ApplicationController
       flash[:error] = "yes"
     end
   end
-  
+
   def logout
     session[:user_id] = nil
     redirect_to '/' and return
   end
-  
+
   def register
     @user = User.new
     @user.email = params[:email].strip
@@ -73,6 +73,6 @@ class HomeController < ApplicationController
     session[:user_id] = @user.id
     redirect_to '/tour/first' and return
   end
-  
+
 end
 
