@@ -2,10 +2,10 @@ class SignUpsController < ApplicationController
   expose :user, attributes: :user_params
 
   def create
-    require 'pry'; binding.pry;
     if user.save
+      sign_in user
       user.update_attribute :free_tours, 5
-      redirect_to '/tour/first'
+      redirect_to new_tour_path
     else
       # TODO - show email not unique error message
       flash[:error] = true

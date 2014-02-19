@@ -14,11 +14,11 @@
             = image_tag 'logo.png', style: 'margin-top:1px;', border: 0
           .top_nav
             - if current_user
-              = link_to "My Tours", "#"
-              = link_to "New Tour", "#"
-              = link_to "Account", "#"
-              = link_to "Contact", "#"
-              = link_to "Logout", sessions_path, method: :delete
+              = link_to "My Tours", tours_path
+              = link_to "New Tour", new_tour_path
+              = link_to "Account", account_path
+              = link_to "Contact", contact_path
+              = link_to "Logout", logout_path
             - else
               = link_to "Home", :root
               = link_to "How it Works", "#", id: 'how_link'
@@ -29,7 +29,12 @@
       = yield :below_header if content_for?(:below_header)
       .content
         .inner_content.standard_width
-          = yield
+
+          - if content_for?(:nested)
+            = yield :nested
+          - else
+            = yield
+
           %div{:style => "clear:both;height:0;"} &nbsp;
       %div{:style => "clear:both;height:0;"} &nbsp;
       %div{:style => "height:150px;"} &nbsp;

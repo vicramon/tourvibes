@@ -1,37 +1,37 @@
 :css
   #secure_images img {
-  	float:left;
-  	margin-right:25px;
-  	vertical-align:middle;
-  	
+    float:left;
+    margin-right:25px;
+    vertical-align:middle;
+
   }
-  
+
   #secure_image {
-  	height:150px;
-  	vertical-align:middle;
+    height:150px;
+    vertical-align:middle;
   }
-  
+
   label {
-  	width:140px;
-  	margin-right:0px;
+    width:140px;
+    margin-right:0px;
   }
-  
+
   .error {
-  	display:block;
+    display:block;
   }
 %script{:src => "https://js.stripe.com/v1/", :type => "text/javascript"}
 :javascript
   // this identifies your website in the createToken call below
         Stripe.setPublishableKey('pk_live_Ot7UeaOOfRB19sTHI77MPQAA');
-  
+
         function stripeResponseHandler(status, response) {
             if (response.error) {
                 // re-enable the submit button
                 $('.submit-button').removeAttr("disabled");
                 // show the errors on the form
-  			  $('#error').show();
+          $('#error').show();
                 $(".payment-errors").html(response.error.message);
-  
+
             } else {
                 var form$ = $("#payment-form");
                 // token contains id, last4, and card type
@@ -42,36 +42,36 @@
                 form$.get(0).submit();
             }
         }
-  
-  
+
+
         $(document).ready(function() {
-  	
+
             $("#payment-form").submit(function(event) {
                 $('.submit-button').attr("disabled", "disabled");
-  
+
                 Stripe.createToken({
-  		  	    number: $('.card-number').val(),
-  			      cvc: $('.card-cvc').val(),
-  			      exp_month: $('.card-expiry-month').val(),
-  			      exp_year: $('.card-expiry-year').val()
-  			    }, stripeResponseHandler);
-  		    
-  		
+              number: $('.card-number').val(),
+              cvc: $('.card-cvc').val(),
+              exp_month: $('.card-expiry-month').val(),
+              exp_year: $('.card-expiry-year').val()
+            }, stripeResponseHandler);
+
+
                 return false; // submit from callback
             });
         });
-  
-  
-  	  // add custom rules for credit card validating
+
+
+      // add custom rules for credit card validating
         jQuery.validator.addMethod("cardNumber", Stripe.validateCardNumber, "Please enter a valid card number");
         jQuery.validator.addMethod("cardCVC", Stripe.validateCVC, "Please enter a valid security code");
         jQuery.validator.addMethod("cardExpiry", function() {
-            return Stripe.validateExpiry($(".card-expiry-month").val(), 
+            return Stripe.validateExpiry($(".card-expiry-month").val(),
                                          $(".card-expiry-year").val())
         }, "Please enter a valid expiration");
-  
+
         // We use the jQuery validate plugin to validate required params on submit
-  	
+
         $("#payment-form").validate({
             //submitHandler: $("#payment-form").submit()
             rules: {

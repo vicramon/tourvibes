@@ -1,0 +1,25 @@
+= form_for tour do |f|
+  %label Address Line 1:
+  = f.text_field :address_1, :class => 'login_text'
+  %br/
+  %label Address Line 2:
+  = f.text_field :address_2, :class => 'login_text'
+  %br/
+  %label City:
+  = f.text_field :city, :class => 'login_text'
+  %br/
+  %label State:
+  = f.text_field :state, :class => 'login_text'
+  %br/
+  %label Zip:
+  = f.text_field :zip, :class => 'login_text'
+  %br/
+  %label Title:
+  = f.text_field :title, :class => 'login_text'
+  (if different from address)
+  %br/
+  %label{:style => "vertical-align:top;padding-top:6px;"} Description:
+  = f.text_area :desc, :class => 'login_text', :style => 'width:500px;height:110px;'
+  %br/
+  = f.submit 'Save Changes', :class => 'gray_button small_button submit', :style => 'margin-left:167px;width:auto;'
+  = f.submit 'Save & Go to Next Step »', :class => 'gray_button blue_button small_button', :style => 'width:auto;'

@@ -1,23 +1,21 @@
 class ToursController < AuthenticatedController
   expose(:tours) { current_user.tours }
-  expose(:tour, attributes: :tour_params) do
-    if params[:id]
-      Tour.find_by_id(params[:id])
-    elsif request.subdomain.present? && request.subdomain != 'www'
-      Tour.find_by_subdomain!(request.subdomain.downcase)
-    else
-      Tour.find_by_custom_domain(request.domain.downcase)
-    end
-  end
+  expose(:tour, attributes: :tour_params)
 
-  def index
-
-  end
+    # TODO - find tour on subdomain and custom domain
+    # if params[:id]
+    #   Tour.find_by_id(params[:id])
+    # elsif request.subdomain.present? && request.subdomain != 'www'
+    #   Tour.find_by_subdomain!(request.subdomain.downcase)
+    # else
+    #   Tour.find_by_custom_domain(request.domain.downcase)
+    # end
+  # end
 
   def create
     tour.save
     tour.set_default_colors
-    redirect_to edit_tour_path(tour)
+    redirect_to tour_property_info_path(tour)
   end
 
   def publish
