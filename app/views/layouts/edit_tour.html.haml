@@ -21,7 +21,7 @@
       %span{:style => "margin-right:15px;"} &nbsp;
       %a{:href => tour.preview_path, :style => "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;"} Preview
 
-    = link_to "Property Info", edit_tour_path(tour), style: "margin-left:20px;"
+    = link_to "Property Info", tour_property_info_path(tour), style: "margin-left:20px;"
     = link_to "Photos & Videos", tour_photos_path(tour)
     = link_to "Music", tour_music_path(tour)
     = link_to "Tour Settings", tour_settings_path(tour)

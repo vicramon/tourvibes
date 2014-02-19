@@ -1,4 +1,4 @@
-= form_for tour do |f|
+= form_for tour, url: tour_property_info_path(tour) do |f|
   %label Address Line 1:
   = f.text_field :address_1, :class => 'login_text'
   %br/

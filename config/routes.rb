@@ -17,6 +17,13 @@ TourVibes::Application.routes.draw do
     resource :publish, only: [:index, :create]
   end
 
+  get '/tours/:id/edit', to: 'property_infos#show'
+  get '/tours/:id/not_live', to: 'tours#not_live'
+  get '/tours/:id/live', to: 'tours#live'
+  get '/tours/:id/now_live', to: 'tours#now_live', as: 'now_live'
+  get '/tours/:id/takedown', to: 'tours#takedown'
+  get '/tours/:id/publish', to: 'tours#publish'
+
   resources :sign_ups, only: [:new, :create]
 
   get 'account', to: 'users#edit', as: 'account'
@@ -32,18 +39,10 @@ TourVibes::Application.routes.draw do
 
   get '/secure_login/:id', to: 'home#secure_login'
 
-  resource :tour do
-    get 'about', to: 'tour#about'
-  end
-
+  # view tour routes
   get '/tours/:id/about', to: 'tours#about'
   get '/tours/:id/map', to: 'tours#map'
   get '/tours/:id/schools', to: 'tours#schools'
-  get '/tours/:id/not_live', to: 'tours#not_live'
-  get '/tours/:id/live', to: 'tours#live'
-  get '/tours/:id/now_live', to: 'tours#now_live', as: 'now_live'
-  get '/tours/:id/takedown', to: 'tours#takedown'
-  get '/tours/:id/publish', to: 'tours#publish'
 
   root to: 'home#index'
 
