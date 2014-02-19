@@ -1,0 +1,27 @@
+:css
+  input.login_text {
+  	font-size:18px;
+  	width:300px;
+  }
+  
+  
+  input[type=submit] {
+  	width:305px;
+  	padding-top:6px;
+  	padding-bottom:8px;
+  	margin-top:4px;
+  }
+.center_form_box
+  %div{:style => "margin-left:95px"}
+    %h4 Sign In
+    - if flash[:error]
+      .error
+        Sorry, but your email or password is incorrect.
+    = form_tag sessions_path do
+      = text_field_tag 'email', nil, :class => 'login_text', :style => 'margin-bottom:4px;', :placeholder => 'email'
+      %br/
+      = password_field_tag 'password', nil, :class => 'login_text', :placeholder => 'password'
+      %br/
+      = submit_tag 'Sign In', :class => 'gray_button submit'
+:javascript
+  $('#email').focus();

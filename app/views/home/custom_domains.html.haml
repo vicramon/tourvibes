@@ -1,0 +1,48 @@
+%h4 Custom Domains
+TourVibes supports custom domains. If you have not purchased your domain yet, follow the purchase instructions. If you have already purchased a domain, follow the setup instructions.
+%p
+  %strong Domain Purchase Instructions
+  %p
+    1. Go to
+    %a{:href => "namecheap.com", :target => "blank"} NameCheap.com
+    and type in the domain you want
+    %br/
+    2. If it is available, click
+    = succeed "," do
+      %strong Add to Cart
+    then click
+    %strong Checkout
+    to buy the domain
+    %br/
+    3. After you've purchased it, go to
+    %strong Domains > Manage Domains
+    %br/
+    4. Click on the domain (it should be a link)
+    %br/
+    5. On the left, you'll see a link that says
+    = succeed "." do
+      %strong All Host Records
+    Click on it, then follow the setup instructions below
+    %p
+      %strong Domain Setup Instructions
+      %p
+        1. Login to your domain name provider and find the page where you can edit Host Records for your domain
+        %br/
+        2. Set your
+        %strong @
+        record to point to
+        %strong realtour.herokuapp.com
+        with a record type of
+        %strong CNAME
+        (use ALIAS or ANAME is CNAME is not an option)
+        %br/
+        3. Set your
+        %strong www
+        record to point to
+        %strong realtour.herokuapp.com
+        with a record type of
+        %strong CNAME
+        %br/
+        4. Add the domain name to your tour under Tour Settings.
+        %p
+          That's it! When someone visits your domain they will see your tour (if it's published).

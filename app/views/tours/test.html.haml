@@ -1,0 +1,63 @@
+:css
+  .kenburns {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+  	  border-radius:5px;
+  	  border:1px solid #242424;
+      }
+      .kenburns img {
+        position: absolute;
+  	  border-radius:5px;
+        left: 0px;
+        top: 0px;
+        
+  	  -o-transition-duration: 3s;
+        -ms-transition-duration: 3s;
+        -moz-transition-duration: 3s;
+        -webkit-transition-duration: 3s;
+  
+        -o-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+  
+        -o-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -webkit-transform-origin: 50% 50%;
+      }
+  
+      .kenburns img:hover {
+  	/*
+        -o-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+  */
+        -o-transform-origin: 0% 25%;
+        -ms-transform-origin: 0% 25%;
+        -moz-transform-origin: 0% 25%;
+        -webkit-transform-origin: 75% 25%;
+      }
+%div{:align => "center"}
+  .kenburns{:style => "width: 850px; height:600px;"}
+    %img#main_image{:height => "600", :src => "http://s3.amazonaws.com/tour_files/uploads/90/large.jpg?1358326086", :width => "850"}/
+:javascript
+  $(document).ready(function () {
+  //	topLeft();
+  	//zoomOut();
+  	//zoomIn();
+  });
+  
+  function topLeft() {
+  	$('#main_image').css('-webkit-transform-origin','1px 1px');
+  }
+  
+  function zoomIn() {
+  	$('#main_image').css('-webkit-transform','scale(1.13)');
+  }
+  
+  function zoomOut() {
+  	$('#main_image').css('-webkit-transform','scale(1.0)');
+  }

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     if user && user.authenticate(params[:password])
+      sign_in user
       redirect_back_or_to :tours
     else
       flash[:error] = "Sorry, but your email or password is incorrect."

@@ -1,0 +1,23 @@
+%h4
+  = User.all.count
+  Users
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Cell
+    %th Firm name
+    %th
+    %th
+    %th
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.email
+      %td= user.cell
+      %td= user.firm_name
+      %td= link_to 'Show', user
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New User', new_user_path

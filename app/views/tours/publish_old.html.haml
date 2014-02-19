@@ -1,0 +1,91 @@
+%script{:src => "https://checkout.stripe.com/v2/checkout.js"}
+:css
+  /*
+  button:hover {
+  	cursor:pointer;
+  }
+  
+  button {
+  	height:37px;
+  	width:230px;
+  }
+  */
+%h4 Publish Tour
+Please pay the $10 fee to post your tour to the web by clicking the button below.
+%p
+  %span{:style => "font-weight:bold;font-size:18px;"} 1 TourVibes Tour ($10)
+  %p
+    %strong Satisfaction Guaranteed: 30-day Full Refund Policy
+    %p
+      * Add unlimited photos
+      %br/
+      * Tour never expires
+      %br/
+      * Custom subdomain
+      %br/
+      * Customized design
+      %br/
+      %br/
+      = form_tag "/payments/charge", :method => "post", :id => 'new_card' do
+        = hidden_field_tag 'house_id', @tour.id
+        /
+          <button id="customButton" class="gray_button">Enter Card Info</button>
+          <br /><br />
+          <button id="submit" class="gray_button blue_button">Purchase Tour</button>
+        %script.stripe-button{"data-key" => "pk_test_xtyjdXQcPArIuU9dInE8d80b", "data-label" => "Enter Card Info", "data-name" => "1 TourVibes Tour", "data-panel-label" => "Purchase Tour", :src => "https://checkout.stripe.com/v2/checkout.js"}
+      %br/
+      %br/
+      :css
+        #secure_images img {
+        	float:left;
+        	margin-right:25px;
+        	vertical-align:middle;
+        	
+        }
+        
+        #secure_image {
+        	height:150px;
+        	vertical-align:middle;
+        }
+      %br/
+      #secure_images
+        = image_tag 'secure/seal.gif', :style => 'margin-top:-20px;'
+        = image_tag 'secure/ssl_secure.png', :style => 'margin-top:7px;'
+        = image_tag 'secure/comodo.png'
+      / for saving a user's info, may want this later
+      /
+        <button id="customButton" class="btn btn-primary" style="font-weight:bold;">Pay with New Card</button>
+        
+        <haml:loud> submit_tag &amp;#39;Purchase Tour&amp;#39;, :class =&amp;gt; &amp;#39;btn&amp;#39;, :style =&amp;gt; &amp;#39;width:auto;border-radius:4px;&amp;#39; </haml:loud>
+        
+        <script>
+        $('#customButton').click(function(){
+        var token = function(res){
+        console.log('Got token ID:', res.id);
+        };
+        
+        StripeCheckout.open({
+        key:         'pk_test_xtyjdXQcPArIuU9dInE8d80b',
+        address:     false,
+        amount:      1000,
+        name:        '1 TourVibes Tour',
+        description: '',
+        panelLabel:  'Pay',
+        token:       token
+        });
+        return false;
+        \//$('#new_card').submit();
+        });
+        </script>
+      /
+        older button
+        
+        <script
+        src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+        label="Pay through Secure Sever"
+        data-key="pk_test_xtyjdXQcPArIuU9dInE8d80b"
+        data-amount="1000"
+        data-name="1 TourVibes Tour"
+        data-description=""
+        data-image="/128x128.png">
+        </script>

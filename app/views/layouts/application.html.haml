@@ -1,0 +1,50 @@
+!!!
+%html
+  %head
+    %title TourVibes - Virtual Real Estate Tours
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    .container
+      .header
+        .header_inner.standard_width
+          = link_to :root do
+            = image_tag 'logo.png', style: 'margin-top:1px;', border: 0
+          .top_nav
+            - if current_user
+              = link_to "My Tours", "#"
+              = link_to "New Tour", "#"
+              = link_to "Account", "#"
+              = link_to "Contact", "#"
+              = link_to "Logout", sessions_path, method: :delete
+            - else
+              = link_to "Home", :root
+              = link_to "How it Works", "#", id: 'how_link'
+              = link_to "Features", "#", id: 'feature_link'
+              = link_to "Contact", "#"
+              = link_to "Login", new_session_path
+
+      = yield :below_header if content_for?(:below_header)
+      .content
+        .inner_content.standard_width
+          = yield
+          %div{:style => "clear:both;height:0;"} &nbsp;
+      %div{:style => "clear:both;height:0;"} &nbsp;
+      %div{:style => "height:150px;"} &nbsp;
+    / ends container
+    .footer
+      .footer_inner.standard_width
+        %div{:style => "float:left;margin-right:50px;"}
+          %a{:href => "/"} Home
+          - if @page == "home"
+            %a#how_link{:href => "#"} How it Works
+            %a#feature_link{:href => "#"} Features
+          - else
+            %a#how_link{:href => "/home/how"} How it Works
+            %a#feature_link{:href => "/home/features"} Features
+        %div{:style => "float:left;"}
+          %a{:href => "/contact"} Contact
+          %a{:href => "/login"} Login
+          %a{:href => "/about"} About

@@ -1,7 +1,5 @@
 class ToursController < AuthenticatedController
-  before_filter :get_tour, :except => :new
-  before_filter :require_user, :except => [:new]
-  expose(:tours) { current_user.houses }
+  expose(:tours) { current_user.tours }
   expose(:tour, attributes: :tour_params) do
     if params[:id]
       Tour.find_by_id(params[:id])
@@ -62,7 +60,7 @@ class ToursController < AuthenticatedController
         else
           @music = Upload.new(:music => params[:music])
           @music.brand = "music"
-          @music.house_id = tour.id
+          @music.tour_id = tour.id
         end
         @music.save
       end
@@ -86,7 +84,7 @@ class ToursController < AuthenticatedController
 
       if tour.custom_domain_changed
         require 'heroku-api'
-        client = Heroku::API.new(ENV.fetch('HEROKU_API_KEY')
+        client = Heroku::API.new(ENV.fetch('HEROKU_API_KEY'))
         client.post_domain('realtour', tour.custom_domain)
         client.post_domain('realtour', 'www.' + tour.custom_domain)
         client.delete_domain('realtour', tour.custom_domain_was)

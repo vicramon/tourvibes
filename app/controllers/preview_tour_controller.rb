@@ -1,5 +1,5 @@
 class PreviewTourController < AuthenticatedController
-  expose(:tours) { current_user.houses }
+  expose(:tours) { current_user.tours }
   expose(:tour)
 
   def show

@@ -1,0 +1,45 @@
+%h4
+  -# My Tours
+  -# %a.gray_button.small_button{:href => "/tour/new", :style => "margin-left:15px;"} New Tour
+  -# - if current_user.free_tours?
+  -#   .update{:style => "font-size:16px;margin-left:15px;padding:4px 15px;font-family:Helvetica;"}
+  -#     = pluralize(current_user.free_tours.to_i,"Free Tour")
+  -#     Remaining
+- if tours.size > 0
+  %table{:cellpadding => "12", :cellspacing => "0", :style => "width:100%;margin-top:-6px;margin-left:-8px;"}
+    %tr{:style => "font-size:17px;"}
+      %th
+        Address
+      %th
+        Status
+      %th
+        Actions
+    - i = 1
+    - for tour in tours
+      / lighter gray is #f9f9f9
+      %tr{:style => "<haml:silent> if i % 2 == 0 </haml:silent><haml:block>background:#DCE7EE;</haml:block>height:40px;"}
+        %td
+          %a{:href => tour.edit_path}= tour.address_1
+        %td
+          - if tour.is_live
+            %span{:style => "color:#009900;"}
+              Live
+          - else
+            %span{:style => "color:#990000;"}
+              Not Live
+        %td
+          %a{:href => tour.edit_path} Edit
+          %span{:style => "color:#999"}
+            \&nbsp;  &nbsp;|&nbsp;
+          %span{:style => "width:60px;display:inline-block;text-align:center;"}
+            - if tour.is_live
+              %a{:href => tour.live_path} View
+            - else
+              %a{:href => tour.preview_path} View
+          %span{:style => "color:#999"}
+            \&nbsp;|&nbsp;&nbsp;
+          - if tour.is_live
+            %a{:href => tour.takedown_path} Take down
+          - else
+            %a{:href => tour.publish_path} Publish
+      - i +=1

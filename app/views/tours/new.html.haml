@@ -1,0 +1,25 @@
+.center_form_box
+  %h4{:style => "margin-left:0px;"} Create New Tour
+  %div{:style => "height:10px;"} &nbsp;
+  - if flash[:error]
+    .error
+      Sorry, but your email or password is incorrect.
+  = form_tag '/tour/new' do
+    %label Address Line 1:
+    = text_field_tag 'address_1', '', :class => 'login_text'
+    %br/
+    %label Address Line 2:
+    = text_field_tag 'address_2', '', :class => 'login_text'
+    %br/
+    %label City:
+    = text_field_tag 'city', '', :class => 'login_text'
+    %br/
+    %label State:
+    = text_field_tag 'state', '', :class => 'login_text'
+    %br/
+    %label Zip:
+    = text_field_tag 'zip', '', :class => 'login_text'
+    %br/
+    = submit_tag 'Create Tour', :class => 'gray_button submit', :style => 'margin-left:167px;'
+:javascript
+  $('#address_1').focus();

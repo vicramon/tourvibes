@@ -1,0 +1,234 @@
+.main_image_wrapper
+  %div{:align => "center"}
+    = image_tag @pics[0].upload.url(:large), :id => 'main_image', :class => 'tour_items', :style => 'border-radius:5px;height:600px;position:relative;'
+  #about{:style => "display:none;margin-left:20px;margin-top:10px;"}
+    .page_title
+      About
+    %div{:style => "float:right;"}
+    %div{:style => "width:600px;color:#ccc;"}
+      = simple_format @tour.desc
+  #contact{:style => "display:none;margin-left:20px;margin-top:10px;"}
+    .page_title
+      Realtor Info
+    %br/
+    - if @realtor.headshot
+      %div{:style => "margin-bottom:15px;float:left;margin-right:15px;"}
+        = image_tag @realtor.headshot.upload.url(:large), :style => 'height:140px;border-radius:4px;'
+        %br/
+        %br/
+        %br/
+    %div{:style => "width:600px;color:#ccc;float:left;margin-top:8px;"}
+      - if @realtor.name.present?
+        = @realtor.name
+        %p
+      - if @realtor.cell.present?
+        = @realtor.cell
+        %p
+      = @realtor.email
+      %p
+        - if @realtor.firm_name.present?
+          = @realtor.firm_name
+          %p
+    %div{:style => "clear:left;"}
+      - if @realtor.logo
+        %br/
+        = image_tag @realtor.logo.upload.url(:large), :style => 'height:70px;'
+  #map{:align => "center", :style => "display:none;"}
+    #map_canvas{:style => "width: 90%; height:600px;"}
+.room_title.tour_items
+  %span.room_title_bg
+    = @pics[0].room_name
+%div{:style => "height:15px;"} &nbsp;
+.controls.tour_items
+  .controls_inner
+    - if @tour.autoplay_music
+      = image_tag 'icons/volume.png', :id => 'volume'
+      = image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;'
+    - else
+      = image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'
+      = image_tag 'icons/muted.png', :id => 'muted'
+    = image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;'
+    = image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px'
+    = image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;'
+    = image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;'
+    = image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;'
+%div{:style => "height:20px;"} &nbsp;
+- for @pic in @pics
+  .tour_items{:style => "display:inline-block;margin-right:4px;"}
+    = image_tag @pic.upload.url(:middle), :style => 'border-radius:5px;'
+<audio id="music"
+- if @tour.autoplay_music
+  autoplay
+loop>
+%source{:src => @tour.music_src, :type => "audio/mpeg"}
+  %embed{:height => "50", :src => @tour.music_src, :width => "100"}
+    :javascript
+      var song = $('#music').get(0);
+      		
+      
+      		   $(function() {
+      		     $("#volume").click(function(e) {
+      		       e.preventDefault();
+      			   $(this).hide();
+      			   $('#muted').show();
+      		       song.pause();
+      		     });
+      		   });
+      		
+      		$(function() {
+      		     $("#muted").click(function(e) {
+      		       e.preventDefault();
+      			   $(this).hide();
+      			   $('#volume').show();
+      		       song.play();
+      		     });
+      		   });
+      		
+      
+      
+      		var n = 0;
+      		
+      		var status = "play";
+      		var delay = 6000;
+      		
+      		$("#pause").click(function() {
+      			status = "pause";
+      			$(this).hide();
+      			$('#play').show();
+      		});
+      		
+      		$("#play").click(function() {
+      			status = "play";
+      			$(this).hide();
+      			$('#pause').show();
+      		});
+      		
+      		function resume() {
+      			status = "play";
+      		}
+      		
+      		$("#forward").click(function() {
+      			switchImage();
+      			if (status == "play") {
+      				status = "wait"
+      			}
+      		});
+      		
+      		$("#back").click(function() {
+      			switchImage("back");
+      			if (status == "play") {
+      				do_resume = true;
+      			}
+      			status = "pause";
+      			if (do_resume == true) {
+      				window.setTimeout(resume(),delay+6000);
+      			}
+      			return false;
+      		});
+      		
+      		var pics = new Array();
+      		var room_names = new Array();
+      		
+      <haml:silent>		 i = 0 
+      </haml:silent><haml:silent>		 for @pic in @pics 
+      </haml:silent><haml:block>			pics[#{i}] = "#{@pic.upload.url(:large)}";
+      			room_names[#{i}] = "#{@pic.room_name}";
+      <haml:silent>			 i += 1 
+      </haml:silent></haml:block>		
+      		function switchImage(direction) {
+      			if (direction == "back") {
+      				n = n-1;
+      			} else {
+      				n = n+1;
+      			}
+      			if (n > pics.length-1) { n = 0; } 
+      			if (n < 0) { n = pics.length-1;  }
+      			
+      			
+      			$(".room_title_bg").fadeOut('slow',function() { 
+      				$(".room_title_bg").html(room_names[n]);
+      				$(this).fadeIn('slow');
+      				return false;
+      			});
+      			
+      			$("#main_image").fadeOut('slow',function() { 
+      				$(this).load(function() { $(this).fadeIn('slow'); return false; }); 
+      				$(this).attr("src", pics[n]); 
+      				//$('.room_title_bg').html(room_names[n]);
+      				return false;
+      			});
+      			console.log(n);
+      			return false;
+      		}
+      
+      	
+      		setInterval(function() {
+      			if (status == "wait") {
+      				status = "play";
+      				return false;
+      			}
+      			if (status == "pause") { return; }
+      			switchImage();
+      			return false;
+      		},delay);
+      		
+      		
+      		function preload(arrayOfImages) {
+      		    $(arrayOfImages).each(function(){
+      		        $('<img/>')[0].src = this;
+      		        // Alternatively you could use:
+      		        // (new Image()).src = this;
+      		    });
+      		}
+      
+      		preload(pics);
+      		
+      		$("#about_link").click(function() {
+      			status = "pause";
+      			$('#contact').fadeOut('slow',function() {
+      				$('#map').fadeOut('slow',function() {
+      					$(".tour_items").fadeOut('slow',function() { 
+      						$('#about').fadeIn('slow'); 
+      						return false; 
+      					});
+      				});
+      				});
+      		});
+      		
+      		$("#contact_link").click(function() {
+      			status = "pause";
+      			$('#map').fadeOut('slow',function() {
+      					$(".tour_items").fadeOut('slow',function() { 
+      						$("#about").fadeOut('slow',function() {
+      							$('#contact').fadeIn('slow'); 
+      							return false; 
+      					});
+      				});
+      			});
+      		});
+      		
+      		$("#map_link").click(function() {
+      			status = "pause";
+      			$('#contact').fadeOut('slow',function() {
+      				$('#about').fadeOut('slow', function() {
+      				$(".tour_items").fadeOut('slow',function() { 
+      					$('#map').fadeIn('slow'); 
+      					initialize();					
+      					return false; 
+      				});
+      			});
+      			});
+      		});
+      		
+      		$("#tour_link").click(function() {
+      			status = "play";
+      			$('#contact').fadeOut('slow',function() {
+      			$('#map').fadeOut('slow', function() {
+      			
+      			$("#about").fadeOut('slow',function() { 
+      				$('.tour_items').fadeIn('slow'); 
+      				return false; 
+      			});
+      			});
+      			});
+      		});

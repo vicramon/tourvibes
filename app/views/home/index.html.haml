@@ -1,0 +1,171 @@
+= content_for :below_header do
+  .home_top
+    .home_top_inner.standard_width
+      %div{:style => "float:right;"}
+        = image_tag 'home_example_small.png', :style => 'border-radius:4px;margin-top:-30px;margin-right:40px;'
+      %h1 Create a virtual tour for just $10.
+      %h3
+        Your first 5 tours are
+        = succeed "." do
+          %span{:style => "text-decoration:underline;"} FREE
+        No card required.
+      %div{:style => "height:20px;"} &nbsp;
+      %a.gray_button{:href => "/start"}
+        Get Started &nbsp;#{image_tag 'buttons/gray_arrow.png'}
+      %a.blue_button.button{:href => "http://2100Windsor.tourvibes.com/", :style => "margin-left:15px;color:white;"} View Example
+    %div{:style => "clear:both;height:0"} &nbsp;
+  :css
+    .client_list img {
+      margin-left:4.5%;
+      float:left;
+      margin-top:20px;
+    }
+  %div{:align => "center", :style => "background:#d8d8d8"}
+    .client_list.standard_width{:style => "text-align:left;min-height:84px;height:auto;"}
+      %h2{:style => "font-weight:normal;display:inline;margin-top:25px;float:left;"} Our Clients
+      = image_tag 'clients/1.png'
+      = image_tag 'clients/2.png'
+      = image_tag 'clients/3.png'
+      = image_tag 'clients/4.png', :style => 'margin-top:8px;'
+      = image_tag 'clients/5.png', :style => 'margin-top:8px;margin-left:5.5%'
+    %div{:style => "clear:both;height:0"} &nbsp;
+
+%div{:style => "float:right;width:460px;line-height:1.1"}
+  .big_number
+    150,000
+    %span.plus_sign +
+  .bold_caps Tours Delivered
+  .line.number_space &nbsp;
+  .big_number
+    30,000
+    %span.plus_sign +
+  .bold_caps Customers Served
+  .line.number_space &nbsp;
+  .big_number
+    2.2
+    %span.plus_sign +
+  .bold_caps{:style => "line-height:1;"}
+    %span.small_number
+      Million
+      %br/
+    Images Served
+%h2{:style => "margin-top:10px;"} Testimonials
+%div{:style => "width:450px;font-size:18px;margin-top:8px;"}
+  “TourVibes has been so incredibly easy to use, and I love the end result. These tours have actually brought in leads which resulted in several sales. TourVibes has paid for itself several times over. I highly recommend it!
+  %br/
+  %br/
+  %span{:style => "font-style:italic;"} &mdash; Janelle, Century 21
+%div{:style => "clear:both;"} &nbsp;
+.line &nbsp;
+%h2#how How it Works
+%div{:style => "height:15px;"} &nbsp;
+.how_box
+  .how_header
+    %span.how_number 1
+    Upload Media
+  .line &nbsp;
+  .how_image
+    = image_tag 'icons/upload.png', :style => 'margin-top:4px;'
+  .how_text
+    Just drag and drop your photos into our simple image-uploader, then upload all of your photos with just one click. Uploading a large number of photos has never been easier. HD photos look the best, but standard photos will work too.
+.how_box
+  .how_header
+    %span.how_number 2
+    Choose Layout
+  .line &nbsp;
+  .how_image
+    = image_tag 'icons/layout.png'
+  .how_text
+    Select and customize one of our of beautiful templates. You can choose the color, the layout, and how you want the tour to function. You can also use of our great default music tracks or upload a music file of your own.
+.how_box{:style => "margin-right:0;"}
+  .how_header
+    %span.how_number 3
+    Publish Online
+  .line &nbsp;
+  .how_image
+    = image_tag 'icons/publish.png'
+  .how_text
+    Next you can publish your tour to the live web. Every tour comes with a free subdomain so you have professional place to send leads. Or take things to the next level by purchasing a domain name and pointing it to your tour.
+%div{:style => "clear:both;"} &nbsp;
+.line &nbsp;
+/
+  <h2 id="pricing">Pricing</h2>
+  <div style="height:15px;">&amp;nbsp;</div>
+
+  <haml:loud> image_tag &amp;#39;icons/pricing.png&amp;#39; </haml:loud>
+  <div style="height:6px;">&amp;nbsp;</div>
+  No gimmicks, no hidden fees, and no bulk purchase requirements. We like to keep things simple.
+
+
+  <div style="clear:both;">&amp;nbsp;</div>
+  <div class="line">&amp;nbsp;</div>
+%h2#features Features
+%div{:style => "height:15px;"} &nbsp;
+:css
+  .feature_box {
+    float:left;margin-right:0%;line-height:2;
+    width:33%;
+  }
+.feature_box
+  %i.icon-thumbs-up
+  Amazing Service
+  %br/
+  %i.icon-camera
+  HD Images
+  / , Video, Panorama
+  %br/
+  %i.icon-upload
+  Interactive Slideshow
+  / Floorplans
+  %br/
+  %i.icon-wrench
+  Customize Design &amp; Layout
+  %br/
+.feature_box
+  %i.icon-picture
+  Unlimited Photos
+  %br/
+  %i.icon-user
+  Add contact info, photo, &amp; logo
+  %br/
+  %i.icon-edit
+  Match design to your brand
+  %br/
+  %i.icon-cog
+  No software download required
+  %br/
+.feature_box{:style => "margin:right:0;"}
+  %i.icon-fire
+  Ultra-fast loading speed
+  %br/
+  %i.icon-ok
+  Flat price, no hidden fees
+  %br/
+  %i.icon-th-large
+  Incredibly easy to use
+  %br/
+  %i.icon-play
+  Smooth photo transitions
+  %br/
+%div{:style => "clear:both;"} &nbsp;
+
+:javascript
+  $('#feature_link').click(function() {
+    $('html, body').animate({
+      scrollTop: $("#features").offset().top
+    }, 600);
+  });
+
+  $('#pricing_link').click(function() {
+    $('html, body').animate({
+      scrollTop: $("#pricing").offset().top
+    }, 600);
+
+  });
+
+  $('#how_link').click(function() {
+    $('html, body').animate({
+      scrollTop: $("#how").offset().top
+    }, 600);
+
+  });

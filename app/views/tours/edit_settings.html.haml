@@ -1,0 +1,104 @@
+:css
+  .select_tag {
+  	font-size:15px;
+  }
+= render :partial => "edit"
+= form_tag @tour.edit_settings_path do
+  %h6 Basic Settings
+  %label Subdomain:
+  = text_field_tag 'subdomain', @tour.subdomain, :class => 'login_text'
+  \&nbsp; &nbsp;(e.g. 1600Penn.tourvibes.com)
+  %br/
+  %label Custom Domain:
+  = text_field_tag 'custom_domain', @tour.custom_domain, :class => 'login_text'
+  \&nbsp; &nbsp;(e.g. 1600Pen.com,
+  = succeed ")" do
+    %a{:href => "/custom_domains"} setup info here
+  %br/
+  %label Schools URL:
+  = text_field_tag 'schools_url', @tour.schools_url, :class => 'login_text'
+  %br/
+  /
+    <label>Photo Transitions:</label><haml:loud> text_field_tag &amp;#39;transition&amp;#39;, @tour.transition, :class =&amp;gt; &amp;#39;login_text&amp;#39; </haml:loud><br />
+    <label>Program Mode:</label><haml:loud> text_field_tag &amp;#39;mode&amp;#39;, @tour.mode, :class =&amp;gt; &amp;#39;login_text&amp;#39; </haml:loud><br />
+  %label Ken Burns Effect:
+  = select_tag 'ken_burns', options_for_select([['on',true],['off',false]],@tour.ken_burns), :class => 'login_text select_tag'
+  %br/
+  %label Autoplay:
+  = select_tag 'autoplay', options_for_select([['yes',true],['no',false]],@tour.autoplay), :class => 'login_text select_tag'
+  %p
+  %h6 Color Settings
+  %a#default{:href => "#", :style => "font-weight:normal;font-size:15px;"} Change to default (black &amp; grey)
+  %p
+  %div{:style => "line-height:2.2"}
+    %label Background:
+    = text_field_tag 'bg_color', @tour.bg_color, :id => 'bg_color'
+    %br/
+    %label Center:
+    = text_field_tag 'wrapper_color', @tour.wrapper_color, :id => "wrapper_color"
+    %br/
+    %label Title:
+    = text_field_tag 'title_color', @tour.title_color, :id => "title_color"
+    %br/
+    %label Text:
+    = text_field_tag 'text_color', @tour.text_color, :id => "text_color"
+    %br/
+    %label Links:
+    = text_field_tag 'link_color', @tour.link_color, :id => "link_color"
+    %br/
+  = submit_tag 'Save Changes', :class => 'gray_button submit small_button', :style => 'margin-left:167px;margin-top:8px;width:auto;'
+  - if not @tour.is_live
+    = submit_tag 'Save & Publish »', :class => 'gray_button small_button blue_button', :style => 'width:auto;'
+:javascript
+  $('#default').click(function() {
+  	
+  	$('#bg_color').spectrum("set","#000");
+  	$('#wrapper_color').spectrum("set","#242424");
+  	$('#title_color').spectrum("set","#e8e8e8");
+  	$('#text_color').spectrum("set","#ccc");
+  	$('#link_color').spectrum("set","#e8e8e8");
+  
+  	return false;
+  	
+  });
+  
+  $("#bg_color").spectrum({
+      color: "#{@tour.bg_color}",
+  	clickoutFiresChange: true,
+  	preferredFormat: "hex",
+  	showInput: true,
+  });
+  
+  
+  $("#wrapper_color").spectrum({
+      color: "#{@tour.wrapper_color}",
+  	clickoutFiresChange: true,
+  	preferredFormat: "hex",
+  	showInput: true
+  });
+  
+  $("#text_color").spectrum({
+      color: "#{@tour.text_color}",
+  	clickoutFiresChange: true,
+  	preferredFormat: "hex",
+  	showInput: true
+  });
+  
+  $("#link_color").spectrum({
+      color: "#{@tour.link_color}",
+  	clickoutFiresChange: true,
+  	preferredFormat: "hex",
+  	showInput: true
+  });
+  
+  $("#title_color").spectrum({
+      color: "#{@tour.title_color}",
+  	clickoutFiresChange: true,
+  	preferredFormat: "hex",
+  	showInput: true
+  });
+  
+  var f2 = new LiveValidation('subdomain');
+  //f2.add( Validate.Presence, { failureMessage: "required"} );
+  
+  f2.add( Validate.Format, { pattern: /^[a-z\d]+(-[a-z\d]+)*$/i, failureMessage: "No spaces, letters & numbers only." });
