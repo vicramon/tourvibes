@@ -10,6 +10,10 @@ class ToursController < AuthenticatedController
     end
   end
 
+  def index
+
+  end
+
   def create
     tour.save
     tour.set_default_colors

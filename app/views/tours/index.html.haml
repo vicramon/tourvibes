@@ -1,10 +1,11 @@
 %h4
-  -# My Tours
-  -# %a.gray_button.small_button{:href => "/tour/new", :style => "margin-left:15px;"} New Tour
-  -# - if current_user.free_tours?
-  -#   .update{:style => "font-size:16px;margin-left:15px;padding:4px 15px;font-family:Helvetica;"}
-  -#     = pluralize(current_user.free_tours.to_i,"Free Tour")
-  -#     Remaining
+  My Tours
+  %a.gray_button.small_button{:href => "/tour/new", :style => "margin-left:15px;"} New Tour
+  - require 'pry'; binding.pry;
+  - if current_user.has_free_tours?
+    .update{:style => "font-size:16px;margin-left:15px;padding:4px 15px;font-family:Helvetica;"}
+      = pluralize(current_user.free_tours.to_i,"Free Tour")
+      Remaining
 - if tours.size > 0
   %table{:cellpadding => "12", :cellspacing => "0", :style => "width:100%;margin-top:-6px;margin-left:-8px;"}
     %tr{:style => "font-size:17px;"}

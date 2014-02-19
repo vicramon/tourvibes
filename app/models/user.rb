@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
     uploads.where(brand: 'logo').first
   end
 
-  def free_tours?
-    self.free_tours > 0
+  def has_free_tours?
+    free_tours > 0
   end
 
 end

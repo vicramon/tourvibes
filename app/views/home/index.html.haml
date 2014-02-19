@@ -10,7 +10,7 @@
           %span{:style => "text-decoration:underline;"} FREE
         No card required.
       %div{:style => "height:20px;"} &nbsp;
-      %a.gray_button{:href => "/start"}
+      = link_to new_sign_up_path, class: 'gray_button' do
         Get Started &nbsp;#{image_tag 'buttons/gray_arrow.png'}
       %a.blue_button.button{:href => "http://2100Windsor.tourvibes.com/", :style => "margin-left:15px;color:white;"} View Example
     %div{:style => "clear:both;height:0"} &nbsp;

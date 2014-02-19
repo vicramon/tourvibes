@@ -1,34 +1,35 @@
+.center_form_box
+  %h4{ style: "margin-left:0px;"} Get Started with TourVibes
+  %div{ style: "height:10px;"}
+  - if flash[:error]
+    .error
+      Please enter a unique email and a password.
+  = form_for user, url: sign_ups_path do |f|
+    = f.label :email, "Your email:"
+    = f.text_field :email, class: 'login_text', style: 'margin-bottom:4px;'
+    %br
+    = f.label :password, "Create a password:"
+    = f.password_field :password, class: 'login_text'
+    %br
+    = submit_tag 'Register', class: 'gray_button submit', style: 'margin-left:167px;'
+
+:javascript
+  $('#email').focus();
+
 :css
   input.login_text {
     font-size:18px;
     width:300px;
   }
-  
-  
+
   input[type=submit] {
     width:305px;
     padding-top:6px;
     padding-bottom:8px;
     margin-top:4px;
   }
-  
+
   label {
     padding-right:6px;
     font-size:16px;
   }
-.center_form_box
-  %h4{:style => "margin-left:0px;"} Get Started with TourVibes
-  %div{:style => "height:10px;"} &nbsp;
-  - if flash[:error]
-    .error
-      Sorry, but your email or password is incorrect.
-  = form_for user do
-    %label Your Email:
-    = text_field_tag 'email', '', :class => 'login_text', :style => 'margin-bottom:4px;'
-    %br/
-    %label Create a Password:
-    = password_field_tag 'password', '', :class => 'login_text'
-    %br/
-    = submit_tag 'Register', :class => 'gray_button submit', :style => 'margin-left:167px;'
-:javascript
-  $('#email').focus();
