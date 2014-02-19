@@ -1,7 +1,5 @@
 class Upload < ActiveRecord::Base
-  belongs_to :house
-
-  #has_attached_file :upload
+  belongs_to :tour
 
   has_attached_file :upload,
      :styles => { :large => "1800x1400>", :thumb => "100x100>", :middle => "150x110!" },
@@ -28,6 +26,5 @@ class Upload < ActiveRecord::Base
       "thumbnail_url" => upload.url(:thumb)
     }
   end
-
 
 end

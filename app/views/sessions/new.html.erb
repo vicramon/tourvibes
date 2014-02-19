@@ -16,7 +16,7 @@ input[type=submit] {
 
 <div class="center_form_box" >
 	<div style='margin-left:95px'>
-<h4>Login</h4>
+<h4>Sign In</h4>
 
 <% if flash[:error] %>
 <div class="error">
@@ -24,10 +24,10 @@ input[type=submit] {
 </div>
 <% end %>
 
-<%= form_tag '/login' do %>
-	<%= text_field_tag 'email', '', :class => 'login_text', :style => 'margin-bottom:4px;', :placeholder => 'email' %><br />
-	<%= password_field_tag 'password', '', :class => 'login_text', :placeholder => 'password' %><br />
-	<%= submit_tag 'Login', :class => 'gray_button submit' %>
+<%= form_tag sessions_path do %>
+	<%= text_field_tag 'email', nil, :class => 'login_text', :style => 'margin-bottom:4px;', :placeholder => 'email' %><br />
+	<%= password_field_tag 'password', nil, :class => 'login_text', :placeholder => 'password' %><br />
+	<%= submit_tag 'Sign In', :class => 'gray_button submit' %>
 <% end %>
 </div>
 

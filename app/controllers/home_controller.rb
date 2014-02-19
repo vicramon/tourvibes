@@ -31,25 +31,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def login
-    @page = "login"
-    if request.post?
-      u = User.find(:first, :conditions => {:email => params[:email].strip})
-      if u
-        if u.password == Digest::SHA2.hexdigest(u.salt + params[:password].strip)
-          session[:user_id] = u.id
-          redirect_to '/tours' and return
-        end
-      end
-      flash[:error] = "yes"
-    end
-  end
-
-  def logout
-    session[:user_id] = nil
-    redirect_to '/' and return
-  end
-
   def register
     @user = User.new
     @user.email = params[:email].strip

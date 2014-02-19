@@ -68,7 +68,6 @@ class UsersController < AuthenticatedController
   end
 
   def my_tours
-    @page = "my"
     @tours = House.find(:all, :conditions => {:user_id => @user.id}, :order => "created_at desc")
   end
 

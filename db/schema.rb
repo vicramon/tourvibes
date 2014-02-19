@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130206024448) do
+ActiveRecord::Schema.define(version: 20140219030546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "houses", force: true do |t|
+  create_table "tours", force: true do |t|
     t.text     "address_1"
     t.text     "address_2"
     t.text     "city"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20130206024448) do
     t.datetime "upload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "house_id"
+    t.integer  "tour_id"
     t.text     "title"
     t.text     "room_name"
     t.string   "brand"
@@ -71,15 +71,18 @@ ActiveRecord::Schema.define(version: 20130206024448) do
   create_table "users", force: true do |t|
     t.text     "name"
     t.text     "email"
-    t.text     "password"
     t.string   "salt"
     t.string   "stripe_id"
     t.string   "cell"
     t.text     "firm_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_super_admin", default: false
+    t.boolean  "is_super_admin",       default: false
     t.integer  "free_tours"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "reset_password_token"
+    t.string   "session_token"
   end
 
 end

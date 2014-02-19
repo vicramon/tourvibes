@@ -1,27 +1,20 @@
+require_relative '../lib/constraints/custom_domain_constraint'
+require_relative '../lib/constraints/subdomain_constraint'
+
 Tour::Application.routes.draw do
 
-  resources :uploads
-  resources :houses
-  resources :users
+  get '/', to: 'tours#live', constraints: Constraint::Subdomain.new
+  get '/', to: 'tours#live', constraints: Constraint::CustomDomain.new
 
-  require 'subdomain'
-  require 'customdomain'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :tours, only: [:index, :edit]
 
-  constraints(Subdomain) do
-    get '/', to: 'tour#live'
-  end
+  resources :sign_ups, only: [:new, :create]
 
-  if Rails.env.production?
-    constraints(Customdomain) do
-      get '/', to: 'tour#live'
-    end
-  end
+  get 'start', to: 'home#start', as: 'start'
 
-  get '/start', to: 'home#start'
-  get '/login', to: 'home#login'
   get '/logout', to: 'home#logout'
-  get '/register', to: 'home#register'
-  get '/tour/new', to: 'tour#new'
+  get '/tours/new', to: 'tours#new'
   get '/account', to: 'users#account'
 
   get '/tours/', to: 'users#my_tours'
@@ -42,33 +35,33 @@ Tour::Application.routes.draw do
   get '/payments/charge/new', to: 'payments#charge_new'
   get '/payments/charge/existing', to: 'payments#charge_existing'
 
-  #View Tour Routes
-  get '/tour/:id/preview', to: 'tour#preview'
- # get '/tour/:id/preview2', to: 'tour#preview_2'
+  #View tours Routes
+  get '/tours/:id/preview', to: 'tours#preview'
+ # get '/tours/:id/preview2', to: 'tours#preview_2'
 
  get '/secure_login/:id', to: 'home#secure_login'
 
-  get '/tour/:id/about', to: 'tour#about'
-  get '/tour/:id/map', to: 'tour#map'
-  get '/tour/:id/schools', to: 'tour#schools'
-  get '/tour/:id/test', to: 'tour#test'
-  get '/tour/:id/test_preview', to: 'tour#test_preview'
-  get '/tour/:id/not_live', to: 'tour#not_live'
-  get '/tour/:id/live', to: 'tour#live'
+  get '/tours/:id/about', to: 'tours#about'
+  get '/tours/:id/map', to: 'tours#map'
+  get '/tours/:id/schools', to: 'tours#schools'
+  get '/tours/:id/test', to: 'tours#test'
+  get '/tours/:id/test_preview', to: 'tours#test_preview'
+  get '/tours/:id/not_live', to: 'tours#not_live'
+  get '/tours/:id/live', to: 'tours#live'
 
 
-  #Tour Routes
-  get '/tour/first', to: 'users#first_tour'
-  get '/tour/:id/edit', to: 'tour#edit'
-  get '/tour/:id/edit/photos', to: 'tour#edit_photos'
-  get '/tour/:id/edit/music', to: 'tour#edit_music'
-  get '/tour/:id/edit/settings', to: 'tour#edit_settings'
-  get '/tour/:id/fileupload', to: 'tour#fileupload'
-  get '/tour/:id/now_live', to: 'tour#now_live'
-  get '/tour/:id/takedown', to: 'tour#takedown'
+  #tours Routes
+  get '/tours/first', to: 'users#first_tours'
+  get '/tours/:id/edit', to: 'tours#edit'
+  get '/tours/:id/edit/photos', to: 'tours#edit_photos'
+  get '/tours/:id/edit/music', to: 'tours#edit_music'
+  get '/tours/:id/edit/settings', to: 'tours#edit_settings'
+  get '/tours/:id/fileupload', to: 'tours#fileupload'
+  get '/tours/:id/now_live', to: 'tours#now_live', as: 'now_live'
+  get '/tours/:id/takedown', to: 'tours#takedown'
 
   #Pay Routes
-  get '/tour/:id/publish', to: 'tour#publish'
+  get '/tours/:id/publish', to: 'tours#publish'
 
   root to: 'home#index'
 
