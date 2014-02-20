@@ -55,5 +55,15 @@ module TourVibes
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_credentials: {
+        bucket: 'tour_files',
+        access_key_id: ENV.fetch('S3_KEY'),
+        secret_access_key: ENV.fetch('S3_SECRET_KEY')
+      }
+    }
+
   end
 end

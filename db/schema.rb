@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220004622) do
+ActiveRecord::Schema.define(version: 20140220025942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,6 @@ ActiveRecord::Schema.define(version: 20140220004622) do
   end
 
   create_table "uploads", force: true do |t|
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tour_id"
@@ -62,10 +58,10 @@ ActiveRecord::Schema.define(version: 20140220004622) do
     t.text     "room_name"
     t.string   "brand"
     t.integer  "user_id"
-    t.string   "music_file_name"
-    t.string   "music_content_type"
-    t.integer  "music_file_size"
-    t.datetime "music_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: true do |t|

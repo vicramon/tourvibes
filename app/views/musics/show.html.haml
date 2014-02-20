@@ -1,7 +1,7 @@
 %p
   = form_for tour, url: tour_music_path(tour), multipart: true do |f|
     %label Preloaded Track:
-    = f.select :music_file, options_for_select(Tour::SONGS,tour.music_file), class: 'login_text select_tag'
+    = f.select :music_file, options_for_select(Media::SONGS, tour.music_file), class: 'login_text select_tag'
     %a#preview{ href: "#", style: "margin-left:5px;" } Preview Song
 
     %br/

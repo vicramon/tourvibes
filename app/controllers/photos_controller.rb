@@ -1,22 +1,13 @@
 class PhotosController < EditTourController
 
-  def edit_photos
-    @pics = tour.photos
-    if request.post?
-      i = 0
-      for title in params[:title]
-        @pics[i].room_name = title
-        @pics[i].save
-        i += 1
-      end
+  def update
+    tour.save
 
-      if params[:commit] == "Save Descriptions"
-        flash.now[:update] = 'yes'
-      else
-        flash[:update] = 'yes'
-        redirect_to tour.edit_music_path and return
-      end
-
+    flash[:update] = true
+    if params[:commit] == "Save Descriptions"
+      redirect_to tour_photos_path(tour)
+    else
+      redirect_to tour_music_path(tour)
     end
   end
 
