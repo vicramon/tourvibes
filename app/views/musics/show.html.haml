@@ -1,56 +1,40 @@
-%h6 Upload a custom music file or select one of our preloaded tracks
 %p
-  = form_tag tour_music_path(tour), :multipart => true do
+  = form_for tour, url: tour_music_path(tour), multipart: true do |f|
     %label Preloaded Track:
-    = select_tag 'music_file', options_for_select(Tour::SONGS,tour.music_file), :class => 'login_text select_tag'
-    %a#preview{:href => "#", :style => "<haml:silent> if tour.music_file == nil </haml:silent><haml:block>display:none;</haml:block>margin-left:5px;"} Preview Song
-    %br/
-    %label Custom Music File:
-    = file_field_tag 'music', :class => 'login_text'
+    = f.select :music_file, options_for_select(Tour::SONGS,tour.music_file), class: 'login_text select_tag'
+    %a#preview{ href: "#", style: "margin-left:5px;" } Preview Song
+
     %br/
     %label Autoplay:
-    = select_tag 'autoplay_music', options_for_select([['yes',true],['no',false]],tour.autoplay_music), :class => 'login_text select_tag'
+    = f.select :autoplay_music, on_off_options, class: 'login_text select_tag'
     %br/
     %label
-    = submit_tag 'Save Changes', :class => 'gray_button small_button', :style => 'width:auto;'
-    = submit_tag 'Save & Go to Next Step »', :class => 'gray_button blue_button small_button', :style => 'width:auto;'
-  - if tour.has_music
-    %br/
-    %br/
-    %label
-      %strong Current Track:
-    = tour.music_name
-    %br/
+    = f.submit 'Save Changes', class: 'gray_button small_button', style: 'width:auto;'
+    = f.submit 'Save & Go to Next Step »', class: 'gray_button blue_button small_button', style: 'width:auto;'
+
   %audio#music_player
-    %source{:src => tour.music_src, :type => "audio/mpeg"}
-      %embed{:height => "50", :src => tour.music_src, :width => "100"}
-  :javascript
-    var song = $('#music_player').get(0);
+    %source{ :src => tour.music_src, :type => "audio/mpeg" }
+    %embed{ :height => "50", :src => tour.music_src, :width => "100" }
 
-    $(function() {
-         $("#music_file").change(function(e) {
-           e.preventDefault();
-    		if ($('#music_file option:selected').val() != "") {
-    	   		$('#preview').show();
+:javascript
+  var audio = $('#music_player').get(0);
 
-    			var playme = document.getElementById('music_player');
-    			playme.src='http://s3.amazonaws.com/tour_files/tracks/' + $('#music_file option:selected').val() + '.mp3';
-    			playme.load();
+  $(function() {
+    $("#tour_music_file").change(function(e) {
+      e.preventDefault();
+      if ($('#music_file option:selected').val() != "") {
+        $('#preview').show();
+        audio.src='http://s3.amazonaws.com/tour_files/tracks/' + $('#tour_music_file option:selected').val() + '.mp3';
+        audio.load();
+      } else {
+        $('#preview').hide();
+      }
+        });
+      });
 
-
-
-
-    		//	$(song).attr('src','http://s3.amazonaws.com/tour_files/tracks/' + $('#music_file option:selected').val() + '.mp3');
-    		} else {
-    			$('#preview').hide();
-    		}
-
-         });
-       });
-
-    $(function() {
-         $("#preview").click(function(e) {
-           e.preventDefault();
-           song.play();
-         });
-       });
+  $(function() {
+    $("#preview").click(function(e) {
+      e.preventDefault();
+        audio.play();
+        });
+      });

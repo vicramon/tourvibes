@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
   private
 
   def tour_params
-    params.require(:tour).permit(:title, :address_1, :address_2, :desc, :city, :state, :zip, :user_id, :bg_color, :link_color, :wrapper_color, :text_color, :title_color, :subdomain, :custom_domain, :schools_url, :autoplay, :transition, :mode, :ken_burns)
+    params.require(:tour).permit(:title, :address_1, :address_2, :desc, :city,
+      :state, :zip, :user_id, :bg_color, :link_color, :wrapper_color, :text_color,
+      :title_color, :subdomain, :custom_domain, :schools_url, :autoplay, :transition,
+      :mode, :ken_burns, :music_file, :autoplay_music)
   end
 
   def ensure_user_owns_tour

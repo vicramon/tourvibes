@@ -2,8 +2,7 @@ class Tour < ActiveRecord::Base
   belongs_to :user
   has_many :uploads
 
-  SONGS = [
-    ["",nil],
+  SONGS = [["",nil],
     ["Bon Sonata in G Minor",1],
     ["Claire De Lune",2],
     ["Fur Elise",3],
@@ -12,8 +11,7 @@ class Tour < ActiveRecord::Base
     ["Il. Intermezzo",6],
     ["Prelude in C Minor",7],
     ["Romance De Juegos Prohobidos",8],
-    ["Suite Espanola",9]
-    ]
+    ["Suite Espanola",9]]
 
   def name
     if self.title.present?
