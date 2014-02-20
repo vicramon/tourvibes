@@ -1,6 +1,6 @@
 module ApplicationHelper
   def tour_visit_path(tour)
-    if tour.is_live
+    if tour.live?
       tour_live_path(tour)
     else
       tour_preview_path(tour)

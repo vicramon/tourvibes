@@ -14,8 +14,8 @@ class PaymentsController < ApplicationController
       :description => @user.id.to_s + ' ' + @user.email
     )
 
-    @tour.is_paid = true
-    @tour.is_live = true
+    @tour.paid = true
+    @tour.live = true
     @tour.save
 
     redirect_to "/tour/#{@tour.id}/now_live" and return
@@ -42,8 +42,8 @@ class PaymentsController < ApplicationController
     @user.stripe_id = customer.id
     @user.save
 
-    @tour.is_paid = true
-    @tour.is_live = true
+    @tour.paid = true
+    @tour.live = true
     @tour.save
 
     redirect_to "/tour/#{@tour.id}/now_live" and return
@@ -65,8 +65,8 @@ class PaymentsController < ApplicationController
         :customer => customer_id
     )
 
-    @tour.is_paid = true
-    @tour.is_live = true
+    @tour.paid = true
+    @tour.live = true
     @tour.save
 
     redirect_to "/tour/#{@tour.id}/now_live" and return

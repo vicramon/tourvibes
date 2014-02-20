@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219040550) do
+ActiveRecord::Schema.define(version: 20140220004622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20140219040550) do
     t.text     "desc"
     t.string   "subdomain"
     t.text     "custom_domain"
-    t.boolean  "is_paid",           default: false
+    t.boolean  "paid",              default: false
     t.boolean  "show_map",          default: false
     t.boolean  "show_schools",      default: false
     t.boolean  "show_flyer",        default: false
     t.boolean  "show_realtor_info", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_live",           default: false
+    t.boolean  "live",              default: false
     t.text     "schools_url"
     t.boolean  "autoplay",          default: true
     t.string   "transition"

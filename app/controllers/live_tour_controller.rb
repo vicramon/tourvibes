@@ -1,11 +1,8 @@
 class LiveTourController < ApplicationController
 
   def live
-    @pics = @tour.photos
-    @realtor = @tour.user
-
-    if not @tour.is_paid or not @tour.is_live
-      redirect_to @tour.not_live_path and return
+    unless @tour.paid? and @tour.live?
+      redirect_to tour_not_live_path(tour) and return
     end
     render :template => '/tour/preview', :layout => 'view_tour'
   end

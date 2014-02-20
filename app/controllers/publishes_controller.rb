@@ -7,9 +7,9 @@ class PublishesController < EditTourController
       current_user.save
     end
 
-    if tour.is_paid?
-      tour.update_attribute(:is_live, true)
-      redirect_to now_live_path
+    if tour.paid?
+      tour.update_attribute(:live, true)
+      redirect_to tour_now_live_path(tour)
     end
 
     # TODO - user pays for tour

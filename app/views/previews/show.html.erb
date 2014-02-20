@@ -1,0 +1,848 @@
+
+<style type="text/css">
+
+::-webkit-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-webkit-scrollbar-track:horizontal {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-webkit-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-webkit-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-webkit-scrollbar-thumb:horizontal {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-webkit-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-webkit-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-o-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-o-scrollbar-track:horizontal {
+    -o-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-o-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-o-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-o-scrollbar-thumb:horizontal {
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-o-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-o-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-ms-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-ms-scrollbar-track:horizontal {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-ms-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-ms-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-ms-scrollbar-thumb:horizontal {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-ms-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-ms-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-moz-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-moz-scrollbar-track:horizontal {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-moz-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-moz-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-moz-scrollbar-thumb:horizontal {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-moz-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-moz-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+
+.kenburns {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius:5px;
+  border:2px solid #666;
+
+  width:950px;
+  height:600px;
+}
+.kenburns img {
+  position: absolute;
+  border-radius:5px;
+  left: 0px;
+  top: 0px;
+
+  -o-transition: -o-transform 5s ease-in-out;
+  -ms-transition: -ms-transform 5s ease-in-out;
+  -moz-transition: -moz-transform 5s ease-in-out;
+  -webkit-transition: -webkit-transform 5s ease-in-out, -webkit-transform-origin 5s ease-in-out;
+
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+
+  -o-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+
+}
+
+</style>
+
+
+<style>
+
+.main_image {
+  border-radius:5px;
+  width:auto;
+  height:720px;
+  position:relative;
+}
+
+#main_image_wrapper {
+/*  height:600px;*/
+}
+
+/* fullscreen styles */
+
+
+#wrapper:-webkit-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-moz-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-ms-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-o-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+
+
+</style>
+
+
+
+
+    <div id="main_image_wrapper">
+      <div align="center">
+        <div id="kenburns" class="kenburns tour_items">
+            <%= image_tag tour.photos[0].upload.url(:large), :class => 'tour_items main_image' %>
+        </div>
+
+      </div>
+
+      <div id="about" style="display:none;margin-left:20px;margin-top:10px;">
+        <div class="page_title">
+          About
+        </div>
+
+        <div style="float:right;">
+          <%# image_tag tour.uploads[0].upload.url(:middle) %>
+        </div>
+        <div style="width:600px;">
+        <%= simple_format tour.desc %>
+        </div>
+      </div>
+
+      <div id="contact" style="display:none;margin-left:20px;margin-top:10px;">
+        <div class="page_title">
+          Realtor Info
+        </div>
+        <br />
+
+        <%if @realtor.headshot %>
+        <div style="margin-bottom:15px;float:left;margin-right:15px;">
+            <%= image_tag @realtor.headshot.upload.url(:large), :style => 'height:140px;border-radius:4px;' %>
+          <br /><br /><br />
+        </div>
+        <% end %>
+
+
+        <div style="width:600px;float:left;margin-top:8px;">
+
+            <% if @realtor.name.present? %>
+            <%= @realtor.name %><p>
+          <% end %>
+          <% if @realtor.cell.present? %>
+            <%= @realtor.cell %><p>
+          <% end %>
+        <%= @realtor.email %><p>
+
+        <% if @realtor.firm_name.present? %>
+          <%= @realtor.firm_name %><p>
+        <% end %>
+
+        </div>
+
+        <div style="clear:left;">
+          <%if @realtor.logo %>
+            <br />
+            <%= image_tag @realtor.logo.upload.url(:large), :style => 'height:70px;' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="map" align="center" style="display:none;">
+        <div id="map_canvas" style="width: 90%; height:600px;"></div>
+      </div>
+
+    </div>
+
+    <div class="room_title tour_items">
+      <span class="room_title_bg">
+      <%= tour.photos[0].room_name %>
+      </span>
+    </div>
+
+
+    <div style="height:15px;">&nbsp;</div>
+
+    <div class="controls tour_items" style="z-index:1000;">
+      <div class="controls_inner">
+
+      <% if tour.autoplay_music %>
+        <%= image_tag 'icons/volume.png', :id => 'volume'  %>
+        <%= image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;' %>
+      <% else %>
+        <%= image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'  %>
+        <%= image_tag 'icons/muted.png', :id => 'muted' %>
+      <% end %>
+      <%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
+
+      <% if tour.autoplay %>
+      <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;' %>
+      <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
+      <% else %>
+      <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;display:none;' %>
+      <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;' %>
+      <% end %>
+
+      <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
+
+      <%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
+      <%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
+
+      </div>
+    </div>
+
+    <div style="height:20px;">&nbsp;</div>
+
+    <style>
+
+    .thumb {
+      border:2px solid #242424;
+      cursor:pointer;
+    }
+
+    .thumb_selected {
+      border:2px solid #ccc;
+    }
+
+    </style>
+
+
+    <div style="height:115px;width:<%= (tour.photos.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" id="gallery" class="gallery tour_items">
+
+      <% x = 0 %>
+    <% for @pic in tour.photos %>
+
+      <div style="display:inline-block;margin-right:4px;" class="tour_items gallery">
+      <%= image_tag @pic.upload.url(:middle), :style => 'border-radius:4px;', :id => "thumb_#{x}", :class => 'thumb', :thumb_num => x.to_i %>
+      </div>
+      <% x +=1 %>
+    <% end %>
+    </div>
+
+
+    <% if browser.firefox? %>
+
+        <object id="music2" type="audio/mp3" data="<%= tour.music_src %>" width="0" height="0">
+          <param name="loop" value="0" />
+          <param name="autoplay" value="<%= tour.autoplay_music %>">
+          <param name="showcontrols" value="false" />
+          <param name="showdisplay" value="false" />
+        </object>
+
+    <% else %>
+
+      <audio id="music" <% if tour.autoplay_music %>autoplay<% end %> loop>
+        <source src="<%= tour.music_src %>" type="audio/mpeg">
+        <embed height="0" width="0" src="<%= tour.music_src %>">
+      </audio>
+
+    <% end %>
+
+
+<script type="text/javascript">
+
+preload(pics);
+var fullscreen = false;
+var song = $('#music').get(0);
+var delay_time = 8000;
+
+
+$(document).ready(function () {
+
+  <% if tour.ken_burns %>
+    randomizePan();
+  <% end %>
+
+
+  $('#thumb_0').attr('class','thumb thumb_selected');
+
+
+
+  setInterval(function() {
+    if (status == "wait") {
+      status = "play";
+      return false;
+    }
+    if (status == "pause") { return; }
+    switchImage();
+    return false;
+  },delay_time);
+
+
+});
+
+function randomizePan() {
+  //center();
+
+  if (Math.random() > .5) {
+    zoomIn();
+  } else {
+    zoomOut();
+  }
+
+  var rand = Math.random();
+
+  if (rand < .25) {
+    topLeft();
+  } else if (rand < .5) {
+    bottomLeft();
+  } else if (rand < .75) {
+    topRight();
+  } else {
+    bottomRight();
+  }
+
+}
+
+
+function center() {
+  $('.main_image').css('-webkit-transform-origin','50% 50%');
+  $('.main_image').css('-moz-transform-origin','50% 50%');
+  $('.main_image').css('-ms-transform-origin','50% 50%');
+  $('.main_image').css('-o-origin','50% 50%');
+
+
+}
+
+function topLeft() {
+  $('.main_image').css('-webkit-transform-origin','25% 25%');
+  $('.main_image').css('-o-transform-origin','25% 25%');
+  $('.main_image').css('-ms-transform-origin','25% 25%');
+  $('.main_image').css('-moz-transform-origin','25% 25%');
+
+}
+
+function bottomLeft() {
+  $('.main_image').css('-webkit-transform-origin','25% 75%');
+  $('.main_image').css('-o-transform-origin','25% 75%');
+  $('.main_image').css('-ms-transform-origin','25% 75%');
+  $('.main_image').css('-moz-transform-origin','25% 75%');
+
+}
+
+function topRight() {
+  $('.main_image').css('-webkit-transform-origin','75% 25%');
+  $('.main_image').css('-o-transform-origin','75% 25%');
+  $('.main_image').css('-ms-transform-origin','75% 25%');
+  $('.main_image').css('-moz-transform-origin','75% 25%');
+
+}
+
+function bottomRight() {
+  $('.main_image').css('-webkit-transform-origin','75% 75%');
+  $('.main_image').css('-o-transform-origin','75% 75%');
+  $('.main_image').css('-ms-transform-origin','75% 75%');
+  $('.main_image').css('-moz-transform-origin','75% 75%');
+
+
+}
+
+function zoomIn() {
+  $('.main_image').css('-webkit-transform','scale(1.13)');
+  $('.main_image').css('-o-transform','scale(1.13)');
+  $('.main_image').css('-ms-transform','scale(1.13)');
+  $('.main_image').css('-moz-transform','scale(1.13)');
+
+
+}
+
+function zoomOut() {
+  $('.main_image').css('-webkit-transform','scale(1.0)');
+  $('.main_image').css('-o-transform','scale(1.0)');
+  $('.main_image').css('-ms-transform','scale(1.0)');
+  $('.main_image').css('-moz-transform','scale(1.0)');
+
+}
+
+function exitFullScreen () {
+  RunPrefixMethod(document, "CancelFullScreen");
+  fullscreen = false;
+  $('#expand').show();
+  $('#escape').hide();
+  $('#gallery').show();
+  $('#kenburns').removeAttr("style");
+  $('#kenburns img').removeAttr("style");
+  $('.main_image').removeAttr("style");
+  $('#main_image_wrapper').removeAttr("style");
+  $('.controls').removeAttr("style");
+}
+
+$(function() { $("#escape").click(function(e) {
+       e.preventDefault();
+     exitFullScreen();
+  });
+});
+
+document.addEventListener("webkitfullscreenchange", function (e) {
+  if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
+    exitFullScreen();
+    //alert('closing');
+  }
+});
+
+document.addEventListener("mozfullscreenchange", function (e) {
+  if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
+    exitFullScreen();
+    //alert('closing');
+  }
+});
+
+document.addEventListener("msfullscreenchange", function (e) {
+  if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
+    exitFullScreen();
+    //alert('closing');
+  }
+});
+
+document.addEventListener("ofullscreenchange", function (e) {
+  if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
+    exitFullScreen();
+    //alert('closing');
+  }
+});
+
+document.addEventListener("fullscreenchange", function (e) {
+  if (!RunPrefixMethod(document, "FullScreen") && !RunPrefixMethod(document, "IsFullScreen")) {
+    exitFullScreen();
+    //alert('closing');
+  }
+});
+
+    $(function() {
+         $(".thumb").click(function(e) {
+           e.preventDefault();
+         $('.thumb_selected').attr('class','thumb');
+         $(this).attr('class','thumb thumb_selected');
+         switchImage($(this).attr('thumb_num'),true)
+         });
+       });
+
+       $(function() { $("#expand").click(function(e) {
+           e.preventDefault();
+         fullscreen = true;
+         //$('.container').hide();
+         //$('#fullscreen').show();
+
+        $('#expand').hide();
+        $('#escape').show();
+
+        $('#gallery').hide();
+        $('#kenburns').css({
+          width:'100%',
+          height:'100%',
+          border:'none',
+          position:'static'
+        });
+        $('#kenburns img').css({
+          position:'static'
+        });
+        $('.main_image').css({
+          height:'100%',
+
+        });
+        $('#main_image_wrapper').css({
+          width:'100%',
+          height:'100%'
+        });
+        $('.controls').css({
+          position:'absolute',
+          bottom: '50px',
+          left: '25%',
+          width: '50%'
+        });
+
+         var f = document.getElementById("wrapper");
+
+        if (RunPrefixMethod(document, "FullScreen") || RunPrefixMethod(document, "IsFullScreen")) {
+          RunPrefixMethod(document, "CancelFullScreen");
+        }
+        else {
+          RunPrefixMethod(f, "RequestFullScreen");
+        }
+
+         });
+       });
+
+  // begin experimental code
+
+  var pfx = ["webkit", "moz", "ms", "o", ""];
+  function RunPrefixMethod(obj, method) {
+    var p = 0, m, t;
+    while (p < pfx.length && !obj[m]) {
+      m = method;
+      if (pfx[p] == "") {
+        m = m.substr(0,1).toLowerCase() + m.substr(1);
+      }
+      m = pfx[p] + m;
+      t = typeof obj[m];
+      if (t != "undefined") {
+        pfx = [pfx[p]];
+        return (t == "function" ? obj[m]() : obj[m]);
+      }
+      p++;
+    }
+
+  }
+
+
+
+  // end experimental code
+
+        $(document).keyup(function(e) {
+        if (e.keyCode == 27 && (fullscreen || RunPrefixMethod(document, "IsFullScreen"))) {
+        //exitFullscreen();
+        alert('hi');
+        }
+      });
+
+
+       $(function() {
+         $("#volume").click(function(e) {
+           e.preventDefault();
+         $(this).hide();
+         $('#muted').show();
+           song.pause();
+         });
+       });
+
+    $(function() {
+         $("#muted").click(function(e) {
+           e.preventDefault();
+         $(this).hide();
+         $('#volume').show();
+           song.play();
+         });
+       });
+
+    var n = 0;
+
+    <% if tour.autoplay %>
+      var status = "play";
+    <% else %>
+      var status = "pause";
+    <% end %>
+
+    $("#pause").click(function() {
+      status = "pause";
+      $(this).hide();
+      $('#play').show();
+    });
+
+    $("#play").click(function() {
+      status = "play";
+      $(this).hide();
+      $('#pause').show();
+    });
+
+    function resume() {
+      status = "play";
+    }
+
+    $("#forward").click(function() {
+      switchImage();
+      if (status == "play") {
+        status = "wait"
+      }
+    });
+
+    $("#back").click(function() {
+      switchImage("back");
+      if (status == "play") {
+        do_resume = true;
+      }
+      status = "pause";
+      if (do_resume == true) {
+        window.setTimeout(resume(),delay_time+6000);
+      }
+      return false;
+    });
+
+    var pics = new Array();
+    var room_names = new Array();
+
+    <% i = 0 %>
+    <% for @pic in tour.photos %>
+      pics[<%= i %>] = "<%= @pic.upload.url(:large) %>";
+      room_names[<%= i %>] = "<%= @pic.room_name %>";
+      <% i += 1 %>
+    <% end %>
+
+    function switchImage(direction,thumb_click) {
+
+      /*
+      if (status == "wait") {
+        status = "play";
+        setTimeout(switchImage(),delay_time)
+        return false;
+      }
+      if (status == "pause") { return false; }
+      */
+
+      if (direction == "back") {
+        n = n-1;
+      } else {
+        n = n+1;
+      }
+
+      if (n > pics.length-1) { n = 0;
+        console.log('reset n');
+         }
+      if (n < 0) { n = pics.length-1;  }
+
+      if (thumb_click) {
+        n = Number(direction);
+        console.log('thumb clicked');
+        $("#pause").click();
+      }
+
+      $(".room_title_bg").fadeOut('slow',function() {
+        $(".room_title_bg").html(room_names[n]);
+
+        if (room_names[n] != "") {
+          $(this).fadeIn('slow');
+        }
+
+        return false;
+      });
+
+
+      $(".main_image").fadeOut('slow',function() {
+        var thumb_id = "#thumb_" + n
+        $('.thumb').attr("class","thumb");
+        $(thumb_id).attr("class","thumb thumb_selected");
+        $(this).load(function() {
+          $(this).fadeIn('slow', function() {
+            /*
+            if ((n%2)==0) {
+              zoomIn();
+            } else {
+              zoomOut();
+            }*/
+            <% if tour.ken_burns %>
+              if (fullscreen != true) {
+                randomizePan();
+              }
+            <% end %>
+
+        //    setTimeout(switchImage(),delay_time)
+
+          });
+          return false;
+        });
+        $(this).attr("src", pics[n]);
+        return false;
+      });
+      console.log(n);
+      return false;
+    }
+
+
+
+
+
+    function preload(arrayOfImages) {
+        $(arrayOfImages).each(function(){
+            $('<img/>')[0].src = this;
+            // Alternatively you could use:
+            // (new Image()).src = this;
+        });
+    }
+
+    $("#about_link").click(function() {
+      status = "pause";
+      $('#contact').fadeOut('slow',function() {
+        $('#map').fadeOut('slow',function() {
+          $(".tour_items").fadeOut('slow',function() {
+            $('#about').fadeIn('slow');
+            return false;
+          });
+        });
+        });
+    });
+
+    $("#contact_link").click(function() {
+      status = "pause";
+      $('#map').fadeOut('slow',function() {
+          $(".tour_items").fadeOut('slow',function() {
+            $("#about").fadeOut('slow',function() {
+              $('#contact').fadeIn('slow');
+              return false;
+          });
+        });
+      });
+    });
+
+    $("#map_link").click(function() {
+      status = "pause";
+      $('#contact').fadeOut('slow',function() {
+        $('#about').fadeOut('slow', function() {
+        $(".tour_items").fadeOut('slow',function() {
+          //$('body').css('color','#333');
+          $('#map').fadeIn('slow');
+          initialize("<%= tour.address_1 + ', ' + tour.address_2 + ', ' + tour.city + ', ' + tour.state + ' ' + tour.zip %>");
+          return false;
+        });
+      });
+      });
+    });
+
+    $("#tour_link").click(function() {
+      status = "play";
+      $('#contact').fadeOut('slow',function() {
+      $('#map').fadeOut('slow', function() {
+
+      $("#about").fadeOut('slow',function() {
+        $('.tour_items').fadeIn('slow');
+        return false;
+      });
+      });
+      });
+    });
+
+
+
+
+</script>
+

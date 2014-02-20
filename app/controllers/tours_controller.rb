@@ -30,7 +30,7 @@ class ToursController < AuthenticatedController
   end
 
   def takedown
-    tour.update_attribute :is_live, false
+    tour.update_attribute :live, false
     flash[:update] = 'yes'
     redirect_to tour.edit_path and return
   end

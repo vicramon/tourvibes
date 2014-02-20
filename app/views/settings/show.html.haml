@@ -39,7 +39,7 @@
     = text_field_tag 'link_color', tour.link_color, :id => "link_color"
     %br/
   = submit_tag 'Save Changes', :class => 'gray_button submit small_button', :style => 'margin-left:167px;margin-top:8px;width:auto;'
-  - if not tour.is_live
+  - unless tour.live?
     = submit_tag 'Save & Publish »', :class => 'gray_button small_button blue_button', :style => 'width:auto;'
 :javascript
   $('#default').click(function() {

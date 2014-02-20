@@ -1,11 +1,13 @@
 %h4
   My Tours
-  %a.gray_button.small_button{:href => "/tour/new", :style => "margin-left:15px;"} New Tour
+
+  = link_to "New Tour", new_tour_path, class: 'gray_button small_button', style: 'margin-left:15px'
   - if current_user.has_free_tours?
     .update{:style => "font-size:16px;margin-left:15px;padding:4px 15px;font-family:Helvetica;"}
       = pluralize(current_user.free_tours.to_i,"Free Tour")
       Remaining
-- if tours.size > 0
+
+- if tours.any?
   %table{:cellpadding => "12", :cellspacing => "0", :style => "width:100%;margin-top:-6px;margin-left:-8px;"}
     %tr{:style => "font-size:17px;"}
       %th
@@ -15,13 +17,14 @@
       %th
         Actions
     - i = 1
-    - for tour in tours
+
+    - tours.each do |tour|
       / lighter gray is #f9f9f9
       %tr{:style => "<haml:silent> if i % 2 == 0 </haml:silent><haml:block>background:#DCE7EE;</haml:block>height:40px;"}
         %td
           = link_to tour.address_1, tour_property_info_path(tour)
         %td
-          - if tour.is_live
+          - if tour.live?
             %span{:style => "color:#009900;"}
               Live
           - else
@@ -35,7 +38,7 @@
             = link_to "View", tour_visit_path(tour)
           %span{:style => "color:#999"}
             \&nbsp;|&nbsp;&nbsp;
-          - if tour.is_live
+          - if tour.live?
             %a{:href => tour_takedown_path(tour)} Take down
           - else
             %a{:href => tour_publish_path(tour)} Publish

@@ -1,5 +1,5 @@
 = content_for :nested do
-  - if tour.is_live
+  - if tour.live?
     .update{:style => "float:right;padding-top:3px;padding-bottom:3px;margin-top:35px;"}
       %span{:style => "color:#666;font-size:17px;font-size:15px;"} Live
 
@@ -13,7 +13,7 @@
 
   .tab_box
     .right_link{:style => "float:right;margin-top:3px;color:#ccc;"}
-      - if tour.is_live
+      - if tour.live?
         %a{href: tour.takedown_path, style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Take Down
       - else
         %a{href: tour_publish_path(tour), style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Publish
