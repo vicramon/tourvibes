@@ -14,17 +14,17 @@
             = image_tag 'logo.png', style: 'margin-top:1px;', border: 0
           .top_nav
             - if current_user
-              = link_to "My Tours", tours_path
-              = link_to "New Tour", new_tour_path
-              = link_to "Account", account_path
-              = link_to "Contact", contact_path
-              = link_to "Logout", logout_path
+              = active_link_to "My Tours", tours_path, exact: true
+              = active_link_to "New Tour", new_tour_path
+              = active_link_to "Account", account_path
+              = active_link_to "Contact", contact_path
+              = active_link_to "Logout", logout_path
             - else
-              = link_to "Home", :root
+              = active_link_to "Home", root_path
               = link_to "How it Works", "#", id: 'how_link'
               = link_to "Features", "#", id: 'feature_link'
               = link_to "Contact", "#"
-              = link_to "Login", new_session_path
+              = active_link_to "Login", new_session_path
 
       = yield :below_header if content_for?(:below_header)
       .content
@@ -36,9 +36,10 @@
             = yield
 
           %div{:style => "clear:both;height:0;"} &nbsp;
+
       %div{:style => "clear:both;height:0;"} &nbsp;
       %div{:style => "height:150px;"} &nbsp;
-    / ends container
+
     .footer
       .footer_inner.standard_width
         %div{:style => "float:left;margin-right:50px;"}
@@ -47,9 +48,9 @@
             %a#how_link{:href => "#"} How it Works
             %a#feature_link{:href => "#"} Features
           - else
-            %a#how_link{:href => "/home/how"} How it Works
-            %a#feature_link{:href => "/home/features"} Features
+            %a#how_link{:href => "/home#how"} How it Works
+            %a#feature_link{:href => "/home#features"} Features
         %div{:style => "float:left;"}
-          %a{:href => "/contact"} Contact
-          %a{:href => "/login"} Login
-          %a{:href => "/about"} About
+          = link_to "Contact", contact_path
+          = link_to "Login", new_session_path
+          = link_to "About", about_path

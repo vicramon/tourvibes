@@ -1,4 +1,4 @@
-@import 'base', 'jquery.fileupload-ui', 'icons'
+@import 'base', 'jquery.fileupload-ui', 'icons', 'fileupload-ui'
 
 .field_with_errors
   display: inline
@@ -45,3 +45,46 @@
   font-size: 43px
   padding-left: 3px
 
+.tab_box
+  border-bottom: 1px solid #ccc
+  box-shadow: 0 1px white
+  margin-top: 8px
+  a
+    background: #F3F3F3
+    color: #323232
+    border: 1px solid #ccc
+    border-radius: 6px 6px 0 0
+    display: inline-block
+    font-size: 17px
+    padding: 3px 25px 3px
+    text-decoration: none
+    text-shadow: 0 1px 0 white
+    margin-right: 3px
+    border-bottom: none
+    &:first-of-type
+      margin-left: 20px
+    &:hover
+      background: #DCE7EE
+    &.active
+      background: url('/assets/tab_bg.png') repeat-x
+      color: white
+      text-shadow: 0 1px 0 #333
+      font-weight: normal
+      border: none
+      margin-bottom: 0
+      padding-bottom: 4px
+
+  .right_link
+    a
+      border: none
+      background: none
+      display: inline
+      width: auto
+      padding: 0px 0 0
+      color: #1C5DEB
+      margin-right: 20px
+      &:hover
+        text-decoration: underline
+
+.space30
+  height: 30px

@@ -1,76 +1,39 @@
 = content_for :nested do
+
   - if tour.live?
     .update{:style => "float:right;padding-top:3px;padding-bottom:3px;margin-top:35px;"}
       %span{:style => "color:#666;font-size:17px;font-size:15px;"} Live
-
   - else
     .error{:style => "float:right;padding-top:3px;padding-bottom:3px;margin-top:35px;"}
       %span{:style => "color:#666;font-size:17px;font-size:15px;"} Not Live
+
   %div{:style => "font-size:14px;margin-bottom:8px;"}
-    %a{:href => "/tours"} &laquo; Back to My Tours
+    = link_to "&laquo; Back to My Tours".html_safe, tours_path
 
   %h4= tour.name
 
   .tab_box
     .right_link{:style => "float:right;margin-top:3px;color:#ccc;"}
       - if tour.live?
-        %a{href: tour.takedown_path, style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Take Down
+        = link_to "Take Down", tour_takedown_path(tour)
       - else
-        %a{href: tour_publish_path(tour), style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Publish
+        = link_to "Publish", tour_publish_path(tour)
 
-      %span{:style => "margin-right:15px;"} &nbsp;
-      %a{:href => tour_preview_path(tour), :style => "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;"} Preview
+      %span{ :style => "margin-right:15px;" } &nbsp;
 
-    = link_to "Property Info", tour_property_info_path(tour), style: "margin-left:20px;"
-    = link_to "Photos & Videos", tour_photos_path(tour)
-    = link_to "Music", tour_music_path(tour)
-    = link_to "Tour Settings", tour_settings_path(tour)
+      = link_to "Preview", tour_preview_path(tour)
 
-  - if flash[:update] == 'yes'
-    %div{style: "height:20px;"}
-    .update
+    = active_link_to "Property Info", tour_property_info_path(tour)
+    = active_link_to "Photos & Videos", tour_photos_path(tour)
+    = active_link_to "Music", tour_music_path(tour)
+    = active_link_to "Tour Settings", tour_settings_path(tour)
+
+  - if flash[:update]
+    .update{ style: 'margin-top: 20px' }
       Your changes have been saved.
   - else
-    %div{style: "height:30px;"}
+    .space30
 
-  :css
-    .tab_box {
-      border-bottom:1px solid #ccc;
-      box-shadow:0 1px white;
-      margin-top:8px;
-    }
-
-    .tab_box a {
-      background:#F3F3F3;
-      color:#323232;
-      border:1px solid #ccc;
-      border-radius:6px 6px 0 0;
-      display:inline-block;
-      font-size:17px;
-      padding:3px 25px 3px;
-      text-decoration:none;
-      text-shadow:0 1px 0 white;
-      margin-right:3px;
-      border-bottom:none;
-    }
-
-    .tab_box a:hover {
-      background:#DCE7EE;
-    }
-
-    .tab_box a.selected {
-      background:url('/assets/tab_bg.png') repeat-x;
-      color:white;
-      text-shadow:0 1px 0 #333;
-      font-weight:normal;
-      border:none;
-      margin-bottom:0;
-      padding-bottom:4px;
-    }
-
-    .right_link a:hover {
-      text-decoration:underline;
-    }
   = yield
 
 = render template: 'layouts/application'

@@ -45,5 +45,7 @@ TourVibes::Application.routes.draw do
   get '/tours/:id/schools', to: 'tours#schools'
 
   root to: 'home#index'
+  get 'about', to: 'home#about', as: 'about'
+  get 'home', to: 'home#index', as: 'home'
 
 end
