@@ -19,4 +19,8 @@ module ApplicationHelper
     link_to text, path, link_options
   end
 
+  def on_off_options
+    [['on', true], ['off', false]]
+  end
+
 end
