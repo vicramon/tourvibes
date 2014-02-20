@@ -15,4 +15,20 @@ class User < ActiveRecord::Base
     free_tours > 0
   end
 
+  def headshot=(data)
+    if headshot
+      headshot.update_attribute :photo, data
+    else
+      uploads.create(photo: data, brand: 'headshot')
+    end
+  end
+
+  def logo=(data)
+    if logo
+      logo.update_attribute :photo, data
+    else
+      uploads.create(photo: data, brand: 'logo')
+    end
+  end
+
 end

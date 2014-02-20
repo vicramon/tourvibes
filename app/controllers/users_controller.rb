@@ -1,75 +1,27 @@
 class UsersController < AuthenticatedController
   expose(:user) { current_user }
 
-  def first_tour
+  # def first_tour
+  #   @user.name = params[:name]
+  #   @user.cell = params[:cell]
+  #   @user.firm_name = params[:firm_name]
+  #   @user.save
+  #   flash.now[:update] = 'yes'
+  #   @tour = House.new(:user_id => @user.id)
+  #   @tour.set_default_colors()
+  #   redirect_to @tour.edit_path and return
+  # end
 
-      if request.post?
-        @user.name = params[:name]
-        @user.cell = params[:cell]
-        @user.firm_name = params[:firm_name]
-        @user.save
-
-=begin
-        if params[:photo].present?
-          @photo = Upload.new(:upload => params[:photo])
-          @photo.brand = "headshot"
-          @photo.user_id = @user.id
-          @photo.save
-        end
-        if params[:logo].present?
-          @logo = Upload.new(:upload => params[:logo])
-          @logo.brand = "logo"
-          @logo.user_id = @user.id
-          @logo.save
-        end
-=end
-        flash.now[:update] = 'yes'
-        @tour = House.new(:user_id => @user.id)
-        @tour.set_default_colors()
-        redirect_to @tour.edit_path and return
-      end
-
+  def update
+    user.update_attributes(user_params)
+    flash[:update] = true
+    redirect_to account_path
   end
 
-  def account
-    @page = 'account'
-    if request.post?
-      @user.name = params[:name]
-      @user.email = params[:email]
-      @user.cell = params[:cell]
-      @user.firm_name = params[:firm_name]
-      @user.save
+  private
 
-      if params[:photo].present?
-        if @user.headshot
-          @photo = @user.headshot
-          @photo.upload = params[:photo]
-        else
-          @photo = Upload.new(:upload => params[:photo])
-          @photo.brand = "headshot"
-          @photo.user_id = @user.id
-        end
-        @photo.save
-      end
-
-      if params[:logo].present?
-        if @user.logo
-          @logo = @user.logo
-          @logo.upload = params[:logo]
-        else
-          @logo = Upload.new(:upload => params[:logo])
-          @logo.brand = "logo"
-          @logo.user_id = @user.id
-        end
-        @logo.save
-      end
-
-      flash.now[:update] = 'yes'
-    end
-  end
-
-  def my_tours
-    @tours = House.find(:all, :conditions => {:user_id => @user.id}, :order => "created_at desc")
+  def user_params
+    params.require(:user).permit(:name, :email, :cell, :firm_name, :headshot, :logo)
   end
 
 end

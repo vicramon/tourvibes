@@ -1,34 +1,35 @@
 .center_form_box
-  %h4{:style => "margin-left:0px;"} Account Info
-  %div{:style => "height:10px;"} &nbsp;
-  - if flash[:update] == 'yes'
-    .update
-      Your changes have been saved
-  = form_for user, :multipart => true do |f|
+  %h4{style: "margin-left:0px;"} Account Info
+  %div{style: "height:10px;"} &nbsp;
+
+  - if flash[:update]
+    .update Your changes have been saved
+
+  = form_for user do |f|
     %label Name:
-    = f.text_field 'name', :class => 'login_text'
+    = f.text_field 'name', class: 'login_text'
     %br/
     %label Email:
-    = f.text_field 'email', :class => 'login_text'
+    = f.text_field 'email', class: 'login_text'
     %br/
     %label Phone:
-    = f.text_field 'cell', :class => 'login_text'
+    = f.text_field 'cell', class: 'login_text'
     %br/
     %label Firm Name:
-    = f.text_field 'firm_name', :class => 'login_text'
+    = f.text_field 'firm_name', class: 'login_text'
     %br/
     %label Photo of You:
-    = f.file_field 'photo', :class => 'login_text'
+    = f.file_field :headshot, class: 'login_text'
     %br/
     - if user.headshot
       %label &nbsp;
-      = image user.headshot.upload.url(:thumb), :style => 'border-radius:5px;margin-top:5px;'
+      = image_tag user.headshot.photo.url(:thumb), style: 'border-radius:5px;margin-top:5px;'
       %br/
     %label Firm's Logo:
-    = f.file_field 'logo', :class => 'login_text'
+    = f.file_field :logo, class: 'login_text'
     %br/
     - if user.logo
       %label &nbsp;
-      = image user.logo.upload.url(:thumb), :style => 'border-radius:5px;margin-top:5px;'
+      = image_tag user.logo.photo.url(:thumb), style: 'border-radius:5px;margin-top:5px;'
       %br/
-    = f.submit 'Save Changes', :class => 'gray_button submit', :style => 'margin-left:167px;'
+    = f.submit 'Save Changes', class: 'gray_button submit', style: 'margin-left:167px;'
