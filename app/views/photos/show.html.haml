@@ -1,15 +1,5 @@
-= render :partial => "edit"
-:css
-  input[type=submit] {
-  	font-family:"Corbel",Arial;
-  }
-- if flash[:message]
-  .update
-    = flash[:message]
-/ Bootstrap CSS fixes for IE6
-/[if lt IE 7] <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css">
 = form_for Upload.new, :html => { :multipart => true, :id => "fileupload"} do |f|
-  = f.hidden_field :house_id, :value => @tour.id
+  = f.hidden_field :tour_id, :value => tour.id
   = f.hidden_field :brand, :value => "photo"
   .row.fileupload-buttonbar{:style => "margin-left:10px;"}
     / The fileinput-button span is used to style the file input field as button
@@ -50,19 +40,19 @@
   {% } else if (o.files.valid && !i) { %}
   <td>
   <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="margin-bottom:-5px;"><div class="bar" style="width:0%;"></div></div>
-  
-  
+
+
   </td>
   <td>			<span style="font-style:italic;display:none;" class="upload_status">
   Uploading, please wait...
   </span></td>
   <td class="start">{% if (!o.options.autoUpload) { %}
-  
+
   <button class="btn btn-primary" style="display:none;">
   <i class="icon-upload icon-white"></i>
   <span>Start</span>
   </button>
-  
+
   {% } %}</td>
   {% } else { %}
   <td colspan="2"></td>
@@ -104,7 +94,7 @@
   </tr>
   {% } %}
 :javascript
-  $('.start').click( function() {	
+  $('.start').click( function() {
   	$('.upload_status').show();
   	$('.refresh_button').show();
   });
@@ -154,8 +144,8 @@
 
   });
 = submit_tag 'Save & Add Titles', :class => 'gray_button blue_button small_button refresh_button', :style => 'width:auto;display:none;', :onclick => 'document.location.reload(true);'
-- if @pics.size > 0
-  = form_tag @tour.edit_photos_path do
+- if tour.photos.size > 0
+  = form_tag tour_photos_path(tour) do
     %br/
     .line &nbsp;
     %table{:cellpadding => "5", :style => "width:100%"}
@@ -165,18 +155,18 @@
     %th
     %th
       - tab_now = 3
-      - for @pic in @pics
+      - for photo in tour.photos
         - tab_now +=1
         %tr
           %td{:style => "text-align:center;"}
-            = image_tag @pic.upload.url(:thumb)
+            = image_tag photo.upload.url(:thumb)
           %td
-            = text_field_tag "title[]", @pic.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;', :tabindex => tab_now
+            = text_field_tag "title[]", photo.room_name, :class => 'login_text', :style => 'width:350px;font-size:16px;', :tabindex => tab_now
           %td
-            \&nbsp; &nbsp; &nbsp; #{link_to 'Remove', @pic, :confirm => 'Are you sure?', :method => :delete}
+            \&nbsp; &nbsp; &nbsp; #{link_to 'Remove', photo, :confirm => 'Are you sure?', :method => :delete}
             /
               ajax delete url
-              data-url="/uploads/<haml:loud> @pic.id </haml:loud>
+              data-url="/uploads/<haml:loud> photo.id </haml:loud>
     %tr
       %td
       %td{:colspan => "2"}
@@ -190,3 +180,13 @@
   <br />
   <haml:loud> f.submit &amp;#39;Submit&amp;#39;, :class =&amp;gt; &amp;#39;gray_button small_button&amp;#39;, :style =&amp;gt; &amp;#39;width:auto;&amp;#39; </haml:loud>
   </haml:block>
+
+:css
+  input[type=submit] {
+  	font-family:"Corbel",Arial;
+  }
+- if flash[:message]
+  .update
+    = flash[:message]
+/ Bootstrap CSS fixes for IE6
+/[if lt IE 7] <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css">

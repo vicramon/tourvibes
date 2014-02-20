@@ -30,7 +30,7 @@ class Tour < ActiveRecord::Base
   end
 
   def music
-    uploads.where(brand: 'music')
+    uploads.where(brand: 'music').first
    end
 
    def has_music
@@ -48,9 +48,9 @@ class Tour < ActiveRecord::Base
 
    def music_name
      if self.music_file
-        SONGS[self.music_file.to_i][0]
+       SONGS[self.music_file.to_i][0]
      elsif self.music
-        self.music.music_file_name
+       self.music.music_file_name
      else
        "No music file"
      end

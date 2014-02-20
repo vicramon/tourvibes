@@ -16,10 +16,10 @@
       - if tour.is_live
         %a{href: tour.takedown_path, style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Take Down
       - else
-        %a{href: tour.publish_path, style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Publish
+        %a{href: tour_publish_path(tour), style: "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;margin-right:20px;"} Publish
 
       %span{:style => "margin-right:15px;"} &nbsp;
-      %a{:href => tour.preview_path, :style => "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;"} Preview
+      %a{:href => tour_preview_path(tour), :style => "border:none;background:none;display:inline;width:auto;padding:0px 0 0;color:#1C5DEB;"} Preview
 
     = link_to "Property Info", tour_property_info_path(tour), style: "margin-left:20px;"
     = link_to "Photos & Videos", tour_photos_path(tour)

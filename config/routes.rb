@@ -10,22 +10,23 @@ TourVibes::Application.routes.draw do
 
   resources :tours, only: [:index, :new, :create] do
     resource :property_info, only: [:show, :update]
-    resource :music, only: [:index, :update]
-    resource :settings, only: [:index, :update]
-    resource :photos, only: [:index, :update]
-    resource :preview, only: :index
-    resource :publish, only: [:index, :create]
+    resource :music, only: [:show, :update]
+    resource :settings, only: [:show, :update]
+    resource :photos, only: [:show, :update]
+    resource :preview, only: :show
+    resource :publish, only: [:show, :create]
+
+    get 'edit', to: 'property_infos#show', as: 'edit'
+    get 'not_live', to: 'tours#not_live', as: 'not_live'
+    get 'live', to: 'tours#live', as: 'live'
+    get 'now_live', to: 'tours#now_live', as: 'now_live'
+    get 'takedown', to: 'tours#takedown', as: 'takedown'
   end
 
-  get '/tours/:id/edit', to: 'property_infos#show'
-  get '/tours/:id/not_live', to: 'tours#not_live'
-  get '/tours/:id/live', to: 'tours#live'
-  get '/tours/:id/now_live', to: 'tours#now_live', as: 'now_live'
-  get '/tours/:id/takedown', to: 'tours#takedown'
-  get '/tours/:id/publish', to: 'tours#publish'
-
+  resources :uploads, only: [:create, :show]
   resources :sign_ups, only: [:new, :create]
 
+  resources :users, only: [:update]
   get 'account', to: 'users#edit', as: 'account'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
@@ -34,7 +35,6 @@ TourVibes::Application.routes.draw do
 
   resources :payments, only: [:new, :create, :update]
 
-  get '/tours/:id/preview', to: 'tours#preview'
   # get '/tours/:id/preview2', to: 'tours#preview_2'
 
   get '/secure_login/:id', to: 'home#secure_login'

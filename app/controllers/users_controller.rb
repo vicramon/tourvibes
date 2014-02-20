@@ -1,4 +1,5 @@
 class UsersController < AuthenticatedController
+  expose(:user) { current_user }
 
   def first_tour
 

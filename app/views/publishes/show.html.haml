@@ -105,7 +105,7 @@
     %br/
 %div{:style => "float:left;margin-left:35px;border: 2px solid #ccc;\tborder-radius:8px;padding:20px 30px 20px 15px;width:auto;"}
   = form_tag "/payments/charge", :method => "post", :id => 'payment-form' do
-    = hidden_field_tag 'house_id', @tour.id
+    = hidden_field_tag 'house_id', tour.id
     #error.error{:style => "display:none;margin-bottom:12px;"}
       %span.payment-errors
     %label Card Number:

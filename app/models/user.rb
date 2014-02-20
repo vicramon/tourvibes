@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Authem::User
   has_many :tours
+  has_many :uploads
 
   has_attached_file :avatar,
      :styles => { :large => "100000x100000>", :thumb => "100x100>" },
