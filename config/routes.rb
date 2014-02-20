@@ -6,7 +6,7 @@ TourVibes::Application.routes.draw do
 
   get '/', to: 'tours#live', constraints: Constraint::LiveDomain.new
 
-  resources :uploads, only: [:create, :show]
+  resources :uploads, only: [:create, :show, :destroy]
   resources :sign_ups, only: [:new, :create]
   resources :payments, only: [:new, :create, :update]
   resources :users, only: [:update]

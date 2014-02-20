@@ -5,6 +5,7 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = yield :head
 
   %body
     .container
@@ -26,7 +27,7 @@
               = link_to "Contact", "#"
               = active_link_to "Login", new_session_path
 
-      = yield :below_header if content_for?(:below_header)
+      = yield :below_header
       .content
         .inner_content.standard_width
 
