@@ -6,6 +6,10 @@ TourVibes::Application.routes.draw do
 
   get '/', to: 'tours#live', constraints: Constraint::LiveDomain.new
 
+  resources :uploads, only: [:create, :show]
+  resources :sign_ups, only: [:new, :create]
+  resources :payments, only: [:new, :create, :update]
+  resources :users, only: [:update]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :tours, only: [:index, :new, :create] do
@@ -21,31 +25,19 @@ TourVibes::Application.routes.draw do
     get 'live', to: 'tours#live', as: 'live'
     get 'now_live', to: 'tours#now_live', as: 'now_live'
     get 'takedown', to: 'tours#takedown', as: 'takedown'
+    get 'about', to: 'tours#about', as: 'about'
+    get 'map', to: 'tours#map', as: 'map'
+    get 'schools', to: 'tours#schools', as: 'schools'
   end
 
-  resources :uploads, only: [:create, :show]
-  resources :sign_ups, only: [:new, :create]
-
-  resources :users, only: [:update]
   get 'account', to: 'users#edit', as: 'account'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
-  get 'contact', to: 'home#contact', as: 'contact'
-  get 'custom_domains', to: 'home#custom_domains'
-
-  resources :payments, only: [:new, :create, :update]
-
-  # get '/tours/:id/preview2', to: 'tours#preview_2'
-
   get '/secure_login/:id', to: 'home#secure_login'
 
-  # view tour routes
-  get '/tours/:id/about', to: 'tours#about'
-  get '/tours/:id/map', to: 'tours#map'
-  get '/tours/:id/schools', to: 'tours#schools'
+  get 'home', to: 'home#index', as: 'home'
+  get 'about', to: 'home#about', as: 'about'
+  get 'contact', to: 'home#contact', as: 'contact'
+  get 'custom_domains', to: 'home#custom_domains', as: 'custom_domains'
 
   root to: 'home#index'
-  get 'about', to: 'home#about', as: 'about'
-  get 'home', to: 'home#index', as: 'home'
-
 end
