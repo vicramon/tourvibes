@@ -1,4 +1,3 @@
-
 <style type="text/css">
 
 ::-webkit-scrollbar {
@@ -121,17 +120,16 @@
   display:none;
 }
 
-
 .kenburns {
   position: relative;
   overflow: hidden;
   display: inline-block;
   border-radius:5px;
   border:2px solid #666;
-
   width:950px;
   height:600px;
 }
+
 .kenburns img {
   position: absolute;
   border-radius:5px;
@@ -155,11 +153,6 @@
 
 }
 
-</style>
-
-
-<style>
-
 .main_image {
   border-radius:5px;
   width:auto;
@@ -172,7 +165,6 @@
 }
 
 /* fullscreen styles */
-
 
 #wrapper:-webkit-full-screen
 {
@@ -224,162 +216,151 @@
   border: 0 none;
 }
 
+.thumb {
+  border:2px solid #242424;
+  cursor:pointer;
+}
 
+.thumb_selected {
+  border:2px solid #ccc;
+}
 
 </style>
 
+<div id="main_image_wrapper">
+  <div align="center">
+    <div id="kenburns" class="kenburns tour_items">
+        <%= image_tag tour.photos.first.photo.url(:large), :class => 'tour_items main_image' %>
+    </div>
+
+  </div>
+
+  <div id="about" style="display:none;margin-left:20px;margin-top:10px;">
+    <div class="page_title">
+      About
+    </div>
+
+    <div style="float:right;">
+      <%# image_tag tour.photos[0].photo.url(:middle) %>
+    </div>
+    <div style="width:600px;">
+    <%= simple_format tour.desc %>
+    </div>
+  </div>
+
+  <div id="contact" style="display:none;margin-left:20px;margin-top:10px;">
+    <div class="page_title">
+      Realtor Info
+    </div>
+    <br />
+
+    <%if @realtor.headshot %>
+    <div style="margin-bottom:15px;float:left;margin-right:15px;">
+        <%= image_tag @realtor.headshot.photo.url(:large), :style => 'height:140px;border-radius:4px;' %>
+      <br /><br /><br />
+    </div>
+    <% end %>
 
 
+    <div style="width:600px;float:left;margin-top:8px;">
 
-    <div id="main_image_wrapper">
-      <div align="center">
-        <div id="kenburns" class="kenburns tour_items">
-            <%= image_tag tour.photos[0].upload.url(:large), :class => 'tour_items main_image' %>
-        </div>
+        <% if @realtor.name.present? %>
+        <%= @realtor.name %><p>
+      <% end %>
+      <% if @realtor.cell.present? %>
+        <%= @realtor.cell %><p>
+      <% end %>
+    <%= @realtor.email %><p>
 
-      </div>
+    <% if @realtor.firm_name.present? %>
+      <%= @realtor.firm_name %><p>
+    <% end %>
 
-      <div id="about" style="display:none;margin-left:20px;margin-top:10px;">
-        <div class="page_title">
-          About
-        </div>
+    </div>
 
-        <div style="float:right;">
-          <%# image_tag tour.uploads[0].upload.url(:middle) %>
-        </div>
-        <div style="width:600px;">
-        <%= simple_format tour.desc %>
-        </div>
-      </div>
-
-      <div id="contact" style="display:none;margin-left:20px;margin-top:10px;">
-        <div class="page_title">
-          Realtor Info
-        </div>
+    <div style="clear:left;">
+      <%if @realtor.logo %>
         <br />
-
-        <%if @realtor.headshot %>
-        <div style="margin-bottom:15px;float:left;margin-right:15px;">
-            <%= image_tag @realtor.headshot.upload.url(:large), :style => 'height:140px;border-radius:4px;' %>
-          <br /><br /><br />
-        </div>
-        <% end %>
-
-
-        <div style="width:600px;float:left;margin-top:8px;">
-
-            <% if @realtor.name.present? %>
-            <%= @realtor.name %><p>
-          <% end %>
-          <% if @realtor.cell.present? %>
-            <%= @realtor.cell %><p>
-          <% end %>
-        <%= @realtor.email %><p>
-
-        <% if @realtor.firm_name.present? %>
-          <%= @realtor.firm_name %><p>
-        <% end %>
-
-        </div>
-
-        <div style="clear:left;">
-          <%if @realtor.logo %>
-            <br />
-            <%= image_tag @realtor.logo.upload.url(:large), :style => 'height:70px;' %>
-          <% end %>
-        </div>
-      </div>
-
-      <div id="map" align="center" style="display:none;">
-        <div id="map_canvas" style="width: 90%; height:600px;"></div>
-      </div>
-
-    </div>
-
-    <div class="room_title tour_items">
-      <span class="room_title_bg">
-      <%= tour.photos[0].room_name %>
-      </span>
-    </div>
-
-
-    <div style="height:15px;">&nbsp;</div>
-
-    <div class="controls tour_items" style="z-index:1000;">
-      <div class="controls_inner">
-
-      <% if tour.autoplay_music %>
-        <%= image_tag 'icons/volume.png', :id => 'volume'  %>
-        <%= image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;' %>
-      <% else %>
-        <%= image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'  %>
-        <%= image_tag 'icons/muted.png', :id => 'muted' %>
+        <%= image_tag @realtor.logo.photo.url(:large), :style => 'height:70px;' %>
       <% end %>
-      <%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
-
-      <% if tour.autoplay %>
-      <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;' %>
-      <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
-      <% else %>
-      <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;display:none;' %>
-      <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;' %>
-      <% end %>
-
-      <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
-
-      <%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
-      <%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
-
-      </div>
     </div>
+  </div>
 
-    <div style="height:20px;">&nbsp;</div>
+  <div id="map" align="center" style="display:none;">
+    <div id="map_canvas" style="width: 90%; height:600px;"></div>
+  </div>
 
-    <style>
+</div>
 
-    .thumb {
-      border:2px solid #242424;
-      cursor:pointer;
-    }
-
-    .thumb_selected {
-      border:2px solid #ccc;
-    }
-
-    </style>
+<div class="room_title tour_items">
+  <span class="room_title_bg">
+  <%= tour.photos[0].room_name %>
+  </span>
+</div>
 
 
-    <div style="height:115px;width:<%= (tour.photos.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" id="gallery" class="gallery tour_items">
+<div style="height:15px;">&nbsp;</div>
 
-      <% x = 0 %>
-    <% for @pic in tour.photos %>
+<div class="controls tour_items" style="z-index:1000;">
+  <div class="controls_inner">
 
-      <div style="display:inline-block;margin-right:4px;" class="tour_items gallery">
-      <%= image_tag @pic.upload.url(:middle), :style => 'border-radius:4px;', :id => "thumb_#{x}", :class => 'thumb', :thumb_num => x.to_i %>
-      </div>
-      <% x +=1 %>
-    <% end %>
+  <% if tour.autoplay_music %>
+    <%= image_tag 'icons/volume.png', :id => 'volume'  %>
+    <%= image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;' %>
+  <% else %>
+    <%= image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'  %>
+    <%= image_tag 'icons/muted.png', :id => 'muted' %>
+  <% end %>
+  <%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
+
+  <% if tour.autoplay %>
+  <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;' %>
+  <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
+  <% else %>
+  <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;display:none;' %>
+  <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;' %>
+  <% end %>
+
+  <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
+
+  <%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
+  <%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
+
+  </div>
+</div>
+
+<div style="height:20px;">&nbsp;</div>
+
+<div style="height:115px;width:<%= (tour.photos.size*200) %>;overflow-x:scroll;overflow-y:hidden;white-space:nowrap;padding-bottom:20px;" id="gallery" class="gallery tour_items">
+
+  <% x = 0 %>
+  <% for @pic in tour.photos %>
+
+    <div style="display:inline-block;margin-right:4px;" class="tour_items gallery">
+      <%= image_tag @pic.photo.url(:middle), :style => 'border-radius:4px;', :id => "thumb_#{x}", :class => 'thumb', :thumb_num => x.to_i %>
     </div>
+    <% x +=1 %>
+  <% end %>
+</div>
 
 
-    <% if browser.firefox? %>
+<% if browser.firefox? %>
 
-        <object id="music2" type="audio/mp3" data="<%= tour.music_src %>" width="0" height="0">
-          <param name="loop" value="0" />
-          <param name="autoplay" value="<%= tour.autoplay_music %>">
-          <param name="showcontrols" value="false" />
-          <param name="showdisplay" value="false" />
-        </object>
+    <object id="music2" type="audio/mp3" data="<%= tour.music_src %>" width="0" height="0">
+      <param name="loop" value="0" />
+      <param name="autoplay" value="<%= tour.autoplay_music %>">
+      <param name="showcontrols" value="false" />
+      <param name="showdisplay" value="false" />
+    </object>
 
-    <% else %>
+<% else %>
 
-      <audio id="music" <% if tour.autoplay_music %>autoplay<% end %> loop>
-        <source src="<%= tour.music_src %>" type="audio/mpeg">
-        <embed height="0" width="0" src="<%= tour.music_src %>">
-      </audio>
+  <audio id="music" <% if tour.autoplay_music %>autoplay<% end %> loop>
+    <source src="<%= tour.music_src %>" type="audio/mpeg">
+    <embed height="0" width="0" src="<%= tour.music_src %>">
+  </audio>
 
-    <% end %>
-
+<% end %>
 
 <script type="text/javascript">
 
@@ -704,7 +685,7 @@ document.addEventListener("fullscreenchange", function (e) {
 
     <% i = 0 %>
     <% for @pic in tour.photos %>
-      pics[<%= i %>] = "<%= @pic.upload.url(:large) %>";
+      pics[<%= i %>] = "<%= @pic.photo.url(:large) %>";
       room_names[<%= i %>] = "<%= @pic.room_name %>";
       <% i += 1 %>
     <% end %>
