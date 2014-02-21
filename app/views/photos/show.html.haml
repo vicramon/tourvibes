@@ -15,15 +15,12 @@
 
     %span.gray_button.small_button.start{:style => "cursor:pointer;"}
       %i.icon-upload
-      %span{:tabindex => "2"} Start Upload
+      %span.start{ tabindex: '2' } Start Upload
     &nbsp; &nbsp;
 
     You can also drag and drop files onto this page.
 
   %div{:style => "height:15px;"} &nbsp;
-
-  = f.submit 'Save & Add Titles', :class => 'gray_button blue_button small_button refresh_button', :style => 'width:auto;display:none;', :onclick => 'document.location.reload(true);'
-
 
   %table.table.table-striped{:role => "presentation", :style => "width:80%;margin-left:15px;"}
     %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
@@ -91,6 +88,9 @@
   </tr>
   {% } %}
 
+= submit_tag 'Save & Add Titles', :class => 'gray_button blue_button small_button refresh_button', :style => 'width:auto;display:none;', :onclick => 'document.location.reload(true);'
+
+
 - if tour.photos.any?
   = form_for tour, url: tour_photos_path(tour) do |f|
     %br/
@@ -115,12 +115,3 @@
         %br
         = submit_tag 'Save Descriptions', class: 'gray_button small_button submit', style: 'width:auto;'
         = submit_tag 'Save & Go to Next Step »', class: 'gray_button blue_button small_button', style: 'width:auto;'
-
-:css
-  input[type=submit] {
-    font-family:"Corbel",Arial;
-  }
-
-- if flash[:message]
-  .update
-    = flash[:message]

@@ -5,9 +5,8 @@ class UploadsController < AuthenticatedController
   expose(:upload, attributes: :upload_params)
 
   def create
-    require 'pry'; binding.pry;
     if upload.save
-      render json: [upload.to_jq_upload].to_json, status: :created, location: upload
+      render json: upload.to_jq_upload.to_json, status: :created, location: upload
     else
       render json: upload.errors, status: :unprocessable_entity
     end

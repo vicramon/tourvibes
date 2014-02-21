@@ -8,13 +8,14 @@ class Upload < ActiveRecord::Base
     bucket: 'tour_files'
 
   def to_jq_upload
-    {
+    { files: [{
       "name" => read_attribute(:photo_file_name),
       "size" => read_attribute(:photo_file_size),
       "url" => photo.url(:thumb),
       "delete_url" => upload_path(self),
       "delete_type" => "DELETE",
       "thumbnail_url" => photo.url(:thumb)
+    }]
     }
   end
 

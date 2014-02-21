@@ -3,4 +3,5 @@
 //= require jquery-fileupload
 //= require spectrum
 //= require asset
-//= require_tree .
+//= require liveval
+//= require jquery.validate.min
