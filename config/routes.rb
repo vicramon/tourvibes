@@ -1,7 +1,3 @@
-require_relative '../lib/constraints/custom_domain_constraint'
-require_relative '../lib/constraints/subdomain_constraint'
-require_relative '../lib/constraints/live_domain_constraint'
-
 TourVibes::Application.routes.draw do
 
   get '/', to: 'tours#live', constraints: Constraint::LiveDomain.new
