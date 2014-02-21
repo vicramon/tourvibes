@@ -14,8 +14,9 @@ class UploadsController < AuthenticatedController
   end
 
   def destroy
-    upload.destroy if upload
-    redirect_to tour_photos_path(tour)
+    upload = Upload.find(params[:id])
+    upload.destroy if upload.tour.user == current_user
+    redirect_to tour_photos_path(upload.tour)
   end
 
   private
