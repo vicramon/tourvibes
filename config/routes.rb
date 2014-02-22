@@ -17,11 +17,11 @@ TourVibes::Application.routes.draw do
     resource :settings, only: [:show, :update]
     resource :photos, only: [:show, :update]
     resource :preview, only: :show
-    resource :publish, only: [:show, :create]
+    resource :publish, only: [:show, :create, :update]
 
     get 'edit', to: 'property_infos#show', as: 'edit'
     get 'live', to: 'tours#live', as: 'live'
-    get 'now_live', to: 'tours#now_live', as: 'now_live'
+    get 'now_live', to: 'publishes#now_live', as: 'now_live'
     get 'takedown', to: 'tours#takedown', as: 'takedown'
 
     resource :map, only: :show

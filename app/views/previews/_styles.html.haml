@@ -1,0 +1,105 @@
+:css
+    body, html {
+        padding:0;
+        margin:0;
+        background:#{tour.bg_color};
+        color:#{tour.text_color};
+        font-family:"Avenir";
+        font-size:15px;
+      }
+
+      @font-face {
+      font-family:"Avenir";
+    /*  src: url('http://s3.amazonaws.com/tour_files/site_files/Avenir-Book.otf'); */
+      src: local("Avenir"), url("http://s3.amazonaws.com/tour_files/site_files/Avenir-Book.otf") format('opentype');
+      font-weight: normal;
+        font-style: normal;
+      }
+
+      .map_text {
+        color:#333;
+      }
+
+      a, a:visited, a:active, a:hover {
+        color:#{tour.link_color};
+        text-decoration:none;
+      }
+
+      a:hover {
+        color:white;
+      }
+
+      .property_title {
+        font-family:"Avenir",Helvetica,Arial;
+        font-size:28px;
+        color:#E8E8E8;
+        text-transform:uppercase;
+        margin-left:8px;
+      }
+
+      .container {
+        width:1000px;
+        margin:0 auto;
+        margin-top:10px;
+        margin-bottom:40px;
+      }
+
+      .wrapper {
+        margin-top:12px;
+        background:#{tour.wrapper_color};
+        border-radius:10px;
+        padding:16px 20px 15px;
+        min-height:500px;
+      }
+
+      .page_title {
+        font-size:22px;
+        color:#{tour.title_color};
+      }
+
+      .room_title {
+        font-size:22px;
+        /*color:#E8E8E8;*/
+        color:white;
+        position:absolute;
+        width:100%;
+        text-align:center;
+        left:0px;
+        top:87px;
+      }
+
+      .room_title_bg {
+        background:black;
+        opacity:.5;
+        padding:5px 40px;
+        border-radius:10px;
+      }
+
+      .nav_right {
+        float:right;
+        padding:8px 25px;
+        background:#{tour.wrapper_color};
+        border-radius:5px;
+      }
+
+      .nav_right a {
+        margin-left:20px;
+      }
+
+      .controls {
+        background:url('/assets/player_bg.png') repeat-x;
+        border-radius:10px;
+        border:1px solid #292929;
+        height:49px;
+        box-shadow:0 3px 3px #191919;
+      }
+
+      .controls_inner {
+        margin-top:10px;
+        text-align:center;
+      }
+
+      .controls img {
+        margin:0 60px;
+        cursor:pointer;
+      }

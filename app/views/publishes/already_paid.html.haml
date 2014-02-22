@@ -1,0 +1,8 @@
+%h4 Publish Tour
+%div{:style => "float:left;min-width:365px;width:auto;"}
+  Click the button below to make your tour live.
+  %br
+  %br
+  = form_for tour, url: tour_publish_path(tour) do |f|
+    = f.hidden_field :live, value: true
+    = f.submit 'Publish Tour', class: 'gray_button blue_button'

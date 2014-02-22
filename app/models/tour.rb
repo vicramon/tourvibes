@@ -16,11 +16,11 @@ class Tour < ActiveRecord::Base
   end
 
   def set_default_colors
-    bg_color = "#000000"
-    link_color = "#e8e8e8"
-    wrapper_color = "#242424"
-    text_color = "#cccccc"
-    title_color = "#e8e8e8"
+    self.bg_color = "#000000"
+    self.link_color = "#e8e8e8"
+    self.wrapper_color = "#242424"
+    self.text_color = "#cccccc"
+    self.title_color = "#e8e8e8"
     save
   end
 
@@ -37,8 +37,46 @@ class Tour < ActiveRecord::Base
     live? ? "Live" : "Not Live"
   end
 
+  def live_path
+    if custom_domain.present?
+      outgoing_custom_domain
+    else
+      outgoing_subdomain
+    end
+  end
+
+  def outgoing_custom_domain
+    if custom_domain.include? "http://"
+      custom_domain
+    else
+      "http://#{custom_domain}"
+    end
+  end
+
+  def outgoing_subdomain
+    "http://#{subdomain}.tourvibes.com"
+  end
+
   def music_file_number
     Media::SONGS[self.music_file][1]
+  end
+
+  def outgoing_schools_url
+    if schools_url.include? "http://"
+      schools_url
+    else
+      "http://" + schools_url
+    end
+  end
+
+  def pretty_address
+    address = address_1
+    address += "<br />#{address_2}" if address_2.present?
+    address += "<br />#{city}, #{state} #{zip}"
+  end
+
+  def no_live_path?
+    custom_domain.blank? && subdomain.blank?
   end
 
 end

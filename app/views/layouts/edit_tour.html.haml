@@ -21,7 +21,10 @@
 
       %span{ :style => "margin-right:15px;" } &nbsp;
 
-      = link_to "Preview", tour_preview_path(tour)
+      - if tour.live?
+        = link_to "View Live", tour.live_path
+      - else
+        = link_to "Preview", tour_preview_path(tour)
 
     = active_link_to "Property Info", tour_property_info_path(tour)
     = active_link_to "Photos", tour_photos_path(tour)
@@ -30,7 +33,10 @@
 
   - if flash[:update]
     .update{ style: 'margin-top: 20px' }
-      Your changes have been saved.
+      - if flash[:update] == true
+        Your changes have been saved.
+      - else
+        = flash[:update]
   - else
     .space30
 

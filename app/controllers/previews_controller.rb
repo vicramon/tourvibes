@@ -4,9 +4,8 @@ class PreviewsController < EditTourController
 
   def show
     @realtor = tour.user
-    if tour.photos.size == 0
-      flash[:message] = "You must upload photos before you can preview your tour."
-      redirect_to tour_photos_path(tour)
+    if tour.photos.empty?
+      redirect_to tour_photos_path(tour), update: "You must upload photos before you can preview your tour."
     end
   end
 

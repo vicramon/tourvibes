@@ -3,12 +3,12 @@
 
   = f.label :subdomain, "Subdomain:"
   = f.text_field 'subdomain', :class => 'login_text'
-  \&nbsp; &nbsp;(e.g. 1600Penn.tourvibes.com)
+  \&nbsp; &nbsp;(example: 1600Penn)
   %br/
 
   = f.label :custom_domain, "Custom Domain:"
   = f.text_field 'custom_domain', :class => 'login_text'
-  \&nbsp; &nbsp;(e.g. 1600Pen.com,
+  \&nbsp; &nbsp;(example: 1600Pen.com,
   = succeed ")" do
     %a{:href => "/custom_domains"} setup info here
   %br/

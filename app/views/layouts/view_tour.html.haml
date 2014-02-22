@@ -1,210 +1,31 @@
 !!!
 %head
   %title= tour.name
-  = javascript_include_tag "application"
-  %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyCyfQ4EDN0ufXbAQnfjvw5gK-BP_-FzclM&sensor=false", :type => "text/javascript"}
-  :javascript
-    var geocoder;
-          var map;
 
-          function initialize(address) {
+  = javascript_include_tag "jquery", "jquery_ujs"
+  = render 'styles'
+  = render 'geocoder'
 
-
-          var address = address
-          var location;
-          var lat;
-          var lng;
-            geocoder = new google.maps.Geocoder();
-
-          geocoder.geocode( { 'address': address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                location = results[0].geometry.location;
-
-            console.log('location: ' + location);
-            lat = results[0].geometry.location.lat();
-            lng = results[0].geometry.location.lng();
-            console.log('lat: ' + lat);
-            console.log('lng: ' + lng);
-
-            var latlng = new google.maps.LatLng(lat, lng);
-          //latlng = new google.maps.LatLng(32.8430731, -96.79948760000002);
-
-            var mapOptions = {
-              zoom: 14,
-              center: latlng,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-
-            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-          var marker = new google.maps.Marker({
-                  map: map,
-                  position: latlng
-              });
-
-          var infowindow = new google.maps.InfoWindow({
-              content: "<div class='map_text' style='text-align:left;color#333333;line-height:1.7;'>"
-                +  "#{tour.address_1}<br />"
-                +  "<haml:silent> if tour.address_2.present? </haml:silent><haml:block>"
-                +  "#{tour.address_2}<br />"
-                +  "</haml:block>"
-                +  "#{tour.city}, #{tour.state} #{tour.zip}</div>"
-          });
-          infowindow.open(map,marker);
-
-
-            }
-          });
-          //codeAddress("#{tour.address_1 + ', ' + tour.address_2 + ', ' + tour.city + ', ' + tour.state + ' ' + tour.zip}");
-          }
-
-          function codeAddress(address) {
-            var address = address
-        //document.getElementById("address").value;
-            geocoder.geocode( { 'address': address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            var infowindow = new google.maps.InfoWindow({
-                content: "<div class='map_text' style='text-align:left;color#333333;line-height:1.7;'>"
-                  +  "#{tour.address_1}<br />"
-                  +  "<haml:silent> if tour.address_2.present? </haml:silent><haml:block>"
-                  +  "#{tour.address_2}<br />"
-                  +  "</haml:block>"
-                  +  "#{tour.city}, #{tour.state} #{tour.zip}</div>"
-            });
-            infowindow.open(map,marker);
-            //$('.map_text').css('color',"#333");
-
-              } else {
-                //alert("Geocode was not successful for the following reason: " + status);
-              }
-            });
-          }
 %body
-  :css
-    body, html {
-        padding:0;
-        margin:0;
-        background:#{tour.bg_color};
-        color:#{tour.text_color};
-        font-family:"Avenir";
-        font-size:15px;
-      }
-
-      @font-face {
-      font-family:"Avenir";
-    /*  src: url('http://s3.amazonaws.com/tour_files/site_files/Avenir-Book.otf'); */
-      src: local("Avenir"), url("http://s3.amazonaws.com/tour_files/site_files/Avenir-Book.otf") format('opentype');
-      font-weight: normal;
-        font-style: normal;
-      }
-
-      .map_text {
-        color:#333;
-      }
-
-      a, a:visited, a:active, a:hover {
-        color:#{tour.link_color};
-        text-decoration:none;
-      }
-
-      a:hover {
-        color:white;
-      }
-
-      .property_title {
-        font-family:"Avenir",Helvetica,Arial;
-        font-size:28px;
-        color:#E8E8E8;
-        text-transform:uppercase;
-        margin-left:8px;
-      }
-
-      .container {
-        width:1000px;
-        margin:0 auto;
-        margin-top:10px;
-        margin-bottom:40px;
-      }
-
-      .wrapper {
-        margin-top:12px;
-        background:#{tour.wrapper_color};
-        border-radius:10px;
-        padding:16px 20px 15px;
-        min-height:500px;
-      }
-
-      .page_title {
-        font-size:22px;
-        color:#{tour.title_color};
-      }
-
-      .room_title {
-        font-size:22px;
-        /*color:#E8E8E8;*/
-        color:white;
-        position:absolute;
-        width:100%;
-        text-align:center;
-        left:0px;
-        top:87px;
-      }
-
-      .room_title_bg {
-        background:black;
-        opacity:.5;
-        padding:5px 40px;
-        border-radius:10px;
-      }
-
-      .nav_right {
-        float:right;
-        padding:8px 25px;
-        background:#{tour.wrapper_color};
-        border-radius:5px;
-      }
-
-      .nav_right a {
-        margin-left:20px;
-      }
-
-      .controls {
-        background:url('/assets/player_bg.png') repeat-x;
-        border-radius:10px;
-        border:1px solid #292929;
-        height:49px;
-        box-shadow:0 3px 3px #191919;
-      }
-
-      .controls_inner {
-        margin-top:10px;
-        text-align:center;
-      }
-
-      .controls img {
-        margin:0 60px;
-        cursor:pointer;
-      }
   #fullscreen{:style => "height:100%;width:100%;position:fixed;top:0;left:0;display:none;"}
     %div{:align => "center"}
-      /
-        <div class="kenburns" style="width:100%;height:100%;border:0;">
       = image_tag tour.photos[0].photo.url(:large), :style => 'height:100%', :class => 'main_image'
       .room_title{:style => "top:20px;"}
         %span.room_title_bg
           = tour.photos[0].room_name
+
   .container
     .nav_right
-      %a#tour_link{:href => "#", :style => "margin-left:0;"} Tour
-      %a#contact_link{:href => "#"} Realtor Info
-      %a#about_link{:href => "#"} About
-      %a#map_link{:href => "#"} Map
-      %a{:href => tour.schools_url, :target => "_blank"} Schools
+      %a#tour_link{href: "#", style: "margin-left:0;"} Tour
+      %a#contact_link{href: "#"} Realtor Info
+      - if tour.desc.present?
+        %a#about_link{href: "#"} About
+
+      %a#map_link{href: "#"} Map
+
+      - if tour.schools_url.present?
+        %a{href: tour.outgoing_schools_url, target: "_blank"} Schools
+
     .property_title= tour.name
     #wrapper.wrapper
       = yield

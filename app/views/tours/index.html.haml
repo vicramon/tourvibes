@@ -35,7 +35,10 @@
           %span{:style => "color:#999"}
             \&nbsp;  &nbsp;|&nbsp;
           %span{:style => "width:60px;display:inline-block;text-align:center;"}
-            = link_to "View", tour_visit_path(tour)
+            - if tour.live?
+              = link_to "View", tour.live_path
+            - else
+              = link_to "Preview", tour_visit_path(tour)
           %span{:style => "color:#999"}
             \&nbsp;|&nbsp;&nbsp;
           - if tour.live?
