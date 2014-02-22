@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include Authem::ControllerSupport
 
+  add_flash_types :update, :error
+
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end

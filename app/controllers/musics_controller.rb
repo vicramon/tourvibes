@@ -3,7 +3,7 @@ class MusicsController < EditTourController
   def update
     tour.save
 
-    flash[:update] = 'yes'
+    flash[:update] = true
     if params[:commit] == "Save Changes"
       redirect_to tour_music_path
     else
