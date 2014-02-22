@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def root_domain_path
+    'http://tourvibes.com'
+  end
+
   def tour_params
     params.require(:tour).permit(:title, :address_1, :address_2, :desc, :city,
       :state, :zip, :user_id, :bg_color, :link_color, :wrapper_color, :text_color,

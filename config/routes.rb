@@ -1,6 +1,9 @@
 TourVibes::Application.routes.draw do
 
-  get '/', to: 'tours#live', constraints: Constraint::LiveDomain.new
+  constraints Constraint::LiveDomain.new do
+    get '/', to: 'live_tours#index'
+    get 'not_found', to: 'live_tours#not_found', as: 'not_found'
+  end
 
   resources :uploads, only: [:create, :show, :destroy]
   resources :sign_ups, only: [:new, :create]
@@ -17,13 +20,12 @@ TourVibes::Application.routes.draw do
     resource :publish, only: [:show, :create]
 
     get 'edit', to: 'property_infos#show', as: 'edit'
-    get 'not_live', to: 'tours#not_live', as: 'not_live'
     get 'live', to: 'tours#live', as: 'live'
     get 'now_live', to: 'tours#now_live', as: 'now_live'
     get 'takedown', to: 'tours#takedown', as: 'takedown'
-    get 'about', to: 'tours#about', as: 'about'
-    get 'map', to: 'tours#map', as: 'map'
-    get 'schools', to: 'tours#schools', as: 'schools'
+
+    resource :map, only: :show
+    resource :realtor, only: :show
   end
 
   get 'account', to: 'users#edit', as: 'account'
