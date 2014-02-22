@@ -3,6 +3,7 @@ class PublishesController < EditTourController
   def show
     if Rails.env.production? and !request.ssl?
       redirect_to "https://tourvibes.herokuapp.com/secure_login/#{current_user.login_hash}/#{tour.id}"
+      return
     end
 
     if tour.no_live_path?
