@@ -292,7 +292,7 @@
 </div>
 
 <div class="room_title tour_items">
-  <span class="room_title_bg">
+  <span class="room_title_bg" style="<% if tour.photos[0].room_name.blank? %>display:none<% end %>">
   <%= tour.photos[0].room_name %>
   </span>
 </div>
