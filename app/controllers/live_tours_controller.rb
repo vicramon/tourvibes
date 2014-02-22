@@ -15,11 +15,11 @@ class LiveToursController < ApplicationController
 
   def tour_by_subdomain
     subdomain = request.subdomain.presence
-    Tour.find_by(subdomain: subdomain, live: true)
+    Tour.find_by(subdomain: subdomain.downcase, live: true)
   end
 
   def tour_by_custom_domain
-    Tour.find_by(custom_domain: request.domain, live: true)
+    Tour.find_by(custom_domain: request.domain.downcase, live: true)
   end
 
 end
