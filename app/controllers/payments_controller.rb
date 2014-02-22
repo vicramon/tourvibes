@@ -1,76 +1,33 @@
 class PaymentsController < ApplicationController
 
-  def charge
+  def create
+    tour = Tour.find_by_id(params[:tour_id])
+    token = params[:token]
+    begin
+      charge(tour, token, current_user)
+      tour.update_attributes paid: true, live: true
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to tour_publish_path(tour) and return
+    end
+    redirect_to tour_now_live_path(tour)
+  end
 
-    Stripe.api_key = "sk_live_Ak1UC3CZ3hciZuFVYQVO1seS"
+  private
 
-    @tour = House.find_by_id(params[:house_id])
-    token = params[:stripeToken]
-
+  def charge(tour, token, user)
     charge = Stripe::Charge.create(
-      :amount => 1000, # amount in cents, again
-      :currency => "usd",
-      :card => token,
-      :description => @user.id.to_s + ' ' + @user.email
+      amount: 1000,
+      currency: "usd",
+      card: token,
+      description: tour.address_1,
+      metadata: {
+        user_id: user.id,
+        user_email: user.email,
+        tour_id: tour.id
+      }
     )
-
-    @tour.paid = true
-    @tour.live = true
-    @tour.save
-
-    redirect_to "/tour/#{@tour.id}/now_live" and return
   end
 
-  def charge_new
-
-    Stripe.api_key = "sk_test_SI4WmEWCA7fnUtnmsH0qAZ0m"
-
-    @tour = House.find_by_id(params[:house_id])
-    token = params[:stripeToken]
-
-    customer = Stripe::Customer.create(
-      :card => token,
-      :description => @user.id.to_s + ' ' + @user.email
-    )
-
-    Stripe::Charge.create(
-        :amount => 1000, # in cents
-        :currency => "usd",
-        :customer => customer.id
-    )
-
-    @user.stripe_id = customer.id
-    @user.save
-
-    @tour.paid = true
-    @tour.live = true
-    @tour.save
-
-    redirect_to "/tour/#{@tour.id}/now_live" and return
-
-  end
-
-  def charge_existing
-
-    Stripe.api_key = "sk_test_SI4WmEWCA7fnUtnmsH0qAZ0m"
-
-    @tour = House.find_by_id(params[:house_id])
-    token = params[:stripeToken]
-
-    customer_id = @user.stripe_id
-
-    Stripe::Charge.create(
-        :amount => 1000, # in cents
-        :currency => "usd",
-        :customer => customer_id
-    )
-
-    @tour.paid = true
-    @tour.live = true
-    @tour.save
-
-    redirect_to "/tour/#{@tour.id}/now_live" and return
-
-  end
 
 end

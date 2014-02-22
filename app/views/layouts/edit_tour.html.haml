@@ -37,8 +37,13 @@
         Your changes have been saved.
       - else
         = flash[:update]
-  - else
+
+  - if flash[:error]
+    .error{ style: 'margin-top: 20px' }= flash[:error]
+
+  - if flash[:error].blank? && flash[:update].blank?
     .space30
+
 
   = yield
 
