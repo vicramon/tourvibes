@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   private
 
   def root_domain_path
-    'http://tourvibes.com'
+    "http://#{ENV.fetch('APP_DOMAIN')}"
   end
 
   def tour_params

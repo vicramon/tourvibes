@@ -30,7 +30,8 @@ TourVibes::Application.routes.draw do
 
   get 'account', to: 'users#edit', as: 'account'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  get '/secure_login/:id', to: 'home#secure_login'
+
+  get 'secure_login/:login_hash/:tour_id', to: 'sessions#secure_login'
 
   get 'home', to: 'home#index', as: 'home'
   get 'about', to: 'home#about', as: 'about'

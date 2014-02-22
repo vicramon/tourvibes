@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
       flash[:error] = e.message
       redirect_to tour_publish_path(tour) and return
     end
-    redirect_to tour_now_live_path(tour)
+    redirect_to "http://#{ENV.fetch('APP_DOMAIN')}#{tour_now_live_path(tour)}"
   end
 
   private
