@@ -36,6 +36,11 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     browser (0.4.0)
     builder (3.1.4)
     capybara (2.2.1)
@@ -71,6 +76,7 @@ GEM
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
     database_cleaner (1.2.0)
+    debug_inspector (0.0.2)
     decent_exposure (2.3.1)
     diff-lcs (1.2.5)
     dotenv (0.9.0)
@@ -218,6 +224,8 @@ PLATFORMS
 DEPENDENCIES
   authem
   aws-sdk
+  better_errors
+  binding_of_caller
   browser
   coffee-rails
   cucumber-rails
