@@ -4,6 +4,7 @@ class Tour < ActiveRecord::Base
   has_many :photos, -> { where(brand: 'photo').order("created_at desc") }, class_name: 'Upload'
 
   accepts_nested_attributes_for :photos
+  validates :subdomain, :custom_domain, uniqueness: true, allow_blank: true
 
   def name
     return title if title.present?

@@ -4,13 +4,16 @@ class SettingsController < EditTourController
     tour.attributes = tour_params
     HerokuDomainManager.update(tour)
     downcase_domains(tour)
-    tour.save
 
-    if params[:commit] == "Save Changes"
-      flash[:update] = true
-      redirect_to tour_settings_path(tour)
+    if tour.save
+      if params[:commit] == "Save Changes"
+        redirect_to tour_settings_path(tour), update: true
+      else
+        redirect_to tour_publish_path(tour)
+      end
     else
-      redirect_to tour_publish_path(tour)
+      error = tour.errors.full_messages.map { |error| "#{error}<br />" }.join.html_safe
+      redirect_to tour_settings_path, error: error
     end
   end
 
