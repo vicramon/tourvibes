@@ -22,9 +22,9 @@
               = active_link_to "Logout", logout_path
             - else
               = active_link_to "Home", root_path
-              = link_to "How it Works", "#", id: 'how_link'
-              = link_to "Features", "#", id: 'feature_link'
-              = link_to "Contact", "#"
+              = link_to "How it Works", root_path(anchor: 'how'),  class: 'how_link'
+              = link_to "Features", root_path(anchor: 'features'), class: 'feature_link'
+              = link_to "Contact", contact_path
               = active_link_to "Login", new_session_path
 
       = yield :below_header
@@ -44,16 +44,11 @@
     .footer
       .footer_inner.standard_width
         %div{:style => "float:left;margin-right:50px;"}
-          %a{:href => "/"} Home
-          - if @page == "home"
-            %a#how_link{:href => "#"} How it Works
-            %a#feature_link{:href => "#"} Features
-          - else
-            %a#how_link{:href => "/home#how"} How it Works
-            %a#feature_link{:href => "/home#features"} Features
+          = link_to "Home", root_path
+          = link_to "How it Works", root_path(anchor: 'how'),  class: 'how_link'
+          = link_to "Features", root_path(anchor: 'features'), class: 'feature_link'
         %div{:style => "float:left;"}
           = link_to "Contact", contact_path
           = link_to "Login", new_session_path
-          = link_to "About", about_path
     = render 'includes/olark'
     = javascript_include_tag 'google_analytics'

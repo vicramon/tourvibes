@@ -153,22 +153,22 @@
 %div{:style => "clear:both;"} &nbsp;
 
 :javascript
-  $('#feature_link').click(function() {
+  $('.feature_link').click(function() {
     $('html, body').animate({
       scrollTop: $("#features").offset().top
     }, 600);
+    return false;
   });
 
-  $('#pricing_link').click(function() {
+  $('.pricing_link').click(function() {
     $('html, body').animate({
       scrollTop: $("#pricing").offset().top
     }, 600);
-
   });
 
-  $('#how_link').click(function() {
+  $('.how_link').click(function() {
     $('html, body').animate({
       scrollTop: $("#how").offset().top
     }, 600);
-
+    return false;
   });
