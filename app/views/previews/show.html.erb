@@ -710,13 +710,11 @@ document.addEventListener("fullscreenchange", function (e) {
       }
 
       if (n > pics.length-1) { n = 0;
-        console.log('reset n');
          }
       if (n < 0) { n = pics.length-1;  }
 
       if (thumb_click) {
         n = Number(direction);
-        console.log('thumb clicked');
         $("#pause").click();
       }
 
@@ -757,7 +755,6 @@ document.addEventListener("fullscreenchange", function (e) {
         $(this).attr("src", pics[n]);
         return false;
       });
-      console.log(n);
       return false;
     }
 
