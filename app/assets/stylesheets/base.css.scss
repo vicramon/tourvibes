@@ -156,6 +156,10 @@ h6 {
   text-decoration:underline;
 }
 
+.clear_both {
+  clear: both
+}
+
 .home_top {
   background:url('home_top_bg.png') repeat-x;
   min-height:298px;
@@ -236,6 +240,25 @@ a.gray_button {
   text-shadow:0 1px 0 white;
   font-weight:bold;
   text-align:center;
+}
+
+.client_list img {
+  margin-left:4.5%;
+  float:left;
+  margin-top:20px;
+}
+
+.client_group, .header_group {
+  display: inline;
+}
+
+.home_image {
+  float: right;
+  img {
+    border-radius:4px;
+    margin-top:-30px;
+    margin-right:40px;
+  }
 }
 
 .line {

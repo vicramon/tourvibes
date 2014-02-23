@@ -1,9 +1,15 @@
+:css
+  body {
+    min-width: 1200px;
+  }
+
+  http://localhost:3000/
 = content_for :below_header do
   .home_top
     .home_top_inner.standard_width
-      %div{:style => "float:right;"}
-        = image_tag 'home_example_small.png', :style => 'border-radius:4px;margin-top:-30px;margin-right:40px;'
-      %h1 Create a virtual tour for just $10.
+      %div.home_image
+        = image_tag 'home_example_small.png'
+      %h1 Create a virtual tour for just $5.
       %h3
         Your first 5 tours are
         = succeed "." do
@@ -14,23 +20,22 @@
         Get Started &nbsp;#{image_tag 'buttons/gray_arrow.png'}
       %a.blue_button.button{:href => "http://2100Windsor.tourvibes.com/", :style => "margin-left:15px;color:white;"} View Example
     %div{:style => "clear:both;height:0"} &nbsp;
-  :css
-    .client_list img {
-      margin-left:4.5%;
-      float:left;
-      margin-top:20px;
-    }
-  %div{:align => "center", :style => "background:#d8d8d8"}
-    .client_list.standard_width{:style => "text-align:left;min-height:84px;height:auto;"}
-      %h2{:style => "font-weight:normal;display:inline;margin-top:25px;float:left;"} Our Clients
-      = image_tag 'clients/1.png'
-      = image_tag 'clients/2.png'
-      = image_tag 'clients/3.png'
-      = image_tag 'clients/4.png', :style => 'margin-top:8px;'
-      = image_tag 'clients/5.png', :style => 'margin-top:8px;margin-left:5.5%'
-    %div{:style => "clear:both;height:0"} &nbsp;
+  .clear_both
 
-%div{:style => "float:right;width:460px;line-height:1.1"}
+  %div{align: "center", style: "background:#d8d8d8"}
+    .client_list.standard_width{style: "text-align:left;min-height:84px;height:auto;padding: 8px 0 8px 0"}
+      .client_group
+        %h2{style: "font-weight:normal;display:inline;margin-top:25px;float:left;"} Our Clients
+      .client_group
+        = image_tag 'clients/1.png'
+        = image_tag 'clients/2.png'
+      .client_group
+        = image_tag 'clients/3.png'
+        = image_tag 'clients/4.png', style: 'margin-top:8px;'
+      -# = image_tag 'clients/5.png', style: 'margin-top:8px;margin-left:5.5%'
+    %div{style: "clear:both;height:0"} &nbsp;
+
+%div{style: "float:right;width:460px;line-height:1.1"}
 
   .big_number
     5,000
@@ -60,7 +65,9 @@
   %span{:style => "font-style:italic;"} &mdash; Janelle, Century 21
 %div{:style => "clear:both;"} &nbsp;
 .line &nbsp;
+
 %h2#how How it Works
+
 %div{:style => "height:15px;"} &nbsp;
 .how_box
   .how_header
@@ -90,18 +97,23 @@
   .how_text
     Next you can publish your tour to the live web. Every tour comes with a free subdomain so you have professional place to send leads. Or take things to the next level by purchasing a domain name and pointing it to your tour.
 %div{:style => "clear:both;"} &nbsp;
+
 .line &nbsp;
-/
-  <h2 id="pricing">Pricing</h2>
-  <div style="height:15px;">&amp;nbsp;</div>
 
-  <haml:loud> image_tag &amp;#39;icons/pricing.png&amp;#39; </haml:loud>
-  <div style="height:6px;">&amp;nbsp;</div>
-  No gimmicks, no hidden fees, and no bulk purchase requirements. We like to keep things simple.
+%h2#pricing Pricing
+%div{ style: 'height:15px' } &nbsp;
 
+= image_tag 'icons/pricing.png'
+%div{ style: 'height:6px' } &nbsp;
 
-  <div style="clear:both;">&amp;nbsp;</div>
-  <div class="line">&amp;nbsp;</div>
+No hidden fees or bulk purchase requirements. We like to keep things simple.
+
+%div{ style: 'clear: both' }
+
+%br
+%br
+%div.line &nbsp;
+
 %h2#features Features
 %div{:style => "height:15px;"} &nbsp;
 :css
