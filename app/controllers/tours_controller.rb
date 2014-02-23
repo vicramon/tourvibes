@@ -3,6 +3,10 @@ class ToursController < AuthenticatedController
   expose(:tour, attributes: :tour_params)
   expose(:user) { current_user }
 
+  def new
+    redirect_to first_tour_path if user.name.blank?
+  end
+
   def create
     tour.save
     tour.set_default_colors

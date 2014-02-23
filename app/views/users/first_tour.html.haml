@@ -1,25 +1,27 @@
 .center_form_box
-  %h4{:style => "margin-left:0px;"} Create New Tour
+  %h4{:style => "margin-left:0px;"} First, Some Basic Info About You
   %div{:style => "height:10px;"} &nbsp;
-  - if flash[:update] == 'yes'
+
+  - if flash[:update]
     .update
       Your changes have been saved
-  = form_tag '/tour/first', :multipart => true do
+
+  = form_for user, url: first_tour_submit_path, multipart: true do |f|
     %label Your Name:
-    = text_field_tag 'name', @user.name, :class => 'login_text'
+    = f.text_field 'name', class: 'login_text'
     %br/
-    %label Phone:
-    = text_field_tag 'cell', @user.cell, :class => 'login_text'
+    %label Your Phone:
+    = f.text_field 'cell', class: 'login_text'
     %br/
     %label Firm Name:
-    = text_field_tag 'firm_name', @user.firm_name, :class => 'login_text'
+    = f.text_field 'firm_name', class: 'login_text'
     %br/
     /
       <label>Photo of You:</label> <haml:loud> file_field_tag &amp;#39;photo&amp;#39;, :class =&amp;gt; &amp;#39;login_text&amp;#39; </haml:loud><br />
-      <haml:silent>	 if @user.headshot
-      </haml:silent><haml:block>		<label>&amp;nbsp;</label><haml:loud> image_tag @user.headshot.upload.url(:thumb), :style =&amp;gt; &amp;#39;border-radius:5px;margin-top:5px;&amp;#39; </haml:loud><br />
+      <haml:silent>	 if user.headshot
+      </haml:silent><haml:block>		<label>&amp;nbsp;</label><haml:loud> image_tag user.headshot.upload.url(:thumb), :style =&amp;gt; &amp;#39;border-radius:5px;margin-top:5px;&amp;#39; </haml:loud><br />
       </haml:block>	<label>Firm's Logo:</label> <haml:loud> file_field_tag &amp;#39;logo&amp;#39;, :class =&amp;gt; &amp;#39;login_text&amp;#39;  </haml:loud><br />
-      <haml:silent>	 if @user.logo
-      </haml:silent><haml:block>		<label>&amp;nbsp;</label><haml:loud> image_tag @user.logo.upload.url(:thumb), :style =&amp;gt; &amp;#39;border-radius:5px;margin-top:5px;&amp;#39; </haml:loud><br />
+      <haml:silent>	 if user.logo
+      </haml:silent><haml:block>		<label>&amp;nbsp;</label><haml:loud> image_tag user.logo.upload.url(:thumb), :style =&amp;gt; &amp;#39;border-radius:5px;margin-top:5px;&amp;#39; </haml:loud><br />
       </haml:block>
-    = submit_tag 'Next Step', :class => 'gray_button submit', :style => 'margin-left:167px;'
+    = submit_tag 'Next Step', :class => 'gray_button submit', :style => 'margin-left:175px;'

@@ -1,16 +1,14 @@
 class UsersController < AuthenticatedController
   expose(:user) { current_user }
 
-  # def first_tour
-  #   @user.name = params[:name]
-  #   @user.cell = params[:cell]
-  #   @user.firm_name = params[:firm_name]
-  #   @user.save
-  #   flash.now[:update] = 'yes'
-  #   @tour = House.new(:user_id => @user.id)
-  #   @tour.set_default_colors()
-  #   redirect_to @tour.edit_path and return
-  # end
+  def first_tour
+
+  end
+
+  def first_tour_submit
+    user.update_attributes(user_params)
+    redirect_to new_tour_path
+  end
 
   def update
     user.update_attributes(user_params)

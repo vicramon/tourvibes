@@ -33,6 +33,9 @@ TourVibes::Application.routes.draw do
 
   get 'secure_login/:login_hash/:tour_id', to: 'sessions#secure_login'
 
+  get 'first_tour', to: 'users#first_tour', as: 'first_tour'
+  patch 'first_tour_submit', to: 'users#first_tour_submit', as: 'first_tour_submit'
+
   get 'home', to: 'home#index', as: 'home'
   get 'about', to: 'home#about', as: 'about'
   get 'contact', to: 'home#contact', as: 'contact'
