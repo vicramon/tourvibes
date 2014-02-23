@@ -719,10 +719,11 @@ document.addEventListener("fullscreenchange", function (e) {
       }
 
       $(".room_title_bg").fadeOut('slow',function() {
-        $(".room_title_bg").html(room_names[n]);
+        if (room_names && room_names[n]) {
 
-        if (room_names[n] != "") {
-          $(this).fadeIn('slow');
+          $(".room_title_bg").html(room_names[n]);
+          if (room_names[n] != "") { $(this).fadeIn('slow'); }
+
         }
 
         return false;
@@ -757,9 +758,6 @@ document.addEventListener("fullscreenchange", function (e) {
       });
       return false;
     }
-
-
-
 
 
     function preload(arrayOfImages) {
@@ -825,4 +823,3 @@ document.addEventListener("fullscreenchange", function (e) {
 
 
 </script>
-
