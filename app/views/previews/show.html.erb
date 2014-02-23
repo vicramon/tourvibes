@@ -72,13 +72,16 @@
 <div class="controls tour_items" style="z-index:1000;">
   <div class="controls_inner">
 
-  <% if tour.autoplay_music %>
-    <%= image_tag 'icons/volume.png', id: 'volume'  %>
-    <%= image_tag 'icons/muted.png', id: 'muted', style: 'display:none;' %>
-  <% else %>
-    <%= image_tag 'icons/volume.png', id: 'volume', style: 'display:none;'  %>
-    <%= image_tag 'icons/muted.png', id: 'muted' %>
-  <% end %>
+  <div style="margin: 0 5% 0 19%; display: inline-block;">
+    <% if tour.autoplay_music %>
+        <%= image_tag 'icons/volume.png', id: 'volume'  %>
+        <%= image_tag 'icons/muted.png', id: 'muted', style: 'display:none;' %>
+    <% else %>
+      <%= image_tag 'icons/volume.png', id: 'volume', style: 'display:none;'  %>
+      <%= image_tag 'icons/muted.png', id: 'muted' %>
+    <% end %>
+  </div>
+
   <%= image_tag 'icons/back.png', id: 'back', style: 'margin-right:6%;' %>
 
   <% if tour.autoplay %>
@@ -89,10 +92,16 @@
   <%= image_tag 'icons/play.png', id: 'play', style: 'margin:0 0px -3px;' %>
   <% end %>
 
-  <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:6%;' %>
+  <%= image_tag 'icons/forward.png', id: 'forward', style: 'margin-left:6%;' %>
 
-  <%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
-  <%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
+  <%= image_tag 'icons/expand.png', id: 'expand', style: 'margin-bottom:-3px;display:none;' %>
+  <%= image_tag 'icons/escape.png', id: 'escape', style: 'margin-bottom:-3px;display:none;' %>
+
+  <script type="text/javascript">
+    if ((bowser.chrome || bowser.firefox || bowser.safari) && !bowser.mobile) {
+      $('#expand').show()
+    }
+  </script>
 
   </div>
 </div>
