@@ -709,7 +709,7 @@ document.addEventListener("fullscreenchange", function (e) {
         n = n+1;
       }
 
-      if (n > pics.length-1) { n = 0;
+      if (pics && n > pics.length-1) { n = 0;
          }
       if (n < 0) { n = pics.length-1;  }
 
