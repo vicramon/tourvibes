@@ -225,6 +225,11 @@
   border:2px solid #ccc;
 }
 
+.headshot {
+  height:240px;
+  border-radius:4px;
+}
+
 </style>
 
 <div id="main_image_wrapper">
@@ -255,7 +260,7 @@
 
     <%if @realtor.headshot %>
     <div style="margin-bottom:15px;float:left;margin-right:15px;">
-        <%= image_tag @realtor.headshot.photo.url(:large), :style => 'height:140px;border-radius:4px;' %>
+        <%= image_tag @realtor.headshot.photo.url(:large), class: 'headshot' %>
       <br /><br /><br />
     </div>
     <% end %>
@@ -280,7 +285,7 @@
     <div style="clear:left;">
       <%if @realtor.logo %>
         <br />
-        <%= image_tag @realtor.logo.photo.url(:large), :style => 'height:70px;' %>
+        <%= image_tag @realtor.logo.photo.url(:large), :style => 'height:110px;' %>
       <% end %>
     </div>
   </div>
