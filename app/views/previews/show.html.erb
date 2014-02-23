@@ -366,7 +366,6 @@
 
 <script type="text/javascript">
 
-preload(pics);
 var fullscreen = false;
 var song = $('#music').get(0);
 var delay_time = 8000;
@@ -692,6 +691,8 @@ document.addEventListener("fullscreenchange", function (e) {
       <% i += 1 %>
     <% end %>
 
+    preload(pics);
+
     function switchImage(direction,thumb_click) {
 
       /*
@@ -709,9 +710,8 @@ document.addEventListener("fullscreenchange", function (e) {
         n = n+1;
       }
 
-      if (pics && n > pics.length-1) { n = 0;
-         }
-      if (n < 0) { n = pics.length-1;  }
+      if (pics && n > pics.length-1) { n = 0; }
+      if (pics && n < 0) { n = pics.length-1;  }
 
       if (thumb_click) {
         n = Number(direction);
@@ -753,7 +753,7 @@ document.addEventListener("fullscreenchange", function (e) {
           });
           return false;
         });
-        $(this).attr("src", pics[n]);
+        if (pics) { $(this).attr("src", pics[n]); }
         return false;
       });
       return false;
