@@ -17,7 +17,7 @@ class PaymentsController < ApplicationController
 
   def charge(tour, token, user)
     charge = Stripe::Charge.create(
-      amount: 1000,
+      amount: 500,
       currency: "usd",
       card: token,
       description: tour.address_1,
