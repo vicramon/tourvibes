@@ -1,0 +1,230 @@
+::-webkit-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-webkit-scrollbar-track:horizontal {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-webkit-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-webkit-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-webkit-scrollbar-thumb:horizontal {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-webkit-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-webkit-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-o-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-o-scrollbar-track:horizontal {
+    -o-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-o-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-o-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-o-scrollbar-thumb:horizontal {
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-o-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-o-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-ms-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-ms-scrollbar-track:horizontal {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-ms-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-ms-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-ms-scrollbar-thumb:horizontal {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-ms-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-ms-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+::-moz-scrollbar {
+    width: 0px;
+  height:10px;
+}
+::-moz-scrollbar-track:horizontal {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  background:#000;
+}
+::-moz-scrollbar-track:vertical {
+  background:none;
+  display:none;
+}
+::-moz-scrollbar-thumb:vertical {
+    background:none;
+  display:none;
+}
+::-moz-scrollbar-thumb:horizontal {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background:url('/assets/scrollbar_bg.png');
+}
+::-moz-scrollbar-thumb:horizontal:window-inactive {
+  background: #ccc;
+}
+::-moz-scrollbar-thumb:vertical:window-inactive {
+  background:none;
+  display:none;
+}
+
+.kenburns {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius:5px;
+  border:2px solid #666;
+  width:950px;
+  height:600px;
+}
+
+.kenburns img {
+  position: absolute;
+  border-radius:5px;
+  left: 0px;
+  top: 0px;
+
+  -o-transition: -o-transform 5s ease-in-out;
+  -ms-transition: -ms-transform 5s ease-in-out;
+  -moz-transition: -moz-transform 5s ease-in-out;
+  -webkit-transition: -webkit-transform 5s ease-in-out, -webkit-transform-origin 5s ease-in-out;
+
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+
+  -o-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+
+}
+
+.main_image {
+  border-radius:5px;
+  width:auto;
+  height:720px;
+  position:relative;
+}
+
+#main_image_wrapper {
+/*  height:600px;*/
+}
+
+/* fullscreen styles */
+
+#wrapper:-webkit-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-moz-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-ms-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:-o-full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+#wrapper:full-screen
+{
+  float: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+.thumb {
+  border:2px solid #242424;
+  cursor:pointer;
+}
+
+.thumb_selected {
+  border:2px solid #ccc;
+}
+
+.headshot {
+  height:240px;
+  border-radius:4px;
+}
+
