@@ -588,7 +588,6 @@ document.addEventListener("fullscreenchange", function (e) {
        });
 
   // begin experimental code
-
   var pfx = ["webkit", "moz", "ms", "o", ""];
   function RunPrefixMethod(obj, method) {
     var p = 0, m, t;
@@ -607,15 +606,11 @@ document.addEventListener("fullscreenchange", function (e) {
     }
 
   }
-
-
-
   // end experimental code
 
         $(document).keyup(function(e) {
         if (e.keyCode == 27 && (fullscreen || RunPrefixMethod(document, "IsFullScreen"))) {
         //exitFullscreen();
-        alert('hi');
         }
       });
 
