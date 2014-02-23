@@ -73,23 +73,23 @@
   <div class="controls_inner">
 
   <% if tour.autoplay_music %>
-    <%= image_tag 'icons/volume.png', :id => 'volume'  %>
-    <%= image_tag 'icons/muted.png', :id => 'muted', :style => 'display:none;' %>
+    <%= image_tag 'icons/volume.png', id: 'volume'  %>
+    <%= image_tag 'icons/muted.png', id: 'muted', style: 'display:none;' %>
   <% else %>
-    <%= image_tag 'icons/volume.png', :id => 'volume', :style => 'display:none;'  %>
-    <%= image_tag 'icons/muted.png', :id => 'muted' %>
+    <%= image_tag 'icons/volume.png', id: 'volume', style: 'display:none;'  %>
+    <%= image_tag 'icons/muted.png', id: 'muted' %>
   <% end %>
-  <%= image_tag 'icons/back.png', :id => 'back', :style => 'margin-right:40px;' %>
+  <%= image_tag 'icons/back.png', id: 'back', style: 'margin-right:6%;' %>
 
   <% if tour.autoplay %>
-  <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;' %>
-  <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;display:none;' %>
+  <%= image_tag 'icons/pause.png', id: 'pause', style: 'margin:0px 0px -3px;' %>
+  <%= image_tag 'icons/play.png', id: 'play', style: 'margin:0 0px -3px;display:none;' %>
   <% else %>
-  <%= image_tag 'icons/pause.png', :id => 'pause', :style => 'margin:0px 0px -3px;display:none;' %>
-  <%= image_tag 'icons/play.png', :id => 'play', :style => 'margin:0 0px -3px;' %>
+  <%= image_tag 'icons/pause.png', id: 'pause', style: 'margin:0px 0px -3px;display:none;' %>
+  <%= image_tag 'icons/play.png', id: 'play', style: 'margin:0 0px -3px;' %>
   <% end %>
 
-  <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:40px;' %>
+  <%= image_tag 'icons/forward.png', :id => 'forward', :style => 'margin-left:6%;' %>
 
   <%= image_tag 'icons/expand.png', :id => 'expand', :style => 'margin-bottom:-3px;' %>
   <%= image_tag 'icons/escape.png', :id => 'escape', :style => 'margin-bottom:-3px;display:none;' %>
