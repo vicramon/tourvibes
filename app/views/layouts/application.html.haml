@@ -21,10 +21,10 @@
               = active_link_to "Contact", contact_path
               = active_link_to "Logout", logout_path
             - else
-              = active_link_to "Home", root_path
-              = link_to "How it Works", root_path(anchor: 'how'),  class: 'how_link'
-              = link_to "Features", root_path(anchor: 'features'), class: 'feature_link'
-              = link_to "Contact", contact_path
+              = active_link_to "Home", root_path, exact: true
+              = active_link_to "How it Works", root_path(anchor: 'how'),  class: 'how_link'
+              = active_link_to "Features", root_path(anchor: 'features'), class: 'feature_link'
+              = active_link_to "Contact", contact_path
               = active_link_to "Login", new_session_path
 
       = yield :below_header
