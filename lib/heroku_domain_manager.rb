@@ -50,7 +50,7 @@ class HerokuDomainManager
   end
 
   def app_name
-    'realtour'
+    'tourvibes'
   end
 
   def remove_domain(domain)
