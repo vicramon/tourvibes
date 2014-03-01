@@ -1,7 +1,7 @@
 class Tour < ActiveRecord::Base
   belongs_to :user
   has_many :uploads
-  has_many :photos, -> { where(brand: 'photo').order("created_at desc") }, class_name: 'Upload'
+  has_many :photos, -> { where(brand: 'photo').order("created_at asc") }, class_name: 'Upload'
 
   accepts_nested_attributes_for :photos
   validates :subdomain, :custom_domain, uniqueness: true, allow_blank: true
