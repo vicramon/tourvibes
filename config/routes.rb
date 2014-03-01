@@ -1,9 +1,9 @@
 TourVibes::Application.routes.draw do
 
-  constraints Constraint::LiveDomain.new do
-    get '/', to: 'live_tours#index'
-    get 'not_found', to: 'live_tours#not_found', as: 'not_found'
-  end
+  # constraints Constraint::LiveDomain.new do
+  #   get '/', to: 'live_tours#index'
+  #   get 'not_found', to: 'live_tours#not_found', as: 'not_found'
+  # end
 
   resources :uploads, only: [:create, :show, :destroy]
   resources :sign_ups, only: [:new, :create]
