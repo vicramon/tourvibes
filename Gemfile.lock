@@ -253,6 +253,7 @@ DEPENDENCIES
   puma
   rails (= 4.0.2)
   rails_12factor
+  rest-client
   sass-rails
   selenium-webdriver
   stripe
