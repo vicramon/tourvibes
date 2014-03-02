@@ -5,7 +5,7 @@ class SignUpsController < ApplicationController
     if user.save
       sign_in user
       user.update_attributes free_tours: 5, login_hash: random_string
-      MailTimeAction.create('nGy3KFe', 0, cookies[:mailtime_delivery_token])
+      MailTimeAction.create('LHPeo5w', 0, cookies[:mailtime_delivery_token])
       redirect_to new_tour_path
     else
       # TODO - show email not unique error message
